@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { environment } from '../../../environments/environment';
+import { environment } from './../../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Recurso } from '../../entidades/CRUD/Recurso';
+import { Recurso } from './../../../entidades/CRUD/Recurso';
 
 @Injectable()
 
