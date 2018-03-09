@@ -7,6 +7,7 @@ const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
+            { path: 'proyecto', loadChildren: './proyecto/proyecto.module#proyectoModule' },
             { path: 'autor', loadChildren: './CRUD/autor/autor.module#AutorModule' },
             { path: 'categoriarecurso', loadChildren: './CRUD/categoriarecurso/categoriarecurso.module#CategoriaRecursoModule' },
             { path: 'comentariossugerencias', loadChildren: './CRUD/comentariossugerencias/comentariossugerencias.module#ComentariosSugerenciasModule' },
