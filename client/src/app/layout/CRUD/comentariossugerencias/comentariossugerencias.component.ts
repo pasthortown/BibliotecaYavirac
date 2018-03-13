@@ -25,6 +25,7 @@ export class ComentariosSugerenciasComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ComentariosSugerenciasService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -152,7 +153,7 @@ export class ComentariosSugerenciasComponent implements OnInit {
       .then(respuesta => {
          if(respuesta){
             this.toastr.success('La actualización fue exitosa', 'Actualización');
-         }else{
+         }else{https://github.com/pasthortown/BibliotecaYavirac.git
             this.toastr.warning('Se produjo un error', 'Actualización');
          }
          this.refresh();
