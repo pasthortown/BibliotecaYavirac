@@ -108,7 +108,7 @@
       <div class="modal-header">
          <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
-               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
+               Edición de Datos: {{entidadSeleccionada.codigoISBN | uppercase}}
             </span>
             <span *ngIf="entidadSeleccionada.id === 0">
                Ingreso de Datos:
@@ -128,14 +128,20 @@
          </div>
          <div class="form-group row">
             <label for="idTipo" class="col-sm-4 col-form-label">Tipo</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idTipo" name="idTipo" placeholder="Tipo" [(ngModel)]="entidadSeleccionada.idTipo">
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idTipo" name="idTipo" [(ngModel)]="entidadSeleccionada.idTipo">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let tipo of tipos" value={{tipo.id}}>{{tipo.descripcion}}</option>
+                </select>
             </div>
          </div>
          <div class="form-group row">
             <label for="idAutor" class="col-sm-4 col-form-label">Autor</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idAutor" name="idAutor" placeholder="Autor" [(ngModel)]="entidadSeleccionada.idAutor">
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idAutor" name="idAutor" [(ngModel)]="entidadSeleccionada.idAutor">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let autor of autores" value={{autor.id}}>{{autor.apellidos}} {{autor.nombres}}</option>
+                </select>
             </div>
          </div>
          <div class="form-group row">
@@ -143,11 +149,20 @@
             <div class="col-sm-8">
               <input type="text" class="form-control" id="idCategoria" name="idCategoria" placeholder="Categoría" [(ngModel)]="entidadSeleccionada.idCategoria">
             </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idCategoria" name="idCategoria" [(ngModel)]="entidadSeleccionada.idCategoria">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.descripcion}}</option>
+                </select>
+            </div>
          </div>
          <div class="form-group row">
             <label for="idProductora" class="col-sm-4 col-form-label">Productora</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idProductora" name="idProductora" placeholder="Productora" [(ngModel)]="entidadSeleccionada.idProductora">
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idProductora" name="idProductora" [(ngModel)]="entidadSeleccionada.idProductora">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let productora of productoras" value={{productora.id}}>{{productora.nombre}}</option>
+                </select>
             </div>
          </div>
          <div class="form-group row">
@@ -164,8 +179,11 @@
          </div>
          <div class="form-group row">
             <label for="idEstado" class="col-sm-4 col-form-label">Estado</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="idEstado" name="idEstado" placeholder="Estado" [(ngModel)]="entidadSeleccionada.idEstado">
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idEstado" name="idEstado" [(ngModel)]="entidadSeleccionada.idEstado">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let estado of estados" value={{estado.id}}>{{estado.descripcion}}</option>
+                </select>
             </div>
          </div>
          </form>
