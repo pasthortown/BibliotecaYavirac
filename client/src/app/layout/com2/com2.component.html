@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<title>Página SEcuandaria</title>
+
+<!-- Bootstrap CSS -->
+    <div class="panel" id="Recurso" style ="margin:2%; height:50%">
+        <!--   Cabecera  -->    
+        <div class="panel-heading " style="background-color:rgba(46, 141, 250, 0.51);">
+               
+                  </div>   
+    
+            <div class="panel-body ">
+            <div class="row">
+    
+                <!--   Imagen  -->
+                
+                <div class="col-xs-3 col-md-2" style="background-color:#FFFFFF;border:solid;">
+                        <a href="#" class="thumbnail" style="margin:5%;">
+                          <img src="./../../../assets/images/#" alt="Imagen Recurso" style="
+                          background-color:#FFFFFF;
+                          overflow: hidden;">
+                        </a>
+                      </div>
+                   
+    
+            <!--   Detalles  -->  
+    
+              <div class="col-xs-3 col-md-10" style="background-color:#FFFFFF; padding:10px;border:solid;">
+            <p><strong>Título: </strong>{{TituloR}} </p>
+            <p><strong>Autor: </strong>{{AutorR}} </p>
+            <p><strong>Edición: </strong>{{EdicionR}} </p>
+            <p><strong>ISBN: </strong>{{ISBNR}} </p>
+            <p><strong>Tipo: </strong>{{TiR}} </p>
+
+              </div>  
+              <div class="col-md-12" style="background-color:#FFFFFF; padding:10px;border:solid;">
+                    <h4 >Reseña: </h4> 
+              </div>                    
+            </div>             
+            </div>
+                    </div>
+
+<!-- Comentarios-->
+
+                <div class="article">
+                    <h3><span>{{NumCom}}</span> Comentarios </h3>
+                    <div class=""></div>
+                    <div class="comment"> <a href="#"><img src="./../../../assets/images/#" width="40" height="40" alt="Foto usuario" class="userpic" /></a>
+                      <p><a href="#">{{LinkUsuario}}</a> Dice:<br />
+                        {{FechaC}}</p>
+                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum.</p>
+                    </div>
+              </div>
+
+<!-- Tags -->
+              <div class="tags">
+                  <div class="tags-header">
+               <h5>Tags:</h5>
+<div class="tags-body">
+            <button type="button" class="btn btn-primary">Tag</button>
+                </div>
+                </div>
+                </div>
+                <button type="button" class="btn btn-primary">Descargar como PDF</button> 
+                <button type="button" class="btn btn-red">Solicitar</button>
+        

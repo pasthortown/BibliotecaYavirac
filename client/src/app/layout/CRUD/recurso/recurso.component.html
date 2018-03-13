@@ -148,10 +148,6 @@
             <label for="idCategoria" class="col-sm-4 col-form-label">Categoría</label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="idCategoria" name="idCategoria" placeholder="Categoría" [(ngModel)]="entidadSeleccionada.idCategoria">
-            </div>
-            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-                <select class="form-control" id="idCategoria" name="idCategoria" [(ngModel)]="entidadSeleccionada.idCategoria">
-                    <option value="" selected>Seleccione...</option>
                     <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.descripcion}}</option>
                 </select>
             </div>
