@@ -33,7 +33,37 @@
                 </ul>
                 <ul class="submenu">
                     <a [routerLink]="['/categoriarecurso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                        <i class="fa fa-user-o"></i>&nbsp;{{ 'Autor' | translate }}
+                        <i class="fa fa-tags"></i>&nbsp;{{ 'CategoriaRecurso' | translate }}
+                    </a>
+                </ul>
+                <ul class="submenu">
+                    <a [routerLink]="['/comentariossugerencias']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-comments-o"></i>&nbsp;{{ 'Comentarios y sugerencias' | translate }}
+                    </a>
+                </ul>
+                <ul class="submenu">
+                    <a [routerLink]="['/detallesolicitud']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-file-text-o "></i>&nbsp;{{ 'Detalles solicitud' | translate }}
+                    </a>
+                </ul>
+                <ul class="submenu">
+                    <a [routerLink]="['/estadorecurso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-flag-o"></i>&nbsp;{{ 'Estado recurso' | translate }}
+                    </a>
+                </ul>
+                <ul class="submenu">
+                    <a [routerLink]="['/productora']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-group"></i>&nbsp;{{ 'Productora' | translate }}
+                    </a>
+                </ul>
+                <ul class="submenu">
+                    <a [routerLink]="['/recurso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-cubes"></i>&nbsp;{{ 'Recurso' | translate }}
+                    </a>
+                </ul>
+                <ul class="submenu">
+                    <a [routerLink]="['/solicitud']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-paper-plane-o"></i>&nbsp;{{ 'Solicitud' | translate }}
                     </a>
                 </ul>
             </li>

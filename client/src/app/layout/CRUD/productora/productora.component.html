@@ -33,17 +33,12 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Identificador</strong>
+                        <strong>Nombre</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>nombre</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>urlWeb</strong>
+                        <strong>URL Web</strong>
                      </span>
                   </th>
                </tr>
@@ -53,7 +48,6 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
-                  <td>{{actual.id}}</td>
                   <td>{{actual.nombre}}</td>
                   <td>{{actual.urlWeb}}</td>
                </tr>
@@ -84,7 +78,7 @@
       <div class="modal-header">
          <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
-               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
+               Edición de Datos: {{entidadSeleccionada.nombre| uppercase}}
             </span>
             <span *ngIf="entidadSeleccionada.id === 0">
                Ingreso de Datos:
@@ -103,15 +97,15 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="nombre" class="col-sm-4 col-form-label">nombre</label>
+            <label for="nombre" class="col-sm-4 col-form-label">Nombre</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" [(ngModel)]="entidadSeleccionada.nombre">
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="entidadSeleccionada.nombre">
             </div>
          </div>
          <div class="form-group row">
-            <label for="urlWeb" class="col-sm-4 col-form-label">urlWeb</label>
+            <label for="urlweb" class="col-sm-4 col-form-label">URL Web</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="urlWeb" name="urlWeb" placeholder="urlWeb" [(ngModel)]="entidadSeleccionada.urlWeb">
+              <input type="text" class="form-control" id="urlWeb" name="urlWeb" placeholder="URL Web" [(ngModel)]="entidadSeleccionada.urlWeb">
             </div>
          </div>
          </form>
