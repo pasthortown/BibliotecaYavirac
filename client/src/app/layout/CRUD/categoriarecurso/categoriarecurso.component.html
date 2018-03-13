@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de CategoriaRecurso</h2>
+         <h2 style="margin-top:0px">Catálogo de Categorías - UNESCO</h2>
       </div>
    </div>
    <div class="row">
@@ -33,22 +33,17 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Identificador</strong>
+                        <strong>Código</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>codigo</strong>
+                        <strong>Descripción</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>descripcion</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>codigoPadre</strong>
+                        <strong>Código Superior</strong>
                      </span>
                   </th>
                </tr>
@@ -58,7 +53,6 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
-                  <td>{{actual.id}}</td>
                   <td>{{actual.codigo}}</td>
                   <td>{{actual.descripcion}}</td>
                   <td>{{actual.codigoPadre}}</td>
@@ -109,21 +103,21 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="codigo" class="col-sm-4 col-form-label">codigo</label>
+            <label for="codigo" class="col-sm-4 col-form-label">Código</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="codigo" name="codigo" placeholder="codigo" [(ngModel)]="entidadSeleccionada.codigo">
+              <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Código" [(ngModel)]="entidadSeleccionada.codigo">
             </div>
          </div>
          <div class="form-group row">
-            <label for="descripcion" class="col-sm-4 col-form-label">descripcion</label>
+            <label for="descripcion" class="col-sm-4 col-form-label">Descripción</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" [(ngModel)]="entidadSeleccionada.descripcion">
+              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">
             </div>
          </div>
          <div class="form-group row">
-            <label for="codigoPadre" class="col-sm-4 col-form-label">codigoPadre</label>
+            <label for="codigoPadre" class="col-sm-4 col-form-label">Código Superior</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="codigoPadre" name="codigoPadre" placeholder="codigoPadre" [(ngModel)]="entidadSeleccionada.codigoPadre">
+              <input type="text" class="form-control" id="codigoPadre" name="codigoPadre" placeholder="Código Superior" [(ngModel)]="entidadSeleccionada.codigoPadre">
             </div>
          </div>
          </form>
