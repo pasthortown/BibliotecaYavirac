@@ -31,29 +31,25 @@
                <tr>
                   <th>
                   </th>
+                  
                   <th scope="col">
                      <span>
-                        <strong>Identificador</strong>
+                        <strong>Solicitante</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idPersona</strong>
+                        <strong>Fecha de Solicitud</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>fechaSolicitud</strong>
+                        <strong>Fecha Máxima</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>fechaMax</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>fechaDevolucion</strong>
+                        <strong>Fecha de Devolución</strong>
                      </span>
                   </th>
                </tr>
@@ -115,27 +111,27 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="idPersona" class="col-sm-4 col-form-label">idPersona</label>
+            <label for="idPersona" class="col-sm-4 col-form-label">Solicitante</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
+              <input type="text" class="form-control" id="idPersona" name="idPersona" placeholder="Persona" [(ngModel)]="entidadSeleccionada.idPersona">
             </div>
          </div>
          <div class="form-group row">
-            <label for="fechaSolicitud" class="col-sm-4 col-form-label">fechaSolicitud</label>
+            <label for="fechaSolicitud" class="col-sm-4 col-form-label">Fecha Solicitud</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="fechaSolicitud" name="fechaSolicitud" placeholder="fechaSolicitud" [(ngModel)]="entidadSeleccionada.fechaSolicitud">
+              <input type="text" class="form-control" id="fechaSolicitud" name="fechaSolicitud" placeholder="Fecha de Solicitud" [(ngModel)]="entidadSeleccionada.fechaSolicitud">
             </div>
          </div>
          <div class="form-group row">
-            <label for="fechaMax" class="col-sm-4 col-form-label">fechaMax</label>
+            <label for="fechaMax" class="col-sm-4 col-form-label">Fecha Máxima</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="fechaMax" name="fechaMax" placeholder="fechaMax" [(ngModel)]="entidadSeleccionada.fechaMax">
+              <input type="text" class="form-control" id="fechaMax" name="fechaMax" placeholder="Fecha Máxima" [(ngModel)]="entidadSeleccionada.fechaMax">
             </div>
          </div>
          <div class="form-group row">
-            <label for="fechaDevolucion" class="col-sm-4 col-form-label">fechaDevolucion</label>
+            <label for="fechaDevolucion" class="col-sm-4 col-form-label">Fecha Devolución</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="fechaDevolucion" name="fechaDevolucion" placeholder="fechaDevolucion" [(ngModel)]="entidadSeleccionada.fechaDevolucion">
+              <input type="text" class="form-control" id="fechaDevolucion" name="fechaDevolucion" placeholder="Fecha de Devolución" [(ngModel)]="entidadSeleccionada.fechaDevolucion">
             </div>
          </div>
          </form>
