@@ -8,6 +8,10 @@ import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
+import { Persona } from './../../../entidades/CRUD/Persona';
+import { PersonaService } from './../externos/persona.service';
+
+
 @Component({
    selector: 'app-comentariossugerencias',
    templateUrl: './comentariossugerencias.component.html',
@@ -25,9 +29,9 @@ export class ComentariosSugerenciasComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   personas: Persona[];
 
-
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ComentariosSugerenciasService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ComentariosSugerenciasService, private personaService: PersonaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -183,6 +187,7 @@ export class ComentariosSugerenciasComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = ComentariosSugerencias[0];
       this.entidadSeleccionada = this.crearEntidad();
+      this.getPersonas();
    }
 
    getPaginaPrimera():void {
@@ -217,5 +222,15 @@ export class ComentariosSugerenciasComponent implements OnInit {
 
    onSelect(entidadActual: ComentariosSugerencias): void {
       this.entidadSeleccionada = entidadActual;
+   }
+
+   getPersonas(): void {
+       this.busy = this.personaService.getAll()
+      .then(respuesta => {
+         this.personas = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
    }
 }
