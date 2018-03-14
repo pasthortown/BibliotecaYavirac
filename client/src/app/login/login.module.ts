@@ -1,11 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './login.component';
+import { LoginService } from './login.service';
+import { RolSecundarioService } from './../layout/CRUD/externos/rolsecundario.service';
 
 @NgModule({
-    imports: [CommonModule, LoginRoutingModule],
-    declarations: [LoginComponent]
+    imports: [
+        CommonModule,
+        FormsModule,
+        LoginRoutingModule
+    ],
+    declarations: [LoginComponent],
+    providers: [LoginService,
+    RolSecundarioService]
 })
-export class LoginModule {}
+export class LoginModule {
+}

@@ -1,0 +1,482 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <h2 class="text-center">Datos Personales</h2>
+        </div>
+    </div>
+    <div style="width:100%; height:30px;"></div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Identificación</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="identificacion" placeholder="Identificación" [(ngModel)]="personaLogeada.identificacion" readonly>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Primer Nombre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="primerNombre" placeholder="Primer Nombre" [(ngModel)]="personaLogeada.nombre1">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Segundo Nombre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="segundoNombre" placeholder="Segundo Nombre" [(ngModel)]="personaLogeada.nombre2">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Primer Apellido</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="primerApellido" placeholder="Primer Apellido" [(ngModel)]="personaLogeada.apellido1">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Segundo Apellido</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="segundoApellido" placeholder="Segundo Apellido" [(ngModel)]="personaLogeada.apellido2">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Fecha de Nacimiento</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="date" class="form-control" id="fechaNacimiento" [ngModel]="personaLogeada.fechaNacimiento | date:'y-MM-dd'" (ngModelChange)="personaLogeada.fechaNacimiento = $event">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Teléfono Celular</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="telefonoCelular" placeholder="Teléfono Celular" [(ngModel)]="personaLogeada.telefonoCelular">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Teléfono Domicilio</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="telefonoDomicilio" placeholder="Teléfono Domicilio" [(ngModel)]="personaLogeada.telefonoDomicilio">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Correo Electrónico Institucional</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="email" class="form-control" id="correoElectronicoInstitucional" placeholder="Correo Electrónico Institucional" [(ngModel)]="personaLogeada.correoElectronicoInstitucional">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Correo Electrónico Personal</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="email" class="form-control" id="correoElectronicoPersonal" placeholder="Correo Electrónico Personal" [(ngModel)]="personaLogeada.correoElectronicoPersonal">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Género</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idGenero" name="idGenero" [(ngModel)]="personaLogeada.idGenero">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let genero of generos" value={{genero.id}}>{{genero.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Identificación Étnica</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idEtnia" name="idEtnia" [(ngModel)]="personaLogeada.idEtnia">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let etnia of etnias" value={{etnia.id}}>{{etnia.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">País Domicilio</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idPaisDomicilio" name="idPaisDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioPais" (change)="getProvinciasDomicilio()">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let pais of paises" value={{pais.codigo}}>{{pais.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Provincia Domicilio</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idProvinciaDomicilio" name="idProvinciaDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioProvincia" (change)="getCantonesDomicilio()">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let privincia of provinciasDomicilio" value={{privincia.codigo}}>{{privincia.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Cantón Domicilio</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idCantonDomicilio" name="idCantonDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioCanton" (change)="getParroquiasDomicilio()">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let canton of cantonesDomicilio" value={{canton.codigo}}>{{canton.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Parroquia Domicilio</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idParroquiaDomicilio" name="idParroquiaDomicilio" [(ngModel)]="personaLogeada.idUbicacionDomicilioParroquia">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let parroquia of parroquiasDomicilio" value={{parroquia.codigo}}>{{parroquia.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Dirección Domicilio</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="idDireccionDomicilio" placeholder="Dirección Domicilio" [(ngModel)]="personaLogeada.direccionDomicilio">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">País Nacimiento</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idPaisNacimiento" name="idPaisNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoPais" (change)="getProvinciasNacimiento()">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let pais of paises" value={{pais.codigo}}>{{pais.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Provincia Nacimiento</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idProvinciaNacimiento" name="idProvinciaNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoProvincia" (change)="getCantonesNacimiento()">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let privincia of provinciasNacimiento" value={{privincia.codigo}}>{{privincia.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Cantón Nacimiento</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idCantonNacimiento" name="idCantonNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoCanton" (change)="getParroquiasNacimiento()">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let canton of cantonesNacimiento" value={{canton.codigo}}>{{canton.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Parroquia Nacimiento</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idParroquiaNacimiento" name="idParroquiaNacimiento" [(ngModel)]="personaLogeada.idUbicacionNacimientoParroquia">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let parroquia of parroquiasNacimiento" value={{parroquia.codigo}}>{{parroquia.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Estado Civil</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idEstadoCivil" name="idEstadoCivil" [(ngModel)]="personaLogeada.idEstadoCivil">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let estadoCivil of estadosCivil" value={{estadoCivil.id}}>{{estadoCivil.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Ingresos Familiares</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idIngresosFamiliares" name="idIngresosFamiliares" [(ngModel)]="personaLogeada.idIngresos">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let tipoIngresos of tiposIngresos" value={{tipoIngresos.id}}>{{tipoIngresos.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Tipo de Sangre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idTipoSangre" name="idTipoSangre" [(ngModel)]="personaLogeada.idTipoSangre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let tipoSangre of tiposSangre" value={{tipoSangre.id}}>{{tipoSangre.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Número de Hijos</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="number" class="form-control" id="numeroHijos" placeholder="Número de Hijos" [(ngModel)]="personaLogeada.numeroHijos">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Ocupación</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="idOcupacion" name="idOcupacion" [(ngModel)]="personaLogeada.idOcupacion">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let ocupacion of ocupaciones" value={{ocupacion.id}}>{{ocupacion.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Carnet Conadis</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <label class="switch">
+                <input type="checkbox" id="carnetConadis" [(ngModel)]="tieneDiscapacidad" (click)="TieneDiscapacidad()">
+                <span class="slider round"></span>
+            </label>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="container-fluid" [hidden]="!tieneDiscapacidad">
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Tipo de Discapacidad</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idTipoDiscapacidad" name="idTipoDiscapacidad" [(ngModel)]="personaLogeada.idTipoDiscapacidad">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let tipoDiscapacidad of tiposDiscapacidad" value={{tipoDiscapacidad.id}}>{{tipoDiscapacidad.descripcion}}</option>
+                </select>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Porcentaje de Discapacidad</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <input type="number" class="form-control" id="porcentajeDiscapacidad" placeholder="Porcentaje de Discapacidad" [(ngModel)]="personaLogeada.porcentajeDiscapacidad">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        </div>
+    </div>
+    <div class="container-fluid" [hidden]="!esEstudiante">
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Tipo de Institución</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <select class="form-control" id="idTipoInstitucion" name="idTipoInstitucion" [(ngModel)]="estudiante.idTipoInstitucionProcedencia">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let tipoInstitucionProcedencia of tiposInstitucionProcedencia" value={{tipoInstitucionProcedencia.id}}>{{tipoInstitucionProcedencia.descripcion}}</option>
+                </select>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Título de Bachiller</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <input type="text" class="form-control" id="tituloBachiller" placeholder="Título de Bachiller" [(ngModel)]="estudiante.tituloBachiller">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        </div>
+        <div class="form-group row">
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+                <label class="col-form-label">Nota de Postulación</label>
+            </div>
+            <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+                <input type="number" class="form-control" id="notaPostulación" placeholder="Nota de Postulación" [(ngModel)]="estudiante.notaPostulacion">
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Nombre del Padre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="nombrePadre" placeholder="Nombre del Padre" [(ngModel)]="personaLogeada.nombrePadre">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Nacionalidad del Padre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="nacionalidadPadre" name="nacionalidadPadre" [(ngModel)]="personaLogeada.paisOrigenPadre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let pais of paises" value={{pais.codigo}}>{{pais.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Nivel de Estudios del Padre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="estudiosPadre" name="estudiosPadre" [(ngModel)]="personaLogeada.idNivelEstudioPadre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let nivelTitulo of nivelesTitulo" value={{nivelTitulo.id}}>{{nivelTitulo.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Nombre de la Madre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="text" class="form-control" id="nombreMadre" placeholder="Nombre de la Madre" [(ngModel)]="personaLogeada.nombreMadre">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Nacionalidad de la Madre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="nacionalidadMadre" name="nacionalidadMadre" [(ngModel)]="personaLogeada.paisOrigenMadre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let pais of paises" value={{pais.codigo}}>{{pais.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Nivel de Estudios de la Madre</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <select class="form-control" id="estudiosMadre" name="estudiosMadre" [(ngModel)]="personaLogeada.idNivelEstudioMadre">
+                <option value="" selected>Seleccione...</option>
+                <option *ngFor="let nivelTitulo of nivelesTitulo" value={{nivelTitulo.id}}>{{nivelTitulo.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+        <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3" >
+            <label class="col-form-label">Fotografía</label>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
+            <input type="file" class="form-control" id="foto" placeholder="Fotografía" #fileInput (change)="CodificarArchivo($event)" accept="image/*">
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-2 col-lg-2" ></div>
+    </div>
+    <div class="form-group row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
+            <img src="{{srcFoto}}" class="img-circle" width="150px" (click)="fileInput.click()">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div style="width: 100%; text-align:center;">
+            <div>
+                <button type="button" class="btn btn-primary" (click)="update()">
+                    <span class="fa fa-refresh"></span>&nbsp;Actualizar
+                </button>
+                <button type="button" class="btn btn-danger" (click)="cancelar()">
+                    <span class="fa fa-remove"></span>&nbsp;Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

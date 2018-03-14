@@ -10,6 +10,7 @@ const routes: Routes = [
             { path: 'com2', loadChildren: './com2/com2.module#com2Module' },
             { path: 'proyecto', loadChildren: './proyecto/proyecto.module#proyectoModule' },
             { path: 'autor', loadChildren: './CRUD/autor/autor.module#AutorModule' },
+            { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
             { path: 'categoriarecurso', loadChildren: './CRUD/categoriarecurso/categoriarecurso.module#CategoriaRecursoModule' },
             { path: 'comentariossugerencias', loadChildren: './CRUD/comentariossugerencias/comentariossugerencias.module#ComentariosSugerenciasModule' },
             { path: 'detallesolicitud', loadChildren: './CRUD/detallesolicitud/detallesolicitud.module#DetalleSolicitudModule' },

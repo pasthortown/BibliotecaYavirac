@@ -4,13 +4,13 @@ import { environment } from '../../../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Persona } from '../../../entidades/CRUD/Persona';
+import { TipoIngresos } from '../../../entidades/CRUD/TipoIngresos';
 
 @Injectable()
 
-export class PersonaService {
+export class TipoIngresosService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-   private urlBase = environment.apiSaeUrl + 'persona';
+   private urlBase = environment.apiSaeUrl + 'tipoingresos';
 
    constructor(private http: Http) {
    }
@@ -19,38 +19,38 @@ export class PersonaService {
        return this.urlBase;
    }
 
-   getAll(): Promise<Persona[]> {
-      return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Persona[]).catch(this.handleError);
+   getAll(): Promise<TipoIngresos[]> {
+      return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as TipoIngresos[]).catch(this.handleError);
    }
 
-   getPagina(pagina: number, tamanoPagina: number): Promise<Persona[]> {
-      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Persona[]).catch(this.handleError);
+   getPagina(pagina: number, tamanoPagina: number): Promise<TipoIngresos[]> {
+      return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as TipoIngresos[]).catch(this.handleError);
    }
 
-   getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<Persona[]> {
-      return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as Persona[]).catch(this.handleError);
+   getFiltrado(columna: string, tipoFiltro: string, filtro: string): Promise<TipoIngresos[]> {
+      return this.http.get(this.urlBase+'/leer_filtrado' + '?columna=' + columna + '&tipo_filtro=' + tipoFiltro + '&filtro=' + filtro).toPromise().then(response=>response.json() as TipoIngresos[]).catch(this.handleError);
    }
 
    getNumeroPaginas(tamanoPagina: number): Promise<any> {
       return this.http.get(this.urlBase+'/numero_paginas' + '?registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
-   get(id: number): Promise<Persona> {
+   get(id: number): Promise<TipoIngresos> {
       const url = `${this.urlBase+'/leer'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>(response.json() as Persona[])[0]).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>(response.json() as TipoIngresos[])[0]).catch(this.handleError);
    }
 
    remove(id: number): Promise<boolean> {
       const url = `${this.urlBase+'/borrar'}?id=${id}`;
-      return this.http.get(url).toPromise().then(response=>response.json() as Persona).catch(this.handleError);
+      return this.http.get(url).toPromise().then(response=>response.json() as TipoIngresos).catch(this.handleError);
    }
 
-   create(entidadTransporte: Persona): Promise<boolean> {
+   create(entidadTransporte: TipoIngresos): Promise<boolean> {
       const url = `${this.urlBase+'/crear'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }
 
-   update(entidadTransporte: Persona): Promise<boolean> {
+   update(entidadTransporte: TipoIngresos): Promise<boolean> {
       const url = `${this.urlBase+'/actualizar'}`;
       return this.http.post(url, JSON.stringify(entidadTransporte)).toPromise().then(response=>response.json()).catch(this.handleError);
    }

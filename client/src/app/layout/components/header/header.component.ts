@@ -2,13 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
+import { LoginResult } from './../../../entidades/especifico/Login-Result';
+import { PersonaService } from '../../../layout/CRUD/externos/persona.service';
+import { Persona } from './../../../entidades/CRUD/Persona';
+
+
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
     pushRightClass: string = 'push-right';
+    username: string;
 
     constructor(private translate: TranslateService, public router: Router) {
 
@@ -28,7 +35,11 @@ export class HeaderComponent implements OnInit {
         });
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        const personaLogeada = logedResult.persona;
+        this.username = personaLogeada.nombre1 + ' ' + personaLogeada.nombre2 + ' ' + personaLogeada.apellido1 + ' ' + personaLogeada.apellido2;
+    }
 
     isToggled(): boolean {
         const dom: Element = document.querySelector('body');
