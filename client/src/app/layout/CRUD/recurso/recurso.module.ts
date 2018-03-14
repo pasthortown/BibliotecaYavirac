@@ -19,7 +19,7 @@ import { EstadoRecursoService } from '../estadorecurso/estadorecurso.service';
       FormsModule,
       RecursoRoutingModule
    ],
-   providers: [RecursoService, TipoRecursoService],
+   providers: [RecursoService, TipoRecursoService, AutorService, CategoriaRecursoService, EstadoRecursoService, ProductoraService],
    declarations: [RecursoComponent],
 })
 export class RecursoModule { }
