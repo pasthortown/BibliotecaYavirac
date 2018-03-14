@@ -3,6 +3,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ComentariosSugerencias } from './../../../entidades/CRUD/ComentariosSugerencias';
 import { ComentariosSugerenciasService } from './comentariossugerencias.service';
 
+
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
