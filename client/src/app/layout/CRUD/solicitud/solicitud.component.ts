@@ -8,6 +8,7 @@ import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Persona } from '../../../entidades/CRUD/Persona';
+import { PersonaService } from './../../CRUD/externos/persona.service';
 
 @Component({
    selector: 'app-solicitud',
@@ -26,9 +27,9 @@ export class SolicitudComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   persona: Persona[];
+   personas: Persona[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: PersonaService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: SolicitudService, private personaService: PersonaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -184,7 +185,7 @@ export class SolicitudComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = Solicitud[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getPersona();
+      this.getPersonas();
     }
 
    getPaginaPrimera():void {
@@ -220,10 +221,11 @@ export class SolicitudComponent implements OnInit {
    onSelect(entidadActual: Solicitud): void {
       this.entidadSeleccionada = entidadActual;
    }
-   getPersona(): void {
+
+   getPersonas(): void {
     this.busy = this.personaService.getAll()
       .then(respuesta => {
-         this.persona = respuesta;
+         this.personas = respuesta;
       })
       .catch(error => {
          console.log(error);

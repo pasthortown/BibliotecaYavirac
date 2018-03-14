@@ -6,13 +6,15 @@ import { RecursoRoutingModule } from './recurso-routing.module';
 import { RecursoComponent } from './recurso.component';
 import { RecursoService } from './recurso.service';
 
+import { TipoRecursoService } from '../tiporecurso/tiporecurso.service';
+
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
       RecursoRoutingModule
    ],
-   providers: [RecursoService],
+   providers: [RecursoService, TipoRecursoService],
    declarations: [RecursoComponent],
 })
 export class RecursoModule { }

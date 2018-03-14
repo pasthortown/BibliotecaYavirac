@@ -9,6 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 import { TipoRecurso } from '../../../entidades/CRUD/TipoRecurso';
+import { TipoRecursoService } from '../tiporecurso/tiporecurso.service';
 
 @Component({
    selector: 'app-recurso',
@@ -27,9 +28,9 @@ export class RecursoComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   tipo: TipoRecurso[];
+   tipos: TipoRecurso[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private tipoService: TipoRecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -185,7 +186,7 @@ export class RecursoComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = Recurso[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getTipoRecurso();
+      this.getTiposRecurso();
    }
 
    getPaginaPrimera():void {
@@ -222,13 +223,13 @@ export class RecursoComponent implements OnInit {
       this.entidadSeleccionada = entidadActual;
      }
 
-     getTipoRecurso(): void {
-        this.busy = this.TipoRecursoService.getAll()
-       .then(respuesta => {
-          this.tipo = respuesta;
-       })
-       .catch(error => {
-          console.log(error);
-       });
-    }    
+   getTiposRecurso(): void {
+      this.busy = this.tipoService.getAll()
+      .then(respuesta => {
+         this.tipos = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
+   }
 }

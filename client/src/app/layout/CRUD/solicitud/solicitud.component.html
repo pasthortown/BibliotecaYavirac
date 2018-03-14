@@ -90,7 +90,7 @@
       <div class="modal-header">
          <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
-               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
+               Edición de Datos:
             </span>
             <span *ngIf="entidadSeleccionada.id === 0">
                Ingreso de Datos:
@@ -113,7 +113,7 @@
               <div class="col-sm-8">
                   <select class="form-control" id="idPersona" name="idPersona" [(ngModel)]="entidadSeleccionada.idPersona">
                       <option value="" selected>Seleccione...</option>
-                      <option *ngFor="let persona of personas" value={{persona.id}}>{{persona.nombre1}}{{persona.apellido1}}</option>
+                      <option *ngFor="let persona of personas" value={{persona.id}}>{{persona.apellido1}} {{persona.apellido2}} {{persona.nombre1}} {{persona.nombre2}}</option>
                   </select>
               </div>
          </div>

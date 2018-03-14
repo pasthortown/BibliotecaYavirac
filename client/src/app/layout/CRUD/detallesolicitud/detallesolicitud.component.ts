@@ -2,8 +2,6 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DetalleSolicitud } from './../../../entidades/CRUD/DetalleSolicitud';
 import { DetalleSolicitudService } from './detallesolicitud.service';
-//import { SolicitudService } from './;
-
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from './../../bs-component/components';
@@ -12,7 +10,8 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 import { Solicitud } from '../../../entidades/CRUD/Solicitud';
 import { Recurso } from '../../../entidades/CRUD/Recurso';
-
+import { SolicitudService } from './../solicitud/solicitud.service';
+import { RecursoService } from './../recurso/recurso.service';
 
 @Component({
    selector: 'app-detallesolicitud',
@@ -31,10 +30,10 @@ export class DetalleSolicitudComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   solicitud: Solicitud[];
-   recurso: Recurso[];
+   solicitudes: Solicitud[];
+   recursos: Recurso[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: DetalleSolicitudService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: DetalleSolicitudService, private solicitudService: SolicitudService, private recursoService: RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -190,8 +189,8 @@ export class DetalleSolicitudComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = DetalleSolicitud[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getSolicitud();
-      this.getRecurso();
+      this.getSolicitudes();
+      this.getRecursos();
    }
 
    getPaginaPrimera():void {
@@ -227,20 +226,20 @@ export class DetalleSolicitudComponent implements OnInit {
    onSelect(entidadActual: DetalleSolicitud): void {
       this.entidadSeleccionada = entidadActual;
    }
-   getSolicitud(): void {
+   getSolicitudes(): void {
     this.busy = this.solicitudService.getAll()
       .then(respuesta => {
-         this.solicitud = respuesta;
+         this.solicitudes = respuesta;
       })
       .catch(error => {
          console.log(error);
       });
    }
 
-   getRecurso(): void {
+   getRecursos(): void {
     this.busy = this.recursoService.getAll()
       .then(respuesta => {
-         this.recurso = respuesta;
+         this.recursos = respuesta;
       })
       .catch(error => {
          console.log(error);
