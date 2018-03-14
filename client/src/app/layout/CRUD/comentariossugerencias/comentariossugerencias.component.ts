@@ -35,7 +35,7 @@ export class ComentariosSugerenciasComponent implements OnInit {
 
    
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ComentariosSugerenciasService, private personaService: PersonaService,private recursoService:RecursoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ComentariosSugerenciasService, private personaService: PersonaService,private dataService :RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
