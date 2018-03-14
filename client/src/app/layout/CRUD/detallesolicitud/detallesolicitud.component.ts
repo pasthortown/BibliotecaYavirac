@@ -2,11 +2,17 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { DetalleSolicitud } from './../../../entidades/CRUD/DetalleSolicitud';
 import { DetalleSolicitudService } from './detallesolicitud.service';
+//import { SolicitudService } from './;
+
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+
+import { Solicitud } from '../../../entidades/CRUD/Solicitud';
+import { Recurso } from '../../../entidades/CRUD/Recurso';
+
 
 @Component({
    selector: 'app-detallesolicitud',
@@ -25,6 +31,8 @@ export class DetalleSolicitudComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   solicitud: Solicitud[];
+   recurso: Recurso[];
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: DetalleSolicitudService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -182,6 +190,8 @@ export class DetalleSolicitudComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = DetalleSolicitud[0];
       this.entidadSeleccionada = this.crearEntidad();
+      this.getSolicitud();
+      this.getRecurso();
    }
 
    getPaginaPrimera():void {
@@ -216,5 +226,24 @@ export class DetalleSolicitudComponent implements OnInit {
 
    onSelect(entidadActual: DetalleSolicitud): void {
       this.entidadSeleccionada = entidadActual;
+   }
+   getSolicitud(): void {
+    this.busy = this.solicitudService.getAll()
+      .then(respuesta => {
+         this.solicitud = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
+   }
+
+   getRecurso(): void {
+    this.busy = this.recursoService.getAll()
+      .then(respuesta => {
+         this.recurso = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
    }
 }

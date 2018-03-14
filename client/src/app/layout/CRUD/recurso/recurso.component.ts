@@ -8,6 +8,8 @@ import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
+import { TipoRecurso } from '../../../entidades/CRUD/TipoRecurso';
+
 @Component({
    selector: 'app-recurso',
    templateUrl: './recurso.component.html',
@@ -25,6 +27,7 @@ export class RecursoComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   tipo: TipoRecurso[];
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -182,6 +185,7 @@ export class RecursoComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = Recurso[0];
       this.entidadSeleccionada = this.crearEntidad();
+      this.getTipoRecurso();
    }
 
    getPaginaPrimera():void {
@@ -216,5 +220,15 @@ export class RecursoComponent implements OnInit {
 
    onSelect(entidadActual: Recurso): void {
       this.entidadSeleccionada = entidadActual;
-   }
+     }
+
+     getTipoRecurso(): void {
+        this.busy = this.TipoRecursoService.getAll()
+       .then(respuesta => {
+          this.tipo = respuesta;
+       })
+       .catch(error => {
+          console.log(error);
+       });
+    }    
 }
