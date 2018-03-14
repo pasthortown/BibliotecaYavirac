@@ -39,7 +39,7 @@ export class RecursoComponent implements OnInit {
    tipos: TipoRecurso[];
    autores: Autor[];
    categorias: CategoriaRecurso[];
-   productoras:Productora[]; 
+   productoras: Productora[];
    estados: EstadoRecurso[];
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private estadoService: EstadoRecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -198,11 +198,11 @@ export class RecursoComponent implements OnInit {
       this.entidades = Recurso[0];
       this.entidadSeleccionada = this.crearEntidad();
       this.getTiposRecurso();
-      this.getAutor();
-      this.getCategoria();
-      this.getProductora();
-      this.getEstado();
-      
+      this.getAutores();
+      this.getCategorias();
+      this.getProductoras();
+      this.getEstados();
+
    }
 
    getPaginaPrimera():void {
@@ -248,7 +248,8 @@ export class RecursoComponent implements OnInit {
          console.log(error);
       });
   }
-   getAutor(): void {
+
+   getAutores(): void {
       this.busy = this.autorService.getAll()
       .then(respuesta => {
          this.autores = respuesta;
@@ -257,7 +258,8 @@ export class RecursoComponent implements OnInit {
          console.log(error);
       });
   }
-   getCategoria(): void {
+
+   getCategorias(): void {
     this.busy = this.categoriaService.getAll()
     .then(respuesta => {
        this.categorias = respuesta;
@@ -266,7 +268,8 @@ export class RecursoComponent implements OnInit {
        console.log(error);
     });
   }
-  getProductora(): void {
+
+  getProductoras(): void {
     this.busy = this.productoraService.getAll()
     .then(respuesta => {
        this.productoras = respuesta;
@@ -275,7 +278,8 @@ export class RecursoComponent implements OnInit {
        console.log(error);
     });
   }
-  getEstado(): void {
+
+  getEstados(): void {
     this.busy = this.estadoService.getAll()
     .then(respuesta => {
        this.estados = respuesta;
