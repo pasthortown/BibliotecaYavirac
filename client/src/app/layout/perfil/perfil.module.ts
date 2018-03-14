@@ -27,6 +27,7 @@ import { FotoPerfilService } from './../CRUD/externos/fotoperfil.service';
     PerfilRoutingModule
   ],
   providers: [GeneroService,
+              PersonaService,
               EtniaService,
               TipoIngresosService,
               OcupacionService,
