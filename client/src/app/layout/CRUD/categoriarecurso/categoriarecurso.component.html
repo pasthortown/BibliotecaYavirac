@@ -119,7 +119,7 @@
             <div class="col-sm-8">
                 <select class="form-control" id="codigoPadre" name="codigoPadre" [(ngModel)]="entidadSeleccionada.codigoPadre">
                     <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.descripcion}}</option>
+                    <option *ngFor="let categoria of categorias" value={{categoria.codigo}}>{{categoria.descripcion}}</option>
                 </select>
             </div>
          </div>
