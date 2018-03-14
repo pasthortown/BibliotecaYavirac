@@ -10,6 +10,14 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 import { TipoRecurso } from '../../../entidades/CRUD/TipoRecurso';
 import { TipoRecursoService } from '../tiporecurso/tiporecurso.service';
+import { Autor } from '../../../entidades/CRUD/Autor';
+import { AutorService } from '../autor/autor.service';
+import { CategoriaRecurso } from '../../../entidades/CRUD/CategoriaRecurso';
+import { CategoriaRecursoService } from '../categoriarecurso/categoriarecurso.service';
+import { Productora } from '../../../entidades/CRUD/Productora';
+import { ProductoraService } from '../productora/productora.service';
+import { EstadoRecurso } from '../../../entidades/CRUD/EstadoRecurso';
+import { EstadoRecursoService } from '../estadorecurso/estadorecurso.service';
 
 @Component({
    selector: 'app-recurso',
@@ -29,8 +37,11 @@ export class RecursoComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
    tipos: TipoRecurso[];
-
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private tipoService: TipoRecursoService, private modalService: NgbModal) {
+   autores: Autor[];
+   categorias: CategoriaRecurso[];
+   productoras:Productora[]; 
+   estados: EstadoRecurso[];
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private estadoService: EstadoRecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -187,6 +198,11 @@ export class RecursoComponent implements OnInit {
       this.entidades = Recurso[0];
       this.entidadSeleccionada = this.crearEntidad();
       this.getTiposRecurso();
+      this.getAutor();
+      this.getCategoria();
+      this.getProductora();
+      this.getEstado();
+      
    }
 
    getPaginaPrimera():void {
@@ -231,5 +247,41 @@ export class RecursoComponent implements OnInit {
       .catch(error => {
          console.log(error);
       });
-   }
+  }
+   getAutor(): void {
+      this.busy = this.autorService.getAll()
+      .then(respuesta => {
+         this.autores = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
+  }
+   getCategoria(): void {
+    this.busy = this.categoriaService.getAll()
+    .then(respuesta => {
+       this.categorias = respuesta;
+    })
+    .catch(error => {
+       console.log(error);
+    });
+  }
+  getProductora(): void {
+    this.busy = this.productoraService.getAll()
+    .then(respuesta => {
+       this.productoras = respuesta;
+    })
+    .catch(error => {
+       console.log(error);
+    });
+  }
+  getEstado(): void {
+    this.busy = this.estadoService.getAll()
+    .then(respuesta => {
+       this.estados = respuesta;
+    })
+    .catch(error => {
+       console.log(error);
+    });
+  }
 }
