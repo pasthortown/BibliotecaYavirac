@@ -25,8 +25,9 @@ export class CategoriaRecursoComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   categorias: CategoriaRecurso[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: CategoriaRecursoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: CategoriaRecursoService, private categoriaService: CategoriaRecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -182,6 +183,7 @@ export class CategoriaRecursoComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = CategoriaRecurso[0];
       this.entidadSeleccionada = this.crearEntidad();
+      this.getCategorias();
    }
 
    getPaginaPrimera():void {
@@ -216,5 +218,15 @@ export class CategoriaRecursoComponent implements OnInit {
 
    onSelect(entidadActual: CategoriaRecurso): void {
       this.entidadSeleccionada = entidadActual;
+   }
+
+   getCategorias(): void {
+      this.busy = this.categoriaService.getAll()
+      .then(respuesta => {
+         this.categorias = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
    }
 }

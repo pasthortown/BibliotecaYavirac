@@ -6,13 +6,15 @@ import { ComentariosSugerenciasRoutingModule } from './comentariossugerencias-ro
 import { ComentariosSugerenciasComponent } from './comentariossugerencias.component';
 import { ComentariosSugerenciasService } from './comentariossugerencias.service';
 
+import { PersonaService } from './../externos/persona.service';
+
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
       ComentariosSugerenciasRoutingModule
    ],
-   providers: [ComentariosSugerenciasService],
+   providers: [ComentariosSugerenciasService, PersonaService],
    declarations: [ComentariosSugerenciasComponent],
 })
 export class ComentariosSugerenciasModule { }
