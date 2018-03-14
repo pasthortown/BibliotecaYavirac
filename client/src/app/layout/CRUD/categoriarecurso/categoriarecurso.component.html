@@ -117,7 +117,10 @@
          <div class="form-group row">
             <label for="codigoPadre" class="col-sm-4 col-form-label">Código Superior</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="codigoPadre" name="codigoPadre" placeholder="Código Superior" [(ngModel)]="entidadSeleccionada.codigoPadre">
+                <select class="form-control" id="codigoPadre" name="codigoPadre" [(ngModel)]="entidadSeleccionada.codigoPadre">
+                    <option value="" selected>Seleccione...</option>
+                    <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.descripcion}}</option>
+                </select>
             </div>
          </div>
          </form>
