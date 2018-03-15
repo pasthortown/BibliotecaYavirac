@@ -66,6 +66,11 @@
                         <i class="fa fa-paper-plane-o"></i>&nbsp;{{ 'Solicitud' | translate }}
                     </a>
                 </ul>
+                <ul class="submenu">
+                    <a [routerLink]="['/tiporecurso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                        <i class="fa fa-cubes"></i>&nbsp;{{ 'Tipo Recurso' | translate }}
+                    </a>
+                </ul>
             </li>
         </div>
         <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
