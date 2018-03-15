@@ -31,6 +31,7 @@ CREATE TABLE Recurso (
   idAutor INT NULL,
   idCategoria INT NULL,
   idProductora INT NULL,
+  titulo VARCHAR (100) NULL,
   codigoISBN VARCHAR(25) NULL,
   observaciones TEXT NULL,
   idEstado INT NULL,
