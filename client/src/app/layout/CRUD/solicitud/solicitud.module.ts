@@ -6,13 +6,15 @@ import { SolicitudRoutingModule } from './solicitud-routing.module';
 import { SolicitudComponent } from './solicitud.component';
 import { SolicitudService } from './solicitud.service';
 
+import { PersonaService } from './../../CRUD/externos/persona.service';
+
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
       SolicitudRoutingModule
    ],
-   providers: [SolicitudService],
+   providers: [SolicitudService, PersonaService],
    declarations: [SolicitudComponent],
 })
 export class SolicitudModule { }

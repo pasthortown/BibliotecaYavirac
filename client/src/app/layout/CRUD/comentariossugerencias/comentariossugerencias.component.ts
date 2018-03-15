@@ -3,14 +3,16 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ComentariosSugerencias } from './../../../entidades/CRUD/ComentariosSugerencias';
 import { ComentariosSugerenciasService } from './comentariossugerencias.service';
 
+
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from './../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Message, RecurseVisitor } from '@angular/compiler/src/i18n/i18n_ast';
 
 import { Persona } from './../../../entidades/CRUD/Persona';
+import { Recurso } from '../../../entidades/CRUD/Recurso';
 import { PersonaService } from './../externos/persona.service';
-
+import { RecursoService } from '../recurso/recurso.service';
 
 @Component({
    selector: 'app-comentariossugerencias',
@@ -30,8 +32,9 @@ export class ComentariosSugerenciasComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
    personas: Persona[];
+   recursos: Recurso[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ComentariosSugerenciasService, private personaService: PersonaService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: ComentariosSugerenciasService, private personaService: PersonaService, private recursoService: RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -188,6 +191,7 @@ export class ComentariosSugerenciasComponent implements OnInit {
       this.entidades = ComentariosSugerencias[0];
       this.entidadSeleccionada = this.crearEntidad();
       this.getPersonas();
+      this.getRecursos();
    }
 
    getPaginaPrimera():void {
@@ -225,7 +229,7 @@ export class ComentariosSugerenciasComponent implements OnInit {
    }
 
    getPersonas(): void {
-       this.busy = this.personaService.getAll()
+      this.busy = this.personaService.getAll()
       .then(respuesta => {
          this.personas = respuesta;
       })
@@ -233,4 +237,14 @@ export class ComentariosSugerenciasComponent implements OnInit {
          console.log(error);
       });
    }
+
+   getRecursos(): void {
+      this.busy = this.recursoService.getAll()
+      .then(respuesta => {
+         this.recursos = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
+    }
 }

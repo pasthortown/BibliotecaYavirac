@@ -10,7 +10,7 @@ import { Persona } from '../../../entidades/CRUD/Persona';
 
 export class PersonaService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-   private urlBase = 'http://localhost/sae/server/persona';
+   private urlBase = environment.apiSaeUrl + 'persona';
 
    constructor(private http: Http) {
    }
