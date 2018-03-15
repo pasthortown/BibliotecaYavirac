@@ -6,20 +6,14 @@
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
         </a>
-        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Tables' | translate }}
+        <a [routerLink]="['/generadoretiquetas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa fa-qrcode"></i>&nbsp;{{ 'Generador de Etiquetas' | translate }}
         </a>
-        <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Forms' | translate }}
+        <a [routerLink]="['/catalogo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa fa-book"></i>&nbsp;{{ 'Catálogo' | translate }}
         </a>
-        <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Bootstrap Element' | translate }}
-        </a>
-        <a [routerLink]="['/grid']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'Bootstrap Grid' | translate }}
-        </a>
-        <a [routerLink]="['/components']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-th-list"></i>&nbsp;{{ 'Component' | translate }}
+        <a [routerLink]="['/registrorecurso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa fa-edit"></i>&nbsp;{{ 'Registrar Recurso Nuevo' | translate }}
         </a>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
