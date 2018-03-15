@@ -578,7 +578,7 @@ CREATE TABLE SilaboElementos (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE VerboBloom (                   //Tabla recursiba 
+CREATE TABLE VerboBloom ( 
     id INT AUTO_INCREMENT NOT NULL,
     detalle VARCHAR(60) NOT NULL,
     idPadre VARCHAR(20) NOT NULL,
@@ -743,13 +743,6 @@ CREATE TABLE PlanSemanaMetodologia (
     PRIMARY KEY(id)    
 );
 
-CREATE TABLE PlanSemanaMetodologia (
-    id INT AUTO_INCREMENT NOT NULL,
-    idSilaboRecursoDidactico INT NOT NULL,
-    idPlanSemana INT NOT NULL,
-    PRIMARY KEY(id)    
-);
-
 CREATE TABLE PlanSemanaDesarrolloClase (
     id INT AUTO_INCREMENT NOT NULL,
     detalle TEXT NOT NULL,
@@ -787,6 +780,7 @@ CREATE TABLE TecnicaEvaluacion (
 
 CREATE TABLE PlanSemanaActividades (
     id INT AUTO_INCREMENT NOT NULL,
-    detalle TEXT NOT NULL,                        /* obtener de idSilaboEvidenciasRa */
+    detalle TEXT NOT NULL,
     idPlanSemana INT NOT NULL,
-    PRIMARY KEY(id)  
+    PRIMARY KEY(id)     
+); 
