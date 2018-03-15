@@ -11,6 +11,13 @@ CREATE TABLE Solicitud (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE RecursoDigital (
+  id INT NOT NULL AUTO_INCREMENT,
+  idRecurso INT NOT NULL,
+  contenido LONGBLOB NOT NULL,
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE DetalleSolicitud (
   id INT NOT NULL AUTO_INCREMENT,
   idSolicitud INT NOT NULL,

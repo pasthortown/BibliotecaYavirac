@@ -9,6 +9,7 @@ const routes: Routes = [
         children: [
             { path: 'com2', loadChildren: './com2/com2.module#com2Module' },
             { path: 'proyecto', loadChildren: './proyecto/proyecto.module#proyectoModule' },
+            { path: 'recursodigital', loadChildren: './CRUD/recursodigital/recursodigital.module#RecursoDigitalModule' },
             { path: 'autor', loadChildren: './CRUD/autor/autor.module#AutorModule' },
             { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
             { path: 'categoriarecurso', loadChildren: './CRUD/categoriarecurso/categoriarecurso.module#CategoriaRecursoModule' },
