@@ -1,1 +1,71 @@
-catalogo
+<div class="col-12">
+    <div class="form-row">
+        <div class="col-md-12 text-right">
+            <h2 style="margin-top:0px">Búsqueda en a Biblitoeca</h2>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-inline my-2 my-lg-0">
+            <input class="form-control" type="text" placeholder="Buscar Recursos" >
+            <div class="input-group-append">
+                <button type="button" class="btn btn-outline-primary"><span class="fa fa-search"></span></button>
+            </div>
+        </div>
+        <div style="width:100%; float:left; height:10px;"></div>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Categoría</strong>
+                    </span>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Título</strong>
+                    </span>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Autor</strong>
+                    </span>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Tipo</strong>
+                    </span>
+                </th>
+                <th scope="col">
+                    <span>
+                    <strong>Opciones</strong>
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td>
+                    <!--<i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>-->
+                </td>
+                <td>categoria</td>
+                <td>titulo</td>
+                <td>autor</td>
+                <td>tipo</td>
+                <td>
+                    <button type="button" class="btn btn-secondary">
+                        <span class="fa fa-eye"></span>
+                    </button>
+                    <button type="button" class="btn btn-secondary">
+                        <span class="fa fa-cart-plus"></span>
+                    </button>
+                    <button type="button" class="btn btn-secondary">
+                        <span class="fa fa-download"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
