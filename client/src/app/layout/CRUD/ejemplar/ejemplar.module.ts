@@ -6,13 +6,15 @@ import { EjemplarRoutingModule } from './ejemplar-routing.module';
 import { EjemplarComponent } from './ejemplar.component';
 import { EjemplarService } from './ejemplar.service';
 
+import { RecursoService } from './../recurso/recurso.service';
+
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
       EjemplarRoutingModule
    ],
-   providers: [EjemplarService],
+   providers: [EjemplarService, RecursoService],
    declarations: [EjemplarComponent],
 })
 export class EjemplarModule { }

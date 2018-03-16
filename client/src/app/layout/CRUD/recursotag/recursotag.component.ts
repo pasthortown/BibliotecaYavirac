@@ -8,6 +8,9 @@ import { ModalComponent } from '../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
+import { RecursoService } from './../recurso/recurso.service';
+import { Recurso } from './../../../entidades/CRUD/Recurso';
+
 @Component({
    selector: 'app-recursotag',
    templateUrl: './recursotag.component.html',
@@ -25,8 +28,9 @@ export class RecursoTagComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   recursos: Recurso[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoTagService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoTagService, private recursoService: RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -182,6 +186,7 @@ export class RecursoTagComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = RecursoTag[0];
       this.entidadSeleccionada = this.crearEntidad();
+      this.getRecursos();
    }
 
    getPaginaPrimera():void {
@@ -216,5 +221,15 @@ export class RecursoTagComponent implements OnInit {
 
    onSelect(entidadActual: RecursoTag): void {
       this.entidadSeleccionada = entidadActual;
+   }
+
+   getRecursos(): void {
+      this.busy = this.recursoService.getAll()
+      .then(respuesta => {
+         this.recursos = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
    }
 }
