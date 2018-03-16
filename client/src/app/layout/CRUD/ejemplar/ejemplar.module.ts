@@ -7,6 +7,7 @@ import { EjemplarComponent } from './ejemplar.component';
 import { EjemplarService } from './ejemplar.service';
 
 import { RecursoService } from './../recurso/recurso.service';
+import { EstadoService } from './../estado/estado.service';
 
 @NgModule({
    imports: [
@@ -14,7 +15,7 @@ import { RecursoService } from './../recurso/recurso.service';
       FormsModule,
       EjemplarRoutingModule
    ],
-   providers: [EjemplarService, RecursoService],
+   providers: [EjemplarService, RecursoService, EstadoService],
    declarations: [EjemplarComponent],
 })
 export class EjemplarModule { }
