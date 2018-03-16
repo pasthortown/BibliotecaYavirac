@@ -33,47 +33,42 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Identificador</strong>
+                        <strong>Tipo</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idTipo</strong>
+                        <strong>Autor</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idAutor</strong>
+                        <strong>Categoría</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idCategoria</strong>
+                        <strong>Productora</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>idProductora</strong>
+                        <strong>Título</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>titulo</strong>
+                        <strong>Código ISBN</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>codigoISBN</strong>
+                        <strong>Descripción</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>descripcion</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>contenido</strong>
+                        <strong>Contenido</strong>
                      </span>
                   </th>
                </tr>
@@ -83,7 +78,6 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
-                  <td>{{actual.id}}</td>
                   <td>{{actual.idTipo}}</td>
                   <td>{{actual.idAutor}}</td>
                   <td>{{actual.idCategoria}}</td>
@@ -132,58 +126,53 @@
       </div>
       <div class="modal-body">
          <form>
+         <div class="form-group row"></div>
          <div class="form-group row">
-            <label for="id" class="col-sm-4 col-form-label">Identificador</label>
+            <label for="idTipo" class="col-sm-4 col-form-label">Tipo</label>
             <div class="col-sm-8">
-              <input type="text" readonly class="form-control" id="id" name="id" [(ngModel)]="entidadSeleccionada.id">
+              <input type="text" class="form-control" id="idTipo" name="idTipo" placeholder="Tipo" [(ngModel)]="entidadSeleccionada.idTipo">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idTipo" class="col-sm-4 col-form-label">idTipo</label>
+            <label for="idAutor" class="col-sm-4 col-form-label">Autor</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idTipo" name="idTipo" placeholder="idTipo" [(ngModel)]="entidadSeleccionada.idTipo">
+              <input type="text" class="form-control" id="idAutor" name="idAutor" placeholder="Autor" [(ngModel)]="entidadSeleccionada.idAutor">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idAutor" class="col-sm-4 col-form-label">idAutor</label>
+            <label for="idCategoria" class="col-sm-4 col-form-label">Categoría</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idAutor" name="idAutor" placeholder="idAutor" [(ngModel)]="entidadSeleccionada.idAutor">
+              <input type="text" class="form-control" id="idCategoria" name="Categoría" placeholder="Categoría" [(ngModel)]="entidadSeleccionada.idCategoria">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idCategoria" class="col-sm-4 col-form-label">idCategoria</label>
+            <label for="idProductora" class="col-sm-4 col-form-label">Productora</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idCategoria" name="idCategoria" placeholder="idCategoria" [(ngModel)]="entidadSeleccionada.idCategoria">
+              <input type="text" class="form-control" id="idProductora" name="Productora" placeholder="Productora" [(ngModel)]="entidadSeleccionada.idProductora">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idProductora" class="col-sm-4 col-form-label">idProductora</label>
+            <label for="titulo" class="col-sm-4 col-form-label">Título</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="idProductora" name="idProductora" placeholder="idProductora" [(ngModel)]="entidadSeleccionada.idProductora">
+              <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" [(ngModel)]="entidadSeleccionada.titulo">
             </div>
          </div>
          <div class="form-group row">
-            <label for="titulo" class="col-sm-4 col-form-label">titulo</label>
+            <label for="codigoISBN" class="col-sm-4 col-form-label">Código ISBN</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo" [(ngModel)]="entidadSeleccionada.titulo">
+              <input type="text" class="form-control" id="codigoISBN" name="codigoISBN" placeholder="Código ISBN" [(ngModel)]="entidadSeleccionada.codigoISBN">
             </div>
          </div>
          <div class="form-group row">
-            <label for="codigoISBN" class="col-sm-4 col-form-label">codigoISBN</label>
+            <label for="descripcion" class="col-sm-4 col-form-label">Descripción</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="codigoISBN" name="codigoISBN" placeholder="codigoISBN" [(ngModel)]="entidadSeleccionada.codigoISBN">
+              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">
             </div>
          </div>
          <div class="form-group row">
-            <label for="descripcion" class="col-sm-4 col-form-label">descripcion</label>
+            <label for="contenido" class="col-sm-4 col-form-label">Contenido</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="descripcion" [(ngModel)]="entidadSeleccionada.descripcion">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="contenido" class="col-sm-4 col-form-label">contenido</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="contenido" name="contenido" placeholder="contenido" [(ngModel)]="entidadSeleccionada.contenido">
+              <input type="text" class="form-control" id="contenido" name="contenido" placeholder="Contenido" [(ngModel)]="entidadSeleccionada.contenido">
             </div>
          </div>
          </form>
