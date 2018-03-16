@@ -1,13 +1,13 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
-include_once('../entidades/CRUD/EstadoRecurso.php');
-class Controlador_estadorecurso extends Controlador_Base
+include_once('../entidades/CRUD/RecursoTag.php');
+class Controlador_recursotag extends Controlador_Base
 {
    function crear($args)
    {
-      $estadorecurso = new EstadoRecurso($args["id"],$args["descripcion"]);
-      $sql = "INSERT INTO EstadoRecurso (descripcion) VALUES (?);";
-      $parametros = array($estadorecurso->descripcion);
+      $recursotag = new RecursoTag($args["id"],$args["idRecurso"],$args["idTag"]);
+      $sql = "INSERT INTO RecursoTag (idRecurso,idTag) VALUES (?,?);";
+      $parametros = array($recursotag->idRecurso,$recursotag->idTag);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_estadorecurso extends Controlador_Base
 
    function actualizar($args)
    {
-      $estadorecurso = new EstadoRecurso($args["id"],$args["descripcion"]);
-      $parametros = array($estadorecurso->descripcion,$estadorecurso->id);
-      $sql = "UPDATE EstadoRecurso SET descripcion = ? WHERE id = ?;";
+      $recursotag = new RecursoTag($args["id"],$args["idRecurso"],$args["idTag"]);
+      $parametros = array($recursotag->idRecurso,$recursotag->idTag,$recursotag->id);
+      $sql = "UPDATE RecursoTag SET idRecurso = ?,idTag = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -33,7 +33,7 @@ class Controlador_estadorecurso extends Controlador_Base
    {
       $id = $args["id"];
       $parametros = array($id);
-      $sql = "DELETE FROM EstadoRecurso WHERE id = ?;";
+      $sql = "DELETE FROM RecursoTag WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -46,10 +46,10 @@ class Controlador_estadorecurso extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM EstadoRecurso;";
+         $sql = "SELECT * FROM RecursoTag;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM EstadoRecurso WHERE id = ?;";
+         $sql = "SELECT * FROM RecursoTag WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -60,7 +60,7 @@ class Controlador_estadorecurso extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM EstadoRecurso LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM RecursoTag LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -68,7 +68,7 @@ class Controlador_estadorecurso extends Controlador_Base
    function numero_paginas($args)
    {
       $registrosPorPagina = $args["registros_por_pagina"];
-      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM EstadoRecurso;";
+      $sql ="SELECT IF(ceil(count(*)/$registrosPorPagina)>0,ceil(count(*)/$registrosPorPagina),1) as 'paginas' FROM RecursoTag;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta[0];
    }
@@ -81,16 +81,16 @@ class Controlador_estadorecurso extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM EstadoRecurso WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM EstadoRecurso WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM EstadoRecurso WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM EstadoRecurso WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

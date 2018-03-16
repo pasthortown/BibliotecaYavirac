@@ -4,7 +4,8 @@ export class Recurso {
    idAutor: number;
    idCategoria: number;
    idProductora: number;
+   titulo: string;
    codigoISBN: string;
-   observaciones: string;
-   idEstado: number;
+   descripcion: string;
+   contenido: string;
 }

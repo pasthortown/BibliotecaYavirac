@@ -1,24 +1,24 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { EstadoRecurso } from './../../../entidades/CRUD/EstadoRecurso';
-import { EstadoRecursoService } from './estadorecurso.service';
+import { Ejemplar } from '../../../entidades/CRUD/Ejemplar';
+import { EjemplarService } from './ejemplar.service';
 
 import 'rxjs/add/operator/toPromise';
-import { ModalComponent } from './../../bs-component/components';
+import { ModalComponent } from '../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-   selector: 'app-estadorecurso',
-   templateUrl: './estadorecurso.component.html',
-   styleUrls: ['./estadorecurso.component.scss']
+   selector: 'app-ejemplar',
+   templateUrl: './ejemplar.component.html',
+   styleUrls: ['./ejemplar.component.scss']
 })
 
-export class EstadoRecursoComponent implements OnInit {
+export class EjemplarComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: EstadoRecurso[];
-   entidadSeleccionada: EstadoRecurso;
+   entidades: Ejemplar[];
+   entidadSeleccionada: Ejemplar;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
@@ -26,7 +26,7 @@ export class EstadoRecursoComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EstadoRecursoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EjemplarService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -112,7 +112,7 @@ export class EstadoRecursoComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: EstadoRecurso): boolean {
+   isValid(entidadPorEvaluar: Ejemplar): boolean {
       return true;
    }
 
@@ -126,13 +126,13 @@ export class EstadoRecursoComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): EstadoRecurso {
-      const nuevoEstadoRecurso = new EstadoRecurso();
-      nuevoEstadoRecurso.id = 0;
-      return nuevoEstadoRecurso;
+   crearEntidad(): Ejemplar {
+      const nuevoEjemplar = new Ejemplar();
+      nuevoEjemplar.id = 0;
+      return nuevoEjemplar;
    }
 
-   add(entidadNueva: EstadoRecurso): void {
+   add(entidadNueva: Ejemplar): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -147,7 +147,7 @@ export class EstadoRecursoComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: EstadoRecurso): void {
+   update(entidadParaActualizar: Ejemplar): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -162,7 +162,7 @@ export class EstadoRecursoComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: EstadoRecurso): void {
+   delete(entidadParaBorrar: Ejemplar): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +180,7 @@ export class EstadoRecursoComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = EstadoRecurso[0];
+      this.entidades = Ejemplar[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -214,7 +214,7 @@ export class EstadoRecursoComponent implements OnInit {
       this.refresh();
    }
 
-   onSelect(entidadActual: EstadoRecurso): void {
+   onSelect(entidadActual: Ejemplar): void {
       this.entidadSeleccionada = entidadActual;
    }
 }

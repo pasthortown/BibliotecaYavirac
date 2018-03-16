@@ -1,5 +1,5 @@
 <?php
-class EstadoRecurso
+class Estado
 {
    public $id;
    public $descripcion;

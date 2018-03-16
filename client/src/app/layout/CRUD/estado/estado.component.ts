@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { Recurso } from '../../../entidades/CRUD/Recurso';
-import { RecursoService } from './recurso.service';
+import { Estado } from '../../../entidades/CRUD/Estado';
+import { EstadoService } from './estado.service';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from '../../bs-component/components';
@@ -9,16 +9,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
-   selector: 'app-recurso',
-   templateUrl: './recurso.component.html',
-   styleUrls: ['./recurso.component.scss']
+   selector: 'app-estado',
+   templateUrl: './estado.component.html',
+   styleUrls: ['./estado.component.scss']
 })
 
-export class RecursoComponent implements OnInit {
+export class EstadoComponent implements OnInit {
 
    busy: Promise<any>;
-   entidades: Recurso[];
-   entidadSeleccionada: Recurso;
+   entidades: Estado[];
+   entidadSeleccionada: Estado;
    pagina: 1;
    tamanoPagina: 20;
    paginaActual: number;
@@ -26,7 +26,7 @@ export class RecursoComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EstadoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -112,7 +112,7 @@ export class RecursoComponent implements OnInit {
       });
    }
 
-   isValid(entidadPorEvaluar: Recurso): boolean {
+   isValid(entidadPorEvaluar: Estado): boolean {
       return true;
    }
 
@@ -126,13 +126,13 @@ export class RecursoComponent implements OnInit {
       this.cerrarVentanaEdicion();
    }
 
-   crearEntidad(): Recurso {
-      const nuevoRecurso = new Recurso();
-      nuevoRecurso.id = 0;
-      return nuevoRecurso;
+   crearEntidad(): Estado {
+      const nuevoEstado = new Estado();
+      nuevoEstado.id = 0;
+      return nuevoEstado;
    }
 
-   add(entidadNueva: Recurso): void {
+   add(entidadNueva: Estado): void {
       this.busy = this.dataService.create(entidadNueva)
       .then(respuesta => {
          if(respuesta){
@@ -147,7 +147,7 @@ export class RecursoComponent implements OnInit {
       });
    }
 
-   update(entidadParaActualizar: Recurso): void {
+   update(entidadParaActualizar: Estado): void {
       this.busy = this.dataService.update(entidadParaActualizar)
       .then(respuesta => {
          if(respuesta){
@@ -162,7 +162,7 @@ export class RecursoComponent implements OnInit {
       });
    }
 
-   delete(entidadParaBorrar: Recurso): void {
+   delete(entidadParaBorrar: Estado): void {
       this.busy = this.dataService.remove(entidadParaBorrar.id)
       .then(respuesta => {
          if(respuesta){
@@ -180,7 +180,7 @@ export class RecursoComponent implements OnInit {
    refresh(): void {
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = Recurso[0];
+      this.entidades = Estado[0];
       this.entidadSeleccionada = this.crearEntidad();
    }
 
@@ -214,7 +214,7 @@ export class RecursoComponent implements OnInit {
       this.refresh();
    }
 
-   onSelect(entidadActual: Recurso): void {
+   onSelect(entidadActual: Estado): void {
       this.entidadSeleccionada = entidadActual;
    }
 }

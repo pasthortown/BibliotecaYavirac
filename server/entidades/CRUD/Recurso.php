@@ -6,19 +6,21 @@ class Recurso
    public $idAutor;
    public $idCategoria;
    public $idProductora;
+   public $titulo;
    public $codigoISBN;
-   public $observaciones;
-   public $idEstado;
+   public $descripcion;
+   public $contenido;
 
-   function __construct($id,$idTipo,$idAutor,$idCategoria,$idProductora,$codigoISBN,$observaciones,$idEstado){
+   function __construct($id,$idTipo,$idAutor,$idCategoria,$idProductora,$titulo,$codigoISBN,$descripcion,$contenido){
       $this->id = $id;
       $this->idTipo = $idTipo;
       $this->idAutor = $idAutor;
       $this->idCategoria = $idCategoria;
       $this->idProductora = $idProductora;
+      $this->titulo = $titulo;
       $this->codigoISBN = $codigoISBN;
-      $this->observaciones = $observaciones;
-      $this->idEstado = $idEstado;
+      $this->descripcion = $descripcion;
+      $this->contenido = $contenido;
    }
 }
 ?>

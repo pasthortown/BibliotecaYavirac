@@ -1,3 +1,4 @@
+DROP DATABASE Biblioteca;
 CREATE DATABASE Biblioteca DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 use Biblioteca;
@@ -15,8 +16,8 @@ CREATE TABLE RecursoDigital (
   id INT NOT NULL AUTO_INCREMENT,
   idRecurso INT NOT NULL,
   contenido LONGBLOB NOT NULL,
-  PRIMARY KEY (id)
-);
+  PRIMARY KEY (id) 
+) ENGINE myISAM;
 
 CREATE TABLE DetalleSolicitud (
   id INT NOT NULL AUTO_INCREMENT,
@@ -33,9 +34,32 @@ CREATE TABLE Recurso (
   idProductora INT NULL,
   titulo VARCHAR (100) NULL,
   codigoISBN VARCHAR(25) NULL,
-  observaciones TEXT NULL,
+  descripcion TEXT NULL,
+  contenido TEXT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE RecursoTag (
+  id INT NOT NULL AUTO_INCREMENT,
+  idRecurso INT NULL,
+  idTag INT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE Tag (
+  id INT NOT NULL AUTO_INCREMENT,
+  descripcion VARCHAR(100) NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE Ejemplar (
+  id INT NOT NULL AUTO_INCREMENT,
+  codigo VARCHAR(100) NULL,
+  idRecurso INT NULL,
+  fechaRegistro DATETIME NULL,
   idEstado INT NULL,
-  PRIMARY KEY (id));
+  PRIMARY KEY (id)
+);
 
 CREATE TABLE Productora (
   id INT NOT NULL AUTO_INCREMENT,
@@ -44,7 +68,7 @@ CREATE TABLE Productora (
   PRIMARY KEY (id));
 
 
-CREATE TABLE EstadoRecurso (
+CREATE TABLE Estado (
   id INT NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
