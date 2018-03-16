@@ -10,6 +10,8 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 import { RecursoService } from './../recurso/recurso.service';
 import { Recurso } from './../../../entidades/CRUD/Recurso';
+import { EstadoService } from './../estado/estado.service';
+import { Estado } from './../../../entidades/CRUD/Estado';
 
 @Component({
    selector: 'app-ejemplar',
@@ -29,8 +31,9 @@ export class EjemplarComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
    recursos: Recurso[];
+   estados: Estado[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EjemplarService, private recursoService: RecursoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: EjemplarService, private estadoService: EstadoService, private recursoService: RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -187,6 +190,7 @@ export class EjemplarComponent implements OnInit {
       this.entidades = Ejemplar[0];
       this.entidadSeleccionada = this.crearEntidad();
       this.getRecursos();
+      this.getEstados();
    }
 
    getPaginaPrimera():void {
@@ -221,6 +225,16 @@ export class EjemplarComponent implements OnInit {
 
    onSelect(entidadActual: Ejemplar): void {
       this.entidadSeleccionada = entidadActual;
+   }
+
+   getEstados(): void {
+      this.busy = this.estadoService.getAll()
+      .then(respuesta => {
+         this.estados = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
    }
 
    getRecursos(): void {
