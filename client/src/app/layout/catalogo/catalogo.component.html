@@ -9,19 +9,11 @@
             <button type="button" class="btn btn-default" (click)="refresh()">
                 <span class="fa fa-refresh"></span>&nbsp;Actualizar
             </button>
-            <button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
-                <span class="fa fa-edit"></span>&nbsp;Editar
-            </button>
-            <button type="button" class="btn btn-info" (click)="open(content,true)">
-                <span class="fa fa-plus"></span>&nbsp;Nuevo
-            </button>
-            <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation();" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
-                <span class="fa fa-remove"></span>&nbsp;Borrar
-            </button>&nbsp;
+            &nbsp;
             <div class="form-inline">
                 <input class="form-control" type="text" placeholder="Buscar Recursos" >
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-outline-primary"><span class="fa fa-search"></span></button>
+                    <button type="button" class="btn btn-outline-primary" (click)="getFiltrado()"><span class="fa fa-search"></span></button>
                 </div>
             </div>
         </div>
@@ -70,7 +62,7 @@
                     <td>{{actual.idAutor}}</td>
                     <td>{{actual.idTipo}}</td>
                     <td>
-                        <button type="button" class="btn btn-secondary" (click)="open(content,false)">
+                        <button type="button" class="btn btn-secondary" (click)="open(content,true)">
                             <span class="fa fa-eye"></span>
                         </button>
                         <button type="button" class="btn btn-secondary">

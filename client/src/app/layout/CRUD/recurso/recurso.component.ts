@@ -233,6 +233,7 @@ export class RecursoComponent implements OnInit {
    onSelect(entidadActual: Recurso): void {
       this.entidadSeleccionada = entidadActual;
    }
+
    getTipos(): void {
       this.busy = this.tipoService.getAll()
       .then(respuesta => {
@@ -242,6 +243,7 @@ export class RecursoComponent implements OnInit {
          console.log(error);
       });
    }
+
    getAutores(): void {
       this.busy = this.autorService.getAll()
       .then(respuesta => {
@@ -251,6 +253,7 @@ export class RecursoComponent implements OnInit {
          console.log(error);
       });
    }
+
    getCategorias(): void {
       this.busy = this.categoriaService.getAll()
       .then(respuesta => {
@@ -260,6 +263,7 @@ export class RecursoComponent implements OnInit {
          console.log(error);
       });
    }
+
    getProductoras(): void {
       this.busy = this.productoraService.getAll()
       .then(respuesta => {

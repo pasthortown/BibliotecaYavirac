@@ -28,11 +28,6 @@ export class CatalogoComponent implements OnInit {
    busy: Promise<any>;
    entidades: Recurso[];
    entidadSeleccionada: Recurso;
-   pagina: 1;
-   tamanoPagina: 20;
-   paginaActual: number;
-   paginaUltima: number;
-   registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
    tipos: TipoRecurso[];
    autores: Autor[];
@@ -98,31 +93,8 @@ export class CatalogoComponent implements OnInit {
       });
    }
 
-   getPagina(pagina: number, tamanoPagina: number): void {
-      this.busy = this.dataService
-      .getPagina(pagina, tamanoPagina)
-      .then(entidadesRecuperadas => {
-         this.entidades = entidadesRecuperadas
-         if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
-            this.toastr.success('¡No hay datos!', 'Consulta');
-         } else {
-            this.toastr.success('La consulta fue exitosa', 'Consulta');
-         }
-      })
-      .catch(error => {
-         this.toastr.success('Se produjo un error', 'Consulta');
-      });
-   }
+   getFiltrado(): void {
 
-   getNumeroPaginas(tamanoPagina: number): void{
-      this.busy = this.dataService
-      .getNumeroPaginas(tamanoPagina)
-      .then(respuesta => {
-         this.paginaUltima = respuesta.paginas;
-      })
-      .catch(error => {
-         //Error al leer las paginas
-      });
    }
 
    isValid(entidadPorEvaluar: Recurso): boolean {
@@ -131,69 +103,18 @@ export class CatalogoComponent implements OnInit {
 
    aceptar(): void {
       if (!this.isValid(this.entidadSeleccionada)) {return;}
-      if (this.entidadSeleccionada.id === undefined || this.entidadSeleccionada.id === 0) {
-         this.add(this.entidadSeleccionada);
-      } else {
-         this.update(this.entidadSeleccionada);
-      }
+      // al cerrar la ventana
       this.cerrarVentanaEdicion();
    }
 
    crearEntidad(): Recurso {
-      const nuevoCatalogo = new Recurso();
-      nuevoCatalogo.id = 0;
-      return nuevoCatalogo;
-   }
-
-   add(entidadNueva: Recurso): void {
-      this.busy = this.dataService.create(entidadNueva)
-      .then(respuesta => {
-         if(respuesta){
-            this.toastr.success('La creación fue exitosa', 'Creación');
-         }else{
-            this.toastr.warning('Se produjo un error', 'Creación');
-         }
-         this.refresh();
-      })
-      .catch(error => {
-         this.toastr.warning('Se produjo un error', 'Creación');
-      });
-   }
-
-   update(entidadParaActualizar: Recurso): void {
-      this.busy = this.dataService.update(entidadParaActualizar)
-      .then(respuesta => {
-         if(respuesta){
-            this.toastr.success('La actualización fue exitosa', 'Actualización');
-         }else{
-            this.toastr.warning('Se produjo un error', 'Actualización');
-         }
-         this.refresh();
-      })
-      .catch(error => {
-         this.toastr.warning('Se produjo un error', 'Actualización');
-      });
-   }
-
-   delete(entidadParaBorrar: Recurso): void {
-      this.busy = this.dataService.remove(entidadParaBorrar.id)
-      .then(respuesta => {
-         if(respuesta){
-            this.toastr.success('La eliminación fue exitosa', 'Eliminación');
-         }else{
-            this.toastr.warning('Se produjo un error', 'Eliminación');
-         }
-         this.refresh();
-      })
-      .catch(error => {
-         this.toastr.success('Se produjo un error', 'Eliminación');
-      });
+      const nuevoRecurso = new Recurso();
+      nuevoRecurso.id = 0;
+      return nuevoRecurso;
    }
 
    refresh(): void {
-      this.getNumeroPaginas(this.registrosPorPagina);
-      this.getPagina(this.paginaActual,this.registrosPorPagina);
-      this.entidades = Recurso[0];
+      this.getAll();
       this.entidadSeleccionada = this.crearEntidad();
       this.getTipos();
       this.getAutores();
@@ -201,39 +122,14 @@ export class CatalogoComponent implements OnInit {
       this.getProductoras();
    }
 
-   getPaginaPrimera():void {
-      this.paginaActual = 1;
-      this.refresh();
-   }
-
-   getPaginaAnterior():void {
-      if(this.paginaActual>1){
-         this.paginaActual = this.paginaActual - 1;
-         this.refresh();
-      }
-   }
-
-   getPaginaSiguiente():void {
-      if(this.paginaActual < this.paginaUltima){
-         this.paginaActual = this.paginaActual + 1;
-         this.refresh();
-      }
-   }
-
-   getPaginaUltima():void {
-      this.paginaActual = this.paginaUltima;
-      this.refresh();
-   }
-
    ngOnInit() {
-      this.paginaActual=1;
-      this.registrosPorPagina = 5;
       this.refresh();
    }
 
    onSelect(entidadActual: Recurso): void {
       this.entidadSeleccionada = entidadActual;
    }
+
    getTipos(): void {
       this.busy = this.tipoService.getAll()
       .then(respuesta => {
@@ -243,6 +139,7 @@ export class CatalogoComponent implements OnInit {
          console.log(error);
       });
    }
+
    getAutores(): void {
       this.busy = this.autorService.getAll()
       .then(respuesta => {
@@ -252,6 +149,7 @@ export class CatalogoComponent implements OnInit {
          console.log(error);
       });
    }
+
    getCategorias(): void {
       this.busy = this.categoriaService.getAll()
       .then(respuesta => {
@@ -261,6 +159,7 @@ export class CatalogoComponent implements OnInit {
          console.log(error);
       });
    }
+
    getProductoras(): void {
       this.busy = this.productoraService.getAll()
       .then(respuesta => {
