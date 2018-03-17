@@ -3,14 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { CatalogoComponent } from './catalogo.component';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: CatalogoComponent
-    }
+   { path: '', component: CatalogoComponent }
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule]
+   imports: [RouterModule.forChild(routes)],
+   exports: [RouterModule]
 })
-export class CatalogoRoutingModule {}
+export class CatalogoRoutingModule { }

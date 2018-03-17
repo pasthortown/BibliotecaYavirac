@@ -11,7 +11,6 @@ import { TipoRecurso } from '../../../entidades/CRUD/TipoRecurso';
 import { Autor } from '../../../entidades/CRUD/Autor';
 import { CategoriaRecurso } from '../../../entidades/CRUD/CategoriaRecurso';
 import { Productora } from '../../../entidades/CRUD/Productora';
-import { Titulo } from '../../../entidades/CRUD/Titulo';
 import { TipoRecursoService } from '../tiporecurso/tiporecurso.service';
 import { AutorService } from '../autor/autor.service';
 import { CategoriaRecursoService } from '../categoriarecurso/categoriarecurso.service';
@@ -37,7 +36,7 @@ export class RecursoComponent implements OnInit {
    tipos: TipoRecurso[];
    autores: Autor[];
    categorias: CategoriaRecurso[];
-   productoras: Productora[]; 
+   productoras: Productora[];
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService,private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
