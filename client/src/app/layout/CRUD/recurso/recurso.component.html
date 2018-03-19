@@ -135,7 +135,7 @@
          <div class="form-group row">
             <label for="idTipo" class="col-sm-4 col-form-label">Tipo</label>
             <div class="col-sm-8">
-                <select class="form-control" id="idTipo" name="idTipo" [(ngModel)]="entidadSeleccionada.idtipo">
+                <select class="form-control" id="idTipo" name="idTipo" [(ngModel)]="entidadSeleccionada.idTipo">
                     <option value="" selected>Seleccione...</option>
                     <option *ngFor="let tipo of tipos" value={{tipo.id}}>{{tipo.descripcion}}</option>
                 </select>
@@ -146,7 +146,7 @@
             <div class="col-sm-8">
                 <select class="form-control" id="idAutor" name="idAutor" [(ngModel)]="entidadSeleccionada.idAutor">
                     <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let autor of autores" value={{autor.id}}>{{autor.descripcion}}</option>
+                    <option *ngFor="let autor of autores" value={{autor.id}}>{{autor.apellidos}}    {{autor.nombres}}</option>
                 </select>
             </div>
          </div>
@@ -164,7 +164,7 @@
             <div class="col-sm-8">
                 <select class="form-control" id="idProductora" name="idProductora" [(ngModel)]="entidadSeleccionada.idProductora">
                     <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let productora of productoras" value={{productora.id}}>{{productora.descripcion}}</option>
+                    <option *ngFor="let productora of productoras" value={{productora.id}}>{{productora.nombre}}</option>
                 </select>
             </div>
          </div>
