@@ -1,8 +1,6 @@
-<!DOCTYPE html>
-<title>Página SEcuandaria</title>
 
 <!-- Bootstrap CSS -->
-
+<div class="container" ng-controller="com2Controller">
     <div class="panel" id="Recurso" style ="margin:2%; height:50%">
         <!--   Cabecera  -->    
         <div class="panel-heading " style="background-color:rgba(46, 141, 250, 0.51);">
@@ -88,10 +86,10 @@
                   <span class="fa fa-edit"></span>&nbsp;Editar
                </button>
 
-
+               <button type="button" class="btn btn-info" (click)="open(content,true)">
+                <span class="fa fa-plus"></span>&nbsp;Nuevo
+             </button>
+            </div>
         
-              <ng-template #content>
-                  <div class="modal-body">
-                     
-</ng-template>
+              
            
