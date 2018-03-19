@@ -80,92 +80,87 @@
 
 <ng-template #content let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title">
-        <span *ngIf="entidadSeleccionada.id != 0">
-            Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
-        </span>
-        <span *ngIf="entidadSeleccionada.id === 0">
-            Ingreso de Datos:
-        </span>
-        </h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('ClickEnX')">
-        <span aria-hidden="true">&times;</span>
+        <h4 class="modal-title">{{entidadSeleccionada.titulo | uppercase}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="c('ClickEnX')">
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <form>
-        <div class="form-group row">
-        <label for="id" class="col-sm-4 col-form-label">Identificador</label>
-        <div class="col-sm-8">
-            <input type="text" readonly class="form-control" id="id" name="id" [(ngModel)]="entidadSeleccionada.id">
+        <div class="col-12">
+            <div class="form-row">
+                <div class="col-3">
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Portada:</h5>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Código ISBN:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="form-row">
+                        <div class="col-6">
+                            <h5>Autor:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                        </div>
+                        <div class="col-6">
+                            <h5>Producido por:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-6">
+                            <h5>Clasificación:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                        </div>
+                        <div class="col-6">
+                            <h5>Estado:</h5>
+                            <div class="alert alert-primary text-center" role="alert">
+                                No disponible
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Descripción:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.descripcion}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Tags:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Tabla de Contenidos:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.contenido}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Código:</h5>
+                            <div class="col-12">
+                                <ngx-barcode  [bc-value]="codigo" [bc-display-value]="true"></ngx-barcode>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        </div>
-        <div class="form-group row">
-        <label for="idTipo" class="col-sm-4 col-form-label">Tipo</label>
-        <div class="col-sm-8">
-            <select class="form-control" id="idTipo" name="idTipo" [(ngModel)]="entidadSeleccionada.idtipo">
-                <option value="" selected>Seleccione...</option>
-                <option *ngFor="let tipo of tipos" value={{tipo.id}}>{{tipo.descripcion}}</option>
-            </select>
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="idAutor" class="col-sm-4 col-form-label">Autor</label>
-        <div class="col-sm-8">
-            <select class="form-control" id="idAutor" name="idAutor" [(ngModel)]="entidadSeleccionada.idAutor">
-                <option value="" selected>Seleccione...</option>
-                <option *ngFor="let autor of autores" value={{autor.id}}>{{autor.descripcion}}</option>
-            </select>
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="idCategoria" class="col-sm-4 col-form-label">Categoría</label>
-        <div class="col-sm-8">
-            <select class="form-control" id="idCategoria" name="idCategoria" [(ngModel)]="entidadSeleccionada.idCategoria">
-                <option value="" selected>Seleccione...</option>
-                <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.descripcion}}</option>
-            </select>
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="idProductora" class="col-sm-4 col-form-label">Productora</label>
-        <div class="col-sm-8">
-            <select class="form-control" id="idProductora" name="idProductora" [(ngModel)]="entidadSeleccionada.idProductora">
-                <option value="" selected>Seleccione...</option>
-                <option *ngFor="let productora of productoras" value={{productora.id}}>{{productora.descripcion}}</option>
-            </select>
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="titulo" class="col-sm-4 col-form-label">Título</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" [(ngModel)]="entidadSeleccionada.titulo">
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="codigoISBN" class="col-sm-4 col-form-label">Código ISBN</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="codigoISBN" name="codigoISBN" placeholder="Código ISBN" [(ngModel)]="entidadSeleccionada.codigoISBN">
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="descripcion" class="col-sm-4 col-form-label">Descripción</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="contenido" class="col-sm-4 col-form-label">Contenido</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="contenido" name="contenido" placeholder="Contenido" [(ngModel)]="entidadSeleccionada.contenido">
-        </div>
-        </div>
-        </form>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
-        <span class="fa fa-save"></span>&nbsp;Guardar
+        <button type="button" class="btn btn-success col-offset-sm-4" (click)="c('pdf')">
+            <span class="fa fa-file-pdf-o"></span>&nbsp;Descargar PDF
         </button>
-        <button type="button" class="btn btn-danger" (click)="c('close')"><span class="fa fa-close"></span>&nbsp;Cerrar</button>
+        <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('solicitar')">
+            <span class="fa fa-check-square-o"></span>&nbsp;Solicitar
+        </button>
+        <button type="button" class="btn btn-danger" (click)="c('cerrar')"><span class="fa fa-close"></span>&nbsp;Cancelar</button>
     </div>
 </ng-template>

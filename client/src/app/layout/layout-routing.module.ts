@@ -17,6 +17,7 @@ const routes: Routes = [
             { path: 'autor', loadChildren: './CRUD/autor/autor.module#AutorModule' },
             { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
             { path: 'tag', loadChildren: './CRUD/tag/tag.module#TagModule' },
+            { path: 'fotoportada', loadChildren: './CRUD/fotoportada/fotoportada.module#FotoPortadaModule' },
             { path: 'recursotag', loadChildren: './CRUD/recursotag/recursotag.module#RecursoTagModule' },
             { path: 'ejemplar', loadChildren: './CRUD/ejemplar/ejemplar.module#EjemplarModule' },
             { path: 'categoriarecurso', loadChildren: './CRUD/categoriarecurso/categoriarecurso.module#CategoriaRecursoModule' },

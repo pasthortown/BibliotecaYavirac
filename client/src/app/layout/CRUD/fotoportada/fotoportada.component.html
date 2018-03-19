@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de Recurso</h2>
+         <h2 style="margin-top:0px">Catálogo de FotoPortada</h2>
       </div>
    </div>
    <div class="row">
@@ -33,42 +33,27 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Tipo</strong>
+                        <strong>Identificador</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Autor</strong>
+                        <strong>idRecurso</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Categoría</strong>
+                        <strong>tipoArchivo</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Productora</strong>
+                        <strong>nombreArchivo</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Título</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>Código ISBN</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>Descripción</strong>
-                     </span>
-                  </th>
-                  <th scope="col">
-                     <span>
-                        <strong>Contenido</strong>
+                        <strong>adjunto</strong>
                      </span>
                   </th>
                </tr>
@@ -78,14 +63,11 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
-                  <td>{{actual.idTipo}}</td>
-                  <td>{{actual.idAutor}}</td>
-                  <td>{{actual.idCategoria}}</td>
-                  <td>{{actual.idProductora}}</td>
-                  <td>{{actual.titulo}}</td>
-                  <td>{{actual.codigoISBN}}</td>
-                  <td>{{actual.descripcion}}</td>
-                  <td>{{actual.contenido}}</td>
+                  <td>{{actual.id}}</td>
+                  <td>{{actual.idRecurso}}</td>
+                  <td>{{actual.tipoArchivo}}</td>
+                  <td>{{actual.nombreArchivo}}</td>
+                  <td>{{actual.adjunto}}</td>
                </tr>
             </tbody>
          </table>
@@ -133,63 +115,27 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="idTipo" class="col-sm-4 col-form-label">Tipo</label>
+            <label for="idRecurso" class="col-sm-4 col-form-label">idRecurso</label>
             <div class="col-sm-8">
-                <select class="form-control" id="idTipo" name="idTipo" [(ngModel)]="entidadSeleccionada.idTipo">
-                    <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let tipo of tipos" value={{tipo.id}}>{{tipo.descripcion}}</option>
-                </select>
+              <input type="text" class="form-control" id="idRecurso" name="idRecurso" placeholder="idRecurso" [(ngModel)]="entidadSeleccionada.idRecurso">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idAutor" class="col-sm-4 col-form-label">Autor</label>
+            <label for="tipoArchivo" class="col-sm-4 col-form-label">tipoArchivo</label>
             <div class="col-sm-8">
-                <select class="form-control" id="idAutor" name="idAutor" [(ngModel)]="entidadSeleccionada.idAutor">
-                    <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let autor of autores" value={{autor.id}}>{{autor.apellidos}}    {{autor.nombres}}</option>
-                </select>
+              <input type="text" class="form-control" id="tipoArchivo" name="tipoArchivo" placeholder="tipoArchivo" [(ngModel)]="entidadSeleccionada.tipoArchivo">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idCategoria" class="col-sm-4 col-form-label">Categoría</label>
+            <label for="nombreArchivo" class="col-sm-4 col-form-label">nombreArchivo</label>
             <div class="col-sm-8">
-                <select class="form-control" id="idCategoria" name="idCategoria" [(ngModel)]="entidadSeleccionada.idCategoria">
-                    <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.descripcion}}</option>
-                </select>
+              <input type="text" class="form-control" id="nombreArchivo" name="nombreArchivo" placeholder="nombreArchivo" [(ngModel)]="entidadSeleccionada.nombreArchivo">
             </div>
          </div>
          <div class="form-group row">
-            <label for="idProductora" class="col-sm-4 col-form-label">Productora</label>
+            <label for="adjunto" class="col-sm-4 col-form-label">adjunto</label>
             <div class="col-sm-8">
-                <select class="form-control" id="idProductora" name="idProductora" [(ngModel)]="entidadSeleccionada.idProductora">
-                    <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let productora of productoras" value={{productora.id}}>{{productora.nombre}}</option>
-                </select>
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="titulo" class="col-sm-4 col-form-label">Título</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" [(ngModel)]="entidadSeleccionada.titulo">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="codigoISBN" class="col-sm-4 col-form-label">Código ISBN</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="codigoISBN" name="codigoISBN" placeholder="Código ISBN" [(ngModel)]="entidadSeleccionada.codigoISBN">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="descripcion" class="col-sm-4 col-form-label">Descripción</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="entidadSeleccionada.descripcion">
-            </div>
-         </div>
-         <div class="form-group row">
-            <label for="contenido" class="col-sm-4 col-form-label">Contenido</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control" id="contenido" name="contenido" placeholder="Contenido" [(ngModel)]="entidadSeleccionada.contenido">
+              <input type="text" class="form-control" id="adjunto" name="adjunto" placeholder="adjunto" [(ngModel)]="entidadSeleccionada.adjunto">
             </div>
          </div>
          </form>
@@ -198,7 +144,7 @@
          <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
             <span class="fa fa-save"></span>&nbsp;Guardar
          </button>
-         <button type="button" class="btn btn-danger" (click)="c('close')"><span class="fa fa-close"></span>&nbsp;Cerrar</button>
+         <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
       </div>
    </ng-template>
 </div>
