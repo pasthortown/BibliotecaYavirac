@@ -4,7 +4,7 @@ import { CatalogoService } from './catalogo.service';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from '../bs-component/components';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Recurso } from '../../entidades/CRUD/Recurso';
 import { TipoRecurso } from '../../entidades/CRUD/TipoRecurso';
@@ -39,13 +39,25 @@ export class CatalogoComponent implements OnInit {
    }
 
    open(content, nuevo){
+      const options: NgbModalOptions = {
+        size: 'lg'
+      };
       if(nuevo){
          this.resetEntidadSeleccionada();
       }
-      this.modalService.open(content)
+      this.modalService.open(content, options)
       .result
       .then((result => {
-         if(result=="save"){
+         if(result=="pdf"){
+             alert(1);
+            this.aceptar();
+         }
+         if(result=="solicitar"){
+            alert(2);
+            this.aceptar();
+         }
+         if(result=="cerrar"){
+            alert(3);
             this.aceptar();
          }
       }),(result => {

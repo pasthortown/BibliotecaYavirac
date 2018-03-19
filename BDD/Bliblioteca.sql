@@ -104,3 +104,12 @@ CREATE TABLE ComentariosSugerencias (
   contenido TEXT NOT NULL,
   PRIMARY KEY (id)
 );
+
+CREATE TABLE FotoPortada (
+	id INT NOT NULL AUTO_INCREMENT,
+  idRecurso INT NULL,
+  tipoArchivo VARCHAR(255) NULL,
+  nombreArchivo VARCHAR(255) NULL,
+  adjunto LONGBLOB NULL,
+  PRIMARY KEY (id)
+) ENGINE myISAM;
