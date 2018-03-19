@@ -1,0 +1,17 @@
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (6,'John ','Krogstie',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (7,'Richard ','Hill',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (8,'Mathias  ','Weske',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (9,'Jóse Luis ','Gómez Pardo',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (10,'Mauro ','Borgo',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (13,'Willem-Paul ','De Roever',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (14,'Jeremy ','Gibbons','jeremy.gibbons@cs.ox.ac.uk');
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (15,'Bir ','Bhanu ',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (16,'Zicheng ','Liu',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (17,'Davide ','Sangiorgi',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (18,'Paúl  ','Wellin',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (19,'Michael','Dubois',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (20,'Daniel Cohen ','Karen',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (21,'Andrew S. ','Tanenbaum',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (22,'Ricardo Férnandez ','Del Busto y Ezeta',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (23,'Peter ','Lake',NULL);
+INSERT INTO `Autor` (`id`,`nombres`,`apellidos`,`urlWeb`) VALUES (24,'Max ','Bramer',NULL);
