@@ -1,0 +1,2 @@
+INSERT INTO `Recurso` (`id`,`idTipo`,`idAutor`,`idCategoria`,`idProductora`,`titulo`,`codigoISBN`,`descripcion`,`contenido`) VALUES (1,1,1,349,1,'Mashups','978-3-642-55048-5','Excelente','');
+INSERT INTO `Recurso` (`id`,`idTipo`,`idAutor`,`idCategoria`,`idProductora`,`titulo`,`codigoISBN`,`descripcion`,`contenido`) VALUES (2,1,2,349,1,'Design Science Methodology','978-3-662-43838-1','Excelente','');
