@@ -33,6 +33,7 @@ export class CatalogoComponent implements OnInit {
    autores: Autor[];
    categorias: CategoriaRecurso[];
    productoras: Productora[];
+   codigo: string;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -136,6 +137,7 @@ export class CatalogoComponent implements OnInit {
 
    ngOnInit() {
       this.refresh();
+      this.codigo = "super bien";
    }
 
    onSelect(entidadActual: Recurso): void {
