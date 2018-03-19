@@ -1,0 +1,5 @@
+INSERT INTO `Recurso` (`id`,`idTipo`,`idAutor`,`idCategoria`,`idProductora`,`titulo`,`codigoISBN`,`descripcion`,`contenido`) VALUES (1,1,1,349,1,'Mashups','978-3-642-55048-5','Excelente','');
+INSERT INTO `Recurso` (`id`,`idTipo`,`idAutor`,`idCategoria`,`idProductora`,`titulo`,`codigoISBN`,`descripcion`,`contenido`) VALUES (2,1,2,349,1,'Design Science Methodology','978-3-662-43838-1','Excelente','');
+INSERT INTO `Recurso` (`id`,`idTipo`,`idAutor`,`idCategoria`,`idProductora`,`titulo`,`codigoISBN`,`descripcion`,`contenido`) VALUES (2,1,2,349,1,'Fundamentals of Business Process Management','978-3-642-33143-5','Excelente','');
+INSERT INTO `Recurso` (`id`,`idTipo`,`idAutor`,`idCategoria`,`idProductora`,`titulo`,`codigoISBN`,`descripcion`,`contenido`) VALUES (2,1,2,349,1,'Multicore Programming Using the ParC Language','978-1-4471-2163-3','Excelente','');
+INSERT INTO `Recurso` (`id`,`idTipo`,`idAutor`,`idCategoria`,`idProductora`,`titulo`,`codigoISBN`,`descripcion`,`contenido`) VALUES (2,1,2,349,1,'Guide to Java A Concise Introduction to Programming','978-1-4471-6316-9','Excelente','');

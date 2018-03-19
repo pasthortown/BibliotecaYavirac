@@ -1,1 +1,65 @@
-hoja solicitud
+<div class="container">
+   <div class="row">
+      <div class="col-md-12 text-right">
+         <h2 style="margin-top:0px">Hoja de Solicitud</h2>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p> Yo, bla bla bla</p>
+      </div>
+   </div>
+   <div class="row" style="margin-top:15px">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+         <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+               <tr>
+                  <th>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Código</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Autor</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Productora</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Título</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>Opciones</strong>
+                     </span>
+                  </th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let actual of entidades" (click)="onSelect(actual)">
+                  <td>
+                     <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
+                  </td>
+                  <td>{{actual.idTipo}}</td>
+                  <td>{{actual.idAutor}}</td>
+                  <td>{{actual.idProductora}}</td>
+                  <td>{{actual.titulo}}</td>
+                  <td>
+                      <button type="button" class="btn btn-danger">
+                            <span class="fa fa-trash"></span>&nbsp;Borrar
+                      </button>
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+</div>
