@@ -12,7 +12,6 @@ import { CategoriaRecursoService } from './../CRUD/categoriarecurso/categoriarec
 import { ProductoraService } from './../CRUD/productora/productora.service';
 import { NgxBarcodeModule } from 'ngx-barcode';
 
-
 @NgModule({
    imports: [
       CommonModule,

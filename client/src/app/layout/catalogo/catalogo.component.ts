@@ -39,27 +39,21 @@ export class CatalogoComponent implements OnInit {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
-   open(content, nuevo){
+   mostrarInfo(content, id){
       const options: NgbModalOptions = {
         size: 'lg'
       };
-      if(nuevo){
-         this.resetEntidadSeleccionada();
-      }
       this.modalService.open(content, options)
       .result
       .then((result => {
          if(result=="pdf"){
-             alert(1);
-            this.aceptar();
+             this.descargarPDF(this.entidadSeleccionada.id);
          }
          if(result=="solicitar"){
-            alert(2);
-            this.aceptar();
+            this.solicitar(this.entidadSeleccionada.id);
          }
          if(result=="cerrar"){
-            alert(3);
-            this.aceptar();
+            // al cancelar
          }
       }),(result => {
          //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
@@ -71,23 +65,6 @@ export class CatalogoComponent implements OnInit {
          return false;
       }
       return porVerificar.id === this.entidadSeleccionada.id;
-   }
-
-   cerrarVentanaEdicion(): void {
-      this.esVisibleVentanaEdicion = false;
-   }
-
-   mostrarVentanaNuevo(): void {
-      this.resetEntidadSeleccionada();
-      this.esVisibleVentanaEdicion = true;
-   }
-
-   mostrarVentanaEdicion(): void {
-      this.esVisibleVentanaEdicion = true;
-   }
-
-   resetEntidadSeleccionada(): void {
-      this.entidadSeleccionada = this.crearEntidad();
    }
 
    getAll(): void {
@@ -112,12 +89,6 @@ export class CatalogoComponent implements OnInit {
 
    isValid(entidadPorEvaluar: Recurso): boolean {
       return true;
-   }
-
-   aceptar(): void {
-      if (!this.isValid(this.entidadSeleccionada)) {return;}
-      // al cerrar la ventana
-      this.cerrarVentanaEdicion();
    }
 
    crearEntidad(): Recurso {
@@ -182,5 +153,13 @@ export class CatalogoComponent implements OnInit {
       .catch(error => {
          console.log(error);
       });
+   }
+
+   descargarPDF(id) {
+       alert(id);
+   }
+
+   solicitar(id) {
+       alert(id);
    }
 }

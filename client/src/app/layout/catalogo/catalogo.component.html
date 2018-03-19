@@ -62,13 +62,13 @@
                     <td>{{actual.idAutor}}</td>
                     <td>{{actual.idTipo}}</td>
                     <td>
-                        <button type="button" class="btn btn-secondary" (click)="open(content,true)">
+                        <button type="button" class="btn btn-secondary" (click)="mostrarInfo(content, actual.id)">
                             <span class="fa fa-eye"></span>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" (click)="descargarPDF(actual.id)">
                             <span class="fa fa-cart-plus"></span>
                         </button>
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" (click)="solicitar(actual.id)">
                             <span class="fa fa-download"></span>
                         </button>
                     </td>

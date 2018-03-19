@@ -1,1 +1,33 @@
-generador etiquetas
+<div class="col-12">
+    <div class="row">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                    </th>
+                    <th scope="col">
+                        <span>
+                        <strong>Título</strong>
+                        </span>
+                    </th>
+                    <th scope="col">
+                        <span>
+                        <strong>Código</strong>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let actual of entidades" (click)="onSelect(actual)">
+                    <td>
+                        <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
+                    </td>
+                    <td>{{actual.titulo}}</td>
+                    <td>
+                        <ngx-barcode  [bc-value]="codigo" [bc-display-value]="true"></ngx-barcode>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
