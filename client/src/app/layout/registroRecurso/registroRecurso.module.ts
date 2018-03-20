@@ -18,6 +18,7 @@ import { EstadoService } from '../CRUD/estado/estado.service';
               NgbModule,
               FormsModule,
             ],
-    declarations: [RegistroRecursoComponent, ProductoraService,AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService]
+    providers: [ProductoraService,AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
+    declarations: [RegistroRecursoComponent]
 })
 export class RegistroRecursoModule {}
