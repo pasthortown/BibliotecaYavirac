@@ -2,6 +2,7 @@
     <div class="col-md-12 text-right">
         <h2 style="margin-top:0px">Registro de Nuevo Recurso</h2>
     </div>
+    <div style="float:left; width:100%; height:20px;"></div>
 </div>
 <div class="container">
     <div class="card-block">
@@ -16,12 +17,12 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="input-group mb-3">
-                                    <select class="form-control" id="idAutor" name="idAutor">
-                                        <option value="" selected>Seleccione...</option>
+                                    <select class="form-control" id="idAutor" name="idAutor" [(ngModel)]="recursoNuevo.idAutor">
+                                        <option value="0" selected>Seleccione...</option>
                                         <option *ngFor="let autor of autores" value={{autor.id}}>{{autor.apellidos}} {{autor.nombres}}</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-success" type="button" (click)="openAutor(contentAutor)"><span class="fa fa-pencil-square-o"></span>&nbsp;Agregar / Editar</button>
+                                        <button class="btn btn-outline-success" type="button" (click)="openAutor(contentAutor)"><span class="fa fa-pencil-square-o"></span>&nbsp;<span *ngIf="recursoNuevo.idAutor == 0">Agregar</span><span *ngIf="recursoNuevo.idAutor != 0">Editar</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -32,12 +33,12 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="input-group mb-3">
-                                    <select class="form-control" id="idProductora" name="idProductora">
-                                        <option value="" selected>Seleccione...</option>
+                                    <select class="form-control" id="idProductora" name="idProductora" [(ngModel)]="recursoNuevo.idProductora">
+                                        <option value="0" selected>Seleccione...</option>
                                         <option *ngFor="let productora of productoras" value={{productora.id}}>{{productora.nombre}}</option>
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-success" type="button" (click)="openProductora(contentProductora)"><span class="fa fa-pencil-square-o"></span>&nbsp;Agregar / Editar</button>
+                                        <button class="btn btn-outline-success" type="button" (click)="openProductora(contentProductora)"><span class="fa fa-pencil-square-o"></span>&nbsp;<span *ngIf="recursoNuevo.idProductora == 0">Agregar</span><span *ngIf="recursoNuevo.idProductora != 0">Editar</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +65,7 @@
                                 <strong>Título</strong>
                             </div>
                             <div class="col-sm-8">
-                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título">
+                            <input type="text" class="form-control" id="titulo" name="titulo" placeholder="Título" [(ngModel)]="recursoNuevo.titulo">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -72,7 +73,7 @@
                                 <strong>Código ISBN</strong>
                             </div>
                             <div class="col-sm-8">
-                            <input type="text" class="form-control" id="codigoISBN" name="codigoISBN" placeholder="Código ISBN">
+                            <input type="text" class="form-control" id="codigoISBN" name="codigoISBN" placeholder="Código ISBN" [(ngModel)]="recursoNuevo.codigoISBN">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -80,7 +81,7 @@
                                 <strong>Descripción</strong>
                             </div>
                             <div class="col-sm-8">
-                                <textarea rows="4" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción"></textarea>
+                                <textarea rows="4" class="form-control" id="descripcion" name="descripcion" placeholder="Descripción" [(ngModel)]="recursoNuevo.descripcion"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -88,7 +89,7 @@
                                 <strong>Contenido</strong>
                             </div>
                             <div class="col-sm-8">
-                                <textarea rows="4" class="form-control" id="contenido" name="contenido" placeholder="Contenido"></textarea>
+                                <textarea rows="4" class="form-control" id="contenido" name="contenido" placeholder="Contenido" [(ngModel)]="recursoNuevo.contenido"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -96,8 +97,8 @@
                                 <strong>Tipo</strong>
                             </div>
                             <div class="col-sm-8">
-                                <select class="form-control" id="idTipo" name="idTipo">
-                                    <option value="" selected>Seleccione...</option>
+                                <select class="form-control" id="idTipo" name="idTipo" [(ngModel)]="recursoNuevo.idTipo">
+                                    <option value="0" selected>Seleccione...</option>
                                     <option *ngFor="let tipo of tipos" value={{tipo.id}}>{{tipo.descripcion}}</option>
                                 </select>
                             </div>
@@ -107,8 +108,8 @@
                                 <strong>Categoría</strong>
                             </div>
                             <div class="col-sm-8">
-                                <select class="form-control" id="idCategoria" name="idCategoria">
-                                    <option value="" selected>Seleccione...</option>
+                                <select class="form-control" id="idCategoria" name="idCategoria" [(ngModel)]="recursoNuevo.idCategoria">
+                                    <option value="0" selected>Seleccione...</option>
                                     <option *ngFor="let categoria of categorias" value={{categoria.id}}>{{categoria.descripcion}}</option>
                                 </select>
                             </div>
@@ -118,8 +119,8 @@
                                 <strong>Estado</strong>
                             </div>
                             <div class="col-sm-8">
-                                <select class="form-control" id="idEstado" name="idEstado">
-                                    <option value="" selected>Seleccione...</option>
+                                <select class="form-control" id="idEstado" name="idEstado" [(ngModel)]="recursoNuevo.idEstado">
+                                    <option value="0" selected>Seleccione...</option>
                                     <option *ngFor="let estado of estados" value={{estado.id}}>{{estado.descripcion}}</option>
                                 </select>
                             </div>
@@ -146,7 +147,7 @@
                                 <strong>Tags</strong>
                             </div>
                             <div class="col-sm-8">
-                                <textarea rows="4" class="form-control" id="tags" name="tags" placeholder="Palabras Clave"></textarea>
+                                <textarea rows="4" class="form-control" id="tags" name="tags" placeholder="Palabras Clave" [(ngModel)]="tagsIngresados"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -172,7 +173,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-success" type="button" (click)="openFotoPortada(contentFotoPortada)"><span class="fa fa-pencil-square-o"></span>&nbsp;Agregar</button>
+                                    <input type="file" class="form-control" name="foto" id="foto" placeholder="Fotografía" #fileInput (change)="CodificarArchivo($event)" accept="image/*">
                                 </div>
                             </div>
                             <div style="float:left; width:100%; height:20px;"></div>
@@ -290,75 +291,5 @@
         <span class="fa fa-save"></span>&nbsp;Guardar
         </button>
         <button type="button" class="btn btn-danger" (click)="c('close')"><span class="fa fa-close"></span>&nbsp;Cerrar</button>
-    </div>
-</ng-template>
-
-<ng-template #contentFotoPortada let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title">
-        <span *ngIf="entidadSeleccionadaFotoPortada.id != 0">
-            Edición de Datos: {{entidadSeleccionadaFotoPortada.nombreArchivo | uppercase}}
-        </span>
-        <span *ngIf="entidadSeleccionadaFotoPortada.id === 0">
-            Ingreso de Datos:
-        </span>
-        </h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('ClickEnX')">
-        <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <form>
-        <div class="form-group row">
-        <label for="id" class="col-sm-4 col-form-label">Identificador</label>
-        <div class="col-sm-8">
-            <input type="text" readonly class="form-control" id="id" name="id" [(ngModel)]="entidadSeleccionadaFotoPortada.id">
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="idRecurso" class="col-sm-4 col-form-label">Recurso</label>
-        <div class="col-sm-8">
-            <select class="form-control" id="idRecurso" name="idRecurso" [(ngModel)]="entidadSeleccionadaFotoPortada.idRecurso">
-                <option value="" selected>Seleccione...</option>
-                <option *ngFor="let recurso of recursos" value={{recurso.id}}>{{recurso.titulo}}</option>
-            </select>
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="subirArchivo" class="col-sm-4 col-form-label">Subir Archivo</label>
-        <div class="col-sm-8">
-            <input type="file" class="form-control" name="foto" id="foto" placeholder="Fotografía" #fileInput (change)="CodificarArchivo($event)" accept="image/*">
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="tipoArchivo" class="col-sm-4 col-form-label">Tipo Archivo</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="tipoArchivo" name="tipoArchivo" placeholder="Tipo Archivo" [(ngModel)]="entidadSeleccionadaFotoPortada.tipoArchivo">
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="nombreArchivo" class="col-sm-4 col-form-label">Nombre Archivo</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="nombreArchivo" name="nombreArchivo" placeholder="Nombre Archivo" [(ngModel)]="entidadSeleccionadaFotoPortada.nombreArchivo">
-        </div>
-        </div>
-        <div class="form-group row">
-        <label for="adjunto" class="col-sm-4 col-form-label">Adjunto</label>
-        <div class="col-sm-8">
-            <input type="text" class="form-control" id="adjunto" name="adjunto" placeholder="Adjunto" [(ngModel)]="entidadSeleccionadaFotoPortada.adjunto">
-        </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-sm-12">
-                <img src="{{srcFoto}}" class="col-12 img-rounded" (click)="fileInput.click()">
-            </div>
-        </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
-        <span class="fa fa-save"></span>&nbsp;Guardar
-        </button>
-        <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
     </div>
 </ng-template>

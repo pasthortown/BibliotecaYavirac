@@ -1,3 +1,5 @@
+import { RecursoService } from './../CRUD/recurso/recurso.service';
+import { Recurso } from './../../entidades/CRUD/Recurso';
 import { FotoPortada } from './../../entidades/CRUD/FotoPortada';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
@@ -29,10 +31,12 @@ export class RegistroRecursoComponent implements OnInit {
     categorias: CategoriaRecurso[];
     estados: Estado[];
     activeTab: string;
-    entidadSeleccionadaFotoPortada: FotoPortada;
+    fotoPortada: FotoPortada;
     srcFoto: string;
+    recursoNuevo: Recurso;
+    tagsIngresados: string;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -45,8 +49,14 @@ export class RegistroRecursoComponent implements OnInit {
         this.entidadSeleccionadaAutor.id = 0;
         this.entidadSeleccionadaProductora = new Productora();
         this.entidadSeleccionadaProductora.id = 0;
-        this.entidadSeleccionadaFotoPortada = new FotoPortada();
-        this.entidadSeleccionadaFotoPortada.id = 0;
+        this.fotoPortada = new FotoPortada();
+        this.fotoPortada.id = 0;
+        this.recursoNuevo = new Recurso();
+        this.recursoNuevo.id = 0;
+        this.recursoNuevo.idAutor = 0;
+        this.recursoNuevo.idProductora = 0;
+        this.recursoNuevo.idTipo = 0;
+        this.recursoNuevo.idCategoria = 0;
         this.getAutores();
         this.getCategorias();
         this.getEstados();
@@ -140,10 +150,10 @@ export class RegistroRecursoComponent implements OnInit {
             const file = event.target.files[0];
             reader.readAsDataURL(file);
             reader.onload = () => {
-                this.entidadSeleccionadaFotoPortada.tipoArchivo = file.type;
-                this.entidadSeleccionadaFotoPortada.nombreArchivo = file.name;
-                this.entidadSeleccionadaFotoPortada.adjunto = reader.result.split(',')[1];
-                this.srcFoto = 'data:' + this.entidadSeleccionadaFotoPortada.tipoArchivo + ';base64,' + this.entidadSeleccionadaFotoPortada.adjunto;
+                this.fotoPortada.tipoArchivo = file.type;
+                this.fotoPortada.nombreArchivo = file.name;
+                this.fotoPortada.adjunto = reader.result.split(',')[1];
+                this.srcFoto = 'data:' + this.fotoPortada.tipoArchivo + ';base64,' + this.fotoPortada.adjunto;
             };
         }
     }
@@ -153,6 +163,6 @@ export class RegistroRecursoComponent implements OnInit {
     }
 
     guardar() {
-        alert("me dieron click");
+        console.log(this.recursoNuevo);
     }
 }

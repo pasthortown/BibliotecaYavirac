@@ -10,6 +10,7 @@ import { AutorService } from '../CRUD/autor/autor.service';
 import { TipoRecursoService } from '../CRUD/tiporecurso/tiporecurso.service';
 import { CategoriaRecursoService } from '../CRUD/categoriarecurso/categoriarecurso.service';
 import { EstadoService } from '../CRUD/estado/estado.service';
+import { RecursoService } from './../CRUD/recurso/recurso.service';
 
 @NgModule({
     imports: [CommonModule,
@@ -18,7 +19,7 @@ import { EstadoService } from '../CRUD/estado/estado.service';
               NgbModule,
               FormsModule,
             ],
-    providers: [ProductoraService,AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
+    providers: [ProductoraService, RecursoService, AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
     declarations: [RegistroRecursoComponent]
 })
 export class RegistroRecursoModule {}
