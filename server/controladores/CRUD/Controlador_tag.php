@@ -46,7 +46,7 @@ class Controlador_tag extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Tag;";
+         $sql = "SELECT * FROM Tag ORDER BY descripcion ASC;";
       }else{
       $parametros = array($id);
          $sql = "SELECT * FROM Tag WHERE id = ?;";
@@ -60,7 +60,7 @@ class Controlador_tag extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Tag LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM Tag ORDER BY descripcion ASC LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -81,16 +81,16 @@ class Controlador_tag extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Tag WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM Tag WHERE $nombreColumna = ? ORDER BY descripcion ASC;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Tag WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM Tag WHERE $nombreColumna ORDER BY descripcion ASC LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Tag WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM Tag WHERE $nombreColumna ORDER BY descripcion ASC LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Tag WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM Tag WHERE $nombreColumna ORDER BY descripcion ASC LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
