@@ -1,3 +1,4 @@
+import { Recurso } from './../entidades/CRUD/Recurso';
 import { Persona } from '../entidades/CRUD/Persona';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
@@ -24,6 +25,8 @@ export class LoginComponent implements OnInit {
     busy: Promise<any>;
     loginEntidad: LoginRequest;
     rolesSecundarios: RolSecundario[];
+    recursoSolicitado: Recurso[];
+
     constructor(private rolesSecundariosDataService: RolSecundarioService,
         public router: Router,
         vcr: ViewContainerRef,
@@ -57,6 +60,7 @@ export class LoginComponent implements OnInit {
             } else {
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('logedResult', JSON.stringify(respuesta));
+                localStorage.setItem('recursosSolicitados', JSON.stringify(this.recursoSolicitado));
                 this.getRolesSecundarios(respuesta.persona.id);
             }
         })
