@@ -57,19 +57,13 @@
                     <td>
                         <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                     </td>
-                    <td>{{actual.idCategoria}}</td>
+                    <td>{{actual.Categoria}}</td>
                     <td>{{actual.titulo}}</td>
-                    <td>{{actual.idAutor}}</td>
-                    <td>{{actual.idTipo}}</td>
+                    <td>{{actual.Autor}}</td>
+                    <td>{{actual.TipoRecurso}}</td>
                     <td>
                         <button type="button" class="btn btn-secondary" (click)="mostrarInfo(content, actual.id)">
                             <span class="fa fa-eye"></span>
-                        </button>
-                        <button type="button" class="btn btn-secondary" (click)="descargarPDF(actual.id)">
-                            <span class="fa fa-cart-plus"></span>
-                        </button>
-                        <button type="button" class="btn btn-secondary" (click)="solicitar(actual.id)">
-                            <span class="fa fa-download"></span>
                         </button>
                     </td>
                 </tr>
@@ -94,31 +88,25 @@
                             <h5>Portada:</h5>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="col-12">
-                            <h5>Código ISBN:</h5>
-                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-9">
                     <div class="form-row">
                         <div class="col-6">
                             <h5>Autor:</h5>
-                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.Autor}}</p>
                         </div>
                         <div class="col-6">
                             <h5>Producido por:</h5>
-                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.Productora}}</p>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-6">
                             <h5>Clasificación:</h5>
-                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.Categoria}}</p>
                         </div>
                         <div class="col-6">
-                            <h5>Estado:</h5>
+                            <h5>Disponibilidad:</h5>
                             <div class="alert alert-primary text-center" role="alert">
                                 No disponible
                             </div>
@@ -133,7 +121,7 @@
                     <div class="form-row">
                         <div class="col-12">
                             <h5>Tags:</h5>
-                            <p class="col-12 text-justify">{{entidadSeleccionada.codigoISBN}}</p>
+                            <p class="col-12 text-justify"><span *ngFor="let tag of tags" style="background-color: white; color: black; border: 1px solid #4CAF50; margin:3px; padding:3px; border-radius:5px;">{{tag.descripcion}}</span></p>
                         </div>
                     </div>
                     <div class="form-row">
@@ -142,12 +130,12 @@
                             <p class="col-12 text-justify">{{entidadSeleccionada.contenido}}</p>
                         </div>
                     </div>
-                    <div class="form-row">
+                </div>
+                <div class="form-row">
+                    <div class="col-12">
+                        <h5>Código:</h5>
                         <div class="col-12">
-                            <h5>Código:</h5>
-                            <div class="col-12">
-                                <ngx-barcode  [bc-value]="codigo" [bc-display-value]="true"></ngx-barcode>
-                            </div>
+                            <ngx-barcode  [bc-value]="entidadSeleccionada.Codigo" [bc-display-value]="true"></ngx-barcode>
                         </div>
                     </div>
                 </div>

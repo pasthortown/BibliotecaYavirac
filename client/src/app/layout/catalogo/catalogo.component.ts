@@ -16,6 +16,8 @@ import { AutorService } from '../CRUD/autor/autor.service';
 import { CategoriaRecursoService } from '../CRUD/categoriarecurso/categoriarecurso.service';
 import { ProductoraService } from '../CRUD/productora/productora.service';
 import { RecursoService } from '../CRUD/recurso/recurso.service';
+import { TagService } from './../CRUD/tag/tag.service';
+import { Tag } from './../../entidades/CRUD/Tag';
 
 @Component({
    selector: 'app-recurso',
@@ -33,13 +35,14 @@ export class CatalogoComponent implements OnInit {
    autores: Autor[];
    categorias: CategoriaRecurso[];
    productoras: Productora[];
-   codigo: string;
+   tags: Tag[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
    mostrarInfo(content, id){
+      this.getTags(id);
       const options: NgbModalOptions = {
         size: 'lg'
       };
@@ -108,7 +111,6 @@ export class CatalogoComponent implements OnInit {
 
    ngOnInit() {
       this.refresh();
-      this.codigo = "super bien";
    }
 
    onSelect(entidadActual: Recurso): void {
@@ -161,5 +163,16 @@ export class CatalogoComponent implements OnInit {
 
    solicitar(id) {
        alert(id);
+   }
+
+   getTags(id: number) {
+    this.busy = this.catalogoService
+    .getTags(id)
+    .then(entidadesRecuperadas => {
+       this.tags = entidadesRecuperadas;
+    })
+    .catch(error => {
+
+    });
    }
 }

@@ -10,6 +10,8 @@ import { TipoRecursoService } from './../CRUD/tiporecurso/tiporecurso.service';
 import { AutorService } from './../CRUD/autor/autor.service';
 import { CategoriaRecursoService } from './../CRUD/categoriarecurso/categoriarecurso.service';
 import { ProductoraService } from './../CRUD/productora/productora.service';
+import { TagService } from './../CRUD/tag/tag.service';
+
 import { NgxBarcodeModule } from 'ngx-barcode';
 
 @NgModule({
@@ -19,7 +21,7 @@ import { NgxBarcodeModule } from 'ngx-barcode';
       CatalogoRoutingModule,
       NgxBarcodeModule
    ],
-   providers: [CatalogoService, TipoRecursoService, AutorService, CategoriaRecursoService, ProductoraService, RecursoService],
+   providers: [CatalogoService, TagService, TipoRecursoService, AutorService, CategoriaRecursoService, ProductoraService, RecursoService],
    declarations: [CatalogoComponent],
 })
 export class CatalogoModule { }
