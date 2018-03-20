@@ -1,1 +1,172 @@
-aqui kevin
+<div class="container">
+    <div class="row">
+       <div class="col-md-12 text-right">
+          <h2 style="margin-top:0px">Registro nuevo recurso</h2>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div>
+             <div>
+                <button type="button" class="btn btn-success" (click)="open(content,false)" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+                   <span class="fa fa-edit"></span>&nbsp;Editar
+                </button>
+                <button type="button" class="btn btn-info" (click)="open(content,true)">
+                   <span class="fa fa-plus"></span>&nbsp;Nuevo
+                </button>
+                <button type="button" class="btn btn-danger" (click)="delete(entidadSeleccionada); $event.stopPropagation();" [ngClass]='{disabled: entidadSeleccionada.id === 0}'>
+                   <span class="fa fa-remove"></span>&nbsp;Borrar
+                </button>
+                <button type="button" class="btn btn-default" (click)="refresh()">
+                    <span class="fa fa-refresh"></span>&nbsp;Actualizar
+                </button>
+                <div>
+                    <input class="form-control" type="text" placeholder="Buscar Recursos" >
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-primary" (click)="getFiltrado()"><span class="fa fa-search"></span></button>
+                    </div>
+                
+                &nbsp;
+               
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                    </th>
+                    <th scope="col">
+                        <span>
+                        <strong>Categoría</strong>
+                        </span>
+                    </th>
+                    <th scope="col">
+                        <span>
+                        <strong>Título</strong>
+                        </span>
+                    </th>
+                    <th scope="col">
+                        <span>
+                        <strong>Autor</strong>
+                        </span>
+                    </th>
+                    <th scope="col">
+                        <span>
+                        <strong>Tipo</strong>
+                        </span>
+                    </th>
+                    <th scope="col">
+                        <span>
+                        <strong>Opciones</strong>
+                        </span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let actual of entidades" (click)="onSelect(actual)">
+                    <td>
+                        <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
+                    </td>
+                    <td>{{actual.Categoria}}</td>
+                    <td>{{actual.titulo}}</td>
+                    <td>{{actual.Autor}}</td>
+                    <td>{{actual.TipoRecurso}}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" (click)="mostrarInfo(content, actual.id)">
+                            <span class="fa fa-eye"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">{{entidadSeleccionada.titulo | uppercase}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="c('ClickEnX')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="col-12">
+            <div class="form-row">
+                <div class="col-3">
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Portada:</h5>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center" >
+                                <img src="{{srcFoto}}" class="col-12 img-rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="form-row">
+                        <div class="col-6">
+                            <h5>Autor:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.Autor}}</p>
+                        </div>
+                        <div class="col-6">
+                            <h5>Producido por:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.Productora}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-6">
+                            <h5>Clasificación:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.Categoria}}</p>
+                        </div>
+                        <div class="col-6">
+                            <h5>Disponibilidad:</h5>
+                            <div class="alert alert-primary text-center" role="alert">
+                                No disponible
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Descripción:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.descripcion}}</p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Tags:</h5>
+                            <p class="col-12 text-justify"><span *ngFor="let tag of tags" style="background-color: white; color: black; border: 1px solid #4CAF50; margin:3px; padding:3px; border-radius:5px;">{{tag.descripcion}}</span></p>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-12">
+                            <h5>Tabla de Contenidos:</h5>
+                            <p class="col-12 text-justify">{{entidadSeleccionada.contenido}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12">
+                        <h5>Código:</h5>
+                        <div class="col-12">
+                            <ngx-barcode  [bc-value]="entidadSeleccionada.Codigo" [bc-display-value]="true"></ngx-barcode>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success col-offset-sm-4" (click)="c('pdf')">
+            <span class="fa fa-file-pdf-o"></span>&nbsp;Descargar PDF
+        </button>
+        <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('solicitar')">
+            <span class="fa fa-check-square-o"></span>&nbsp;Solicitar
+        </button>
+        <button type="button" class="btn btn-danger" (click)="c('cerrar')"><span class="fa fa-close"></span>&nbsp;Cancelar</button>
+    </div>
+</ng-template>
