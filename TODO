@@ -1,12 +1,12 @@
 CATALOGO:
 - Busqueda
 - Disponibilidad
+- Registro de recurso solicitado
 
 REGISTRO RECURSO:
 - Entorno Grafico y Funcionalidad
 
 Solicitud:
-- Texto Solicitud
 - Aceptación
 - Envio a correos
 
