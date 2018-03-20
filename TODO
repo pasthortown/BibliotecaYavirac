@@ -4,7 +4,11 @@ CATALOGO:
 - Registro de recurso solicitado
 
 REGISTRO RECURSO:
-- Entorno Grafico y Funcionalidad
+- Editar Autor y Productora
+- Guardar recurso
+- Guardar los tags nuevos
+- Asignar los tags al libro
+- Guardar la foto
 
 Solicitud:
 - Aceptación
