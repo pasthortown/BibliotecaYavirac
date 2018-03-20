@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FotoPortadaRoutingModule } from './fotoportada-routing.module';
 import { FotoPortadaComponent } from './fotoportada.component';
 import { FotoPortadaService } from './fotoportada.service';
+import { RecursoService } from './../recurso/recurso.service';
 
 @NgModule({
    imports: [
@@ -12,7 +13,7 @@ import { FotoPortadaService } from './fotoportada.service';
       FormsModule,
       FotoPortadaRoutingModule
    ],
-   providers: [FotoPortadaService],
+   providers: [FotoPortadaService, RecursoService],
    declarations: [FotoPortadaComponent],
 })
 export class FotoPortadaModule { }

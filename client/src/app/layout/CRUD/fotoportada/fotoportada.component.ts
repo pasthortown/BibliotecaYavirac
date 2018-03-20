@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { FotoPortada } from '../../../entidades/CRUD/FotoPortada';
 import { FotoPortadaService } from './fotoportada.service';
+
+import { RecursoService } from './../recurso/recurso.service';
+import { Recurso } from './../../../entidades/CRUD/Recurso';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from '../../bs-component/components';
@@ -15,6 +18,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 
 export class FotoPortadaComponent implements OnInit {
+   @ViewChild('fileInput') fileInput;
 
    busy: Promise<any>;
    entidades: FotoPortada[];
@@ -25,8 +29,10 @@ export class FotoPortadaComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   recursos: Recurso[];
+   srcFoto: string;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: FotoPortadaService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: FotoPortadaService, private recursoService: RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -178,6 +184,7 @@ export class FotoPortadaComponent implements OnInit {
    }
 
    refresh(): void {
+      this.getRecursos();
       this.getNumeroPaginas(this.registrosPorPagina);
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = FotoPortada[0];
@@ -217,4 +224,28 @@ export class FotoPortadaComponent implements OnInit {
    onSelect(entidadActual: FotoPortada): void {
       this.entidadSeleccionada = entidadActual;
    }
+
+   getRecursos(): void {
+      this.busy = this.recursoService.getAll()
+      .then(respuesta => {
+         this.recursos = respuesta;
+      })
+      .catch(error => {
+
+      });
+   }
+
+   CodificarArchivo(event) {
+        const reader = new FileReader();
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.entidadSeleccionada.tipoArchivo = file.type;
+                this.entidadSeleccionada.nombreArchivo = file.name;
+                this.entidadSeleccionada.adjunto = reader.result.split(',')[1];
+                this.srcFoto = 'data:' + this.entidadSeleccionada.tipoArchivo + ';base64,' + this.entidadSeleccionada.adjunto;
+            };
+        }
+    }
 }

@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 
 export class CatalogoService {
    private headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
-   private urlBase = environment.apiUrl + 'recurso_tags';
+   private urlBase = environment.apiUrl + 'catalogo';
 
    constructor(private http: Http) {
    }

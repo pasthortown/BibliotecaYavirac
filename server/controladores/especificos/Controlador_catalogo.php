@@ -1,6 +1,6 @@
 <?php
 include_once('../controladores/Controlador_Base.php');
-class Controlador_recurso_tags extends Controlador_Base
+class Controlador_catalogo extends Controlador_Base
 {
    function obtener_tags($args)
    {

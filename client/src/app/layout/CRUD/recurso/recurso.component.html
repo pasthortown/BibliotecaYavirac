@@ -78,10 +78,10 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
-                  <td>{{actual.idTipo}}</td>
-                  <td>{{actual.idAutor}}</td>
-                  <td>{{actual.idCategoria}}</td>
-                  <td>{{actual.idProductora}}</td>
+                  <td>{{actual.TipoRecurso}}</td>
+                  <td>{{actual.Autor}}</td>
+                  <td>{{actual.Categoria}}</td>
+                  <td>{{actual.Productora}}</td>
                   <td>{{actual.titulo}}</td>
                   <td>{{actual.codigoISBN}}</td>
                   <td>{{actual.descripcion}}</td>
@@ -114,7 +114,7 @@
       <div class="modal-header">
          <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
-               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
+               Edición de Datos: {{entidadSeleccionada.titulo | uppercase}}
             </span>
             <span *ngIf="entidadSeleccionada.id === 0">
                Ingreso de Datos:

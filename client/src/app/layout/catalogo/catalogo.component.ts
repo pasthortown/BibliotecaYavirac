@@ -18,6 +18,8 @@ import { ProductoraService } from '../CRUD/productora/productora.service';
 import { RecursoService } from '../CRUD/recurso/recurso.service';
 import { TagService } from './../CRUD/tag/tag.service';
 import { Tag } from './../../entidades/CRUD/Tag';
+import { FotoPortadaService } from '../CRUD/fotoportada/fotoportada.service';
+import { FotoPortada } from './../../entidades/CRUD/FotoPortada';
 
 @Component({
    selector: 'app-recurso',
@@ -36,13 +38,16 @@ export class CatalogoComponent implements OnInit {
    categorias: CategoriaRecurso[];
    productoras: Productora[];
    tags: Tag[];
+   fotoPortada: FotoPortada;
+   srcFoto: string;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
    mostrarInfo(content, id){
       this.getTags(id);
+      this.getFotoPortada(id);
       const options: NgbModalOptions = {
         size: 'lg'
       };
@@ -170,6 +175,20 @@ export class CatalogoComponent implements OnInit {
     .getTags(id)
     .then(entidadesRecuperadas => {
        this.tags = entidadesRecuperadas;
+    })
+    .catch(error => {
+
+    });
+   }
+
+   getFotoPortada(id:number) {
+    this.busy = this.fotoPortadaService.getFiltrado('idRecurso','coincide',id.toString())
+    .then(entidadesRecuperadas => {
+       if( entidadesRecuperadas.toString() === '0' ) {
+           return;
+       }
+       this.fotoPortada = entidadesRecuperadas[0];
+       this.srcFoto = 'data:' + this.fotoPortada.tipoArchivo + ';base64,' + this.fotoPortada.adjunto;
     })
     .catch(error => {
 
