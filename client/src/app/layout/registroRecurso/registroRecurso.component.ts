@@ -4,6 +4,14 @@ import { Productora } from './../../entidades/CRUD/Productora';
 import { Autor } from './../../entidades/CRUD/Autor';
 import { ModalComponent } from './../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { TipoRecurso } from '../../entidades/CRUD/TipoRecurso';
+import { Estado } from '../../entidades/CRUD/Estado';
+import { CategoriaRecurso } from '../../entidades/CRUD/CategoriaRecurso';
+import { ProductoraService } from '../CRUD/productora/productora.service';
+import { AutorService } from '../CRUD/autor/autor.service';
+import { TipoRecursoService } from '../CRUD/tiporecurso/tiporecurso.service';
+import { CategoriaRecursoService } from '../CRUD/categoriarecurso/categoriarecurso.service';
+import { EstadoService } from '../CRUD/estado/estado.service';
 
 @Component({
     selector: 'app-registroRecurso',
@@ -11,10 +19,17 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
     styleUrls: ['./registroRecurso.component.scss']
 })
 export class RegistroRecursoComponent implements OnInit {
+    busy: Promise<any>;
     entidadSeleccionadaAutor: Autor;
     entidadSeleccionadaProductora: Productora;
+    autores: Autor[];
+    productoras: Productora[];
+    tipos: TipoRecurso[];
+    categorias: CategoriaRecurso[];
+    estados: Estado[];
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal) {
+
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -22,11 +37,16 @@ export class RegistroRecursoComponent implements OnInit {
         this.refresh();
     }
 
-    refresh() {
+    refresh():void {
         this.entidadSeleccionadaAutor = new Autor();
         this.entidadSeleccionadaAutor.id = 0;
         this.entidadSeleccionadaProductora = new Productora();
         this.entidadSeleccionadaProductora.id = 0;
+        this.getAutores;
+        this.getCategorias;
+        this.getEstados;
+        this.getProductoras;
+        this.getTipos;
     }
 
     openAutor(content){
@@ -48,4 +68,54 @@ export class RegistroRecursoComponent implements OnInit {
            //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
         }));
     }
+
+    getEstados(): void {
+        this.busy = this.estadoService.getAll()
+        .then(respuesta => {
+           this.estados = respuesta;
+        })
+        .catch(error => {
+           console.log(error);
+        });
+     }
+
+   getTipos(): void {
+    this.busy = this.tipoService.getAll()
+    .then(respuesta => {
+       this.tipos = respuesta;
+    })
+    .catch(error => {
+       console.log(error);
+    });
+ }
+
+ getAutores(): void {
+    this.busy = this.autorService.getAll()
+    .then(respuesta => {
+       this.autores = respuesta;
+    })
+    .catch(error => {
+       console.log(error);
+    });
+ }
+
+ getCategorias(): void {
+    this.busy = this.categoriaService.getAll()
+    .then(respuesta => {
+       this.categorias = respuesta;
+    })
+    .catch(error => {
+       console.log(error);
+    });
+ }
+
+ getProductoras(): void {
+    this.busy = this.productoraService.getAll()
+    .then(respuesta => {
+       this.productoras = respuesta;
+    })
+    .catch(error => {
+       console.log(error);
+    });
+ }
 }
