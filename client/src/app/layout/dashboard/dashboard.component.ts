@@ -15,18 +15,18 @@ export class DashboardComponent implements OnInit {
         this.bibliotecas.push(
             {
                 imagePath: 'assets/images/biblioteca1.jpg',
-                label: 'Biblioteca',
-                text:'Exteriores de la biblioteca'
+                label: 'Biblioteca Institucional',
+                text:'Tenemos como objetivo facilitar el préstamo de libros para cualquier tipo de tarea.'
             },
             {
                 imagePath: 'assets/images/biblioteca2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+                label: 'Instalaciones',
+                text: 'Contamos con una amplia gama de libros tanto en idioma español como en inglés.'
             },
             {
                 imagePath: 'assets/images/biblioteca3.jpg',
-                label: 'Third slide label',
-                text:'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+                label: 'Recursos',
+                text:'Disponemos de varios recursos para un mejor aprendizaje en el estudiante.'
             }
         );
 
