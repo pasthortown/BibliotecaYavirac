@@ -9,22 +9,22 @@ import { routerTransition } from '../../router.animations';
 })
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
-    public sliders: Array<any> = [];
+    public bibliotecas: Array<any> = [];
 
     constructor() {
-        this.sliders.push(
+        this.bibliotecas.push(
             {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
-                text:'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+                imagePath: 'assets/images/biblioteca1.jpg',
+                label: 'Biblioteca',
+                text:'Exteriores de la biblioteca'
             },
             {
-                imagePath: 'assets/images/slider2.jpg',
+                imagePath: 'assets/images/biblioteca2.jpg',
                 label: 'Second slide label',
                 text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
             },
             {
-                imagePath: 'assets/images/slider3.jpg',
+                imagePath: 'assets/images/biblioteca3.jpg',
                 label: 'Third slide label',
                 text:'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
             }

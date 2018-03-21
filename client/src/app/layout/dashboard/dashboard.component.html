@@ -1,13 +1,13 @@
 <div [@routerTransition]>
-    <h2 class="text-muted"><small>Resumen de Estadísticas</small></h2>
+    <h2 class="text-muted"><small></small></h2>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-11">
             <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let slider of sliders">
-                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                <ng-template ngbSlide *ngFor="let biblioteca of bibliotecas">
+                    <img class="img-fluid mx-auto d-block" [src]="biblioteca.imagePath" alt="Random first slide" width="100%">
                     <div class="carousel-caption">
-                        <h3>{{slider.label}}</h3>
-                        <p>{{slider.text}}</p>
+                        <h3>{{biblioteca.label}}</h3>
+                        <p>{{biblioteca.text}}</p>
                     </div>
                 </ng-template>
             </ngb-carousel>
