@@ -11,6 +11,7 @@ import { TipoRecursoService } from '../CRUD/tiporecurso/tiporecurso.service';
 import { CategoriaRecursoService } from '../CRUD/categoriarecurso/categoriarecurso.service';
 import { EstadoService } from '../CRUD/estado/estado.service';
 import { RecursoService } from './../CRUD/recurso/recurso.service';
+import { FotoPortadaService } from '../CRUD/fotoportada/fotoportada.service';
 
 @NgModule({
     imports: [CommonModule,
@@ -19,7 +20,7 @@ import { RecursoService } from './../CRUD/recurso/recurso.service';
               NgbModule,
               FormsModule,
             ],
-    providers: [ProductoraService, RecursoService, AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
+    providers: [ProductoraService, FotoPortadaService, RecursoService, AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
     declarations: [RegistroRecursoComponent]
 })
 export class RegistroRecursoModule {}

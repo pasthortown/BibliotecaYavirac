@@ -15,6 +15,7 @@ import { AutorService } from '../CRUD/autor/autor.service';
 import { TipoRecursoService } from '../CRUD/tiporecurso/tiporecurso.service';
 import { CategoriaRecursoService } from '../CRUD/categoriarecurso/categoriarecurso.service';
 import { EstadoService } from '../CRUD/estado/estado.service';
+import { FotoPortadaService } from '../CRUD/fotoportada/fotoportada.service';
 
 @Component({
     selector: 'app-registroRecurso',
@@ -36,7 +37,7 @@ export class RegistroRecursoComponent implements OnInit {
     recursoNuevo: Recurso;
     tagsIngresados: string;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -172,10 +173,6 @@ export class RegistroRecursoComponent implements OnInit {
         this.activeTab = tabId;
     }
 
-    guardar() {
-        console.log(this.recursoNuevo);
-    }
-
     seleccionadoProductora() {
         this.busy = this.productoraService.get(this.recursoNuevo.idProductora)
         .then(respuesta => {
@@ -254,5 +251,44 @@ export class RegistroRecursoComponent implements OnInit {
         .catch(error => {
            this.toastr.warning('Se produjo un error', 'Creación');
         });
+    }
+
+    guardarRecurso(): void {
+        this.busy = this.recursoService.create(this.recursoNuevo)
+        .then(respuesta => {
+            this.busy = this.recursoService.getFiltrado('titulo','coincide',this.recursoNuevo.titulo)
+            .then(recursosConTituloIgual => {
+                recursosConTituloIgual.forEach(recurso => {
+                   if ( recurso.idAutor == this.recursoNuevo.idAutor
+                    && recurso.idProductora == this.recursoNuevo.idProductora
+                    && recurso.idTipo == this.recursoNuevo.idTipo
+                    && recurso.codigoISBN == this.recursoNuevo.codigoISBN ) {
+                        this.fotoPortada.idRecurso = recurso.id;
+                        this.guardarFotoPortada();
+                        return;
+                    }
+               });
+            })
+            .catch(error => {
+
+            });
+        })
+        .catch(error => {
+
+        });
+    }
+
+    guardarFotoPortada(): void {
+        this.busy = this.fotoPortadaService.create(this.fotoPortada)
+        .then(respuesta => {
+           this.guardarTags();
+        })
+        .catch(error => {
+
+        });
+    }
+
+    guardarTags(): void {
+        location.reload();
     }
 }
