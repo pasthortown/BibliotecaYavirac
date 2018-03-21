@@ -16,8 +16,7 @@ export class DashboardComponent implements OnInit {
             {
                 imagePath: 'assets/images/slider1.jpg',
                 label: 'First slide label',
-                text:
-                    'Nulla vitae elit libero, a pharetra augue mollis interdum.'
+                text:'Nulla vitae elit libero, a pharetra augue mollis interdum.'
             },
             {
                 imagePath: 'assets/images/slider2.jpg',
@@ -27,12 +26,11 @@ export class DashboardComponent implements OnInit {
             {
                 imagePath: 'assets/images/slider3.jpg',
                 label: 'Third slide label',
-                text:
-                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+                text:'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
             }
         );
 
-        this.alerts.push(
+        /*this.alerts.push(
             {
                 id: 1,
                 type: 'success',
@@ -49,7 +47,7 @@ export class DashboardComponent implements OnInit {
                 consectetur velit culpa molestias dignissimos
                 voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
             }
-        );
+        );*/
     }
 
     ngOnInit() {}
