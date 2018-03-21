@@ -46,7 +46,7 @@ class Controlador_autor extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Autor;";
+         $sql = "SELECT * FROM Autor ORDER BY apellidos ASC;";
       }else{
       $parametros = array($id);
          $sql = "SELECT * FROM Autor WHERE id = ?;";
@@ -60,7 +60,7 @@ class Controlador_autor extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Autor LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM Autor ORDER BY apellidos ASC LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -81,16 +81,16 @@ class Controlador_autor extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Autor WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM Autor WHERE $nombreColumna = ? ORDER BY apellidos ASC;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Autor WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM Autor WHERE $nombreColumna ORDER BY apellidos ASC LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Autor WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM Autor WHERE $nombreColumna ORDER BY apellidos ASC LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Autor WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM Autor WHERE $nombreColumna ORDER BY apellidos ASC LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

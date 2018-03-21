@@ -55,6 +55,11 @@
                                     <strong>Título</strong>
                                  </span>
                               </th>
+                              <th scope="col">
+                                <span>
+                                   <strong>Retirar</strong>
+                                </span>
+                             </th>
                            </tr>
                         </thead>
                         <tbody>
@@ -62,6 +67,11 @@
                               <td>{{actual.Categoria}}</td>
                               <td>{{actual.Autor}}</td>
                               <td>{{actual.titulo}}</td>
+                              <td>
+                                <button type="button" class="btn btn-danger" (click)="retirar(actual.id)">
+                                    <span class="fa fa-trash"></span>
+                                </button>
+                              </td>
                            </tr>
                         </tbody>
                      </table>

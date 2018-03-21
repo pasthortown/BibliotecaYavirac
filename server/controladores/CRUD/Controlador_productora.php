@@ -46,7 +46,7 @@ class Controlador_productora extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Productora;";
+         $sql = "SELECT * FROM Productora ORDER BY nombre ASC;";
       }else{
       $parametros = array($id);
          $sql = "SELECT * FROM Productora WHERE id = ?;";
@@ -60,7 +60,7 @@ class Controlador_productora extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Productora LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM Productora ORDER BY nombre ASC LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -81,16 +81,16 @@ class Controlador_productora extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Productora WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM Productora WHERE $nombreColumna = ? ORDER BY nombre ASC;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Productora WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM Productora WHERE $nombreColumna ORDER BY nombre ASC LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Productora WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM Productora WHERE $nombreColumna ORDER BY nombre ASC LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Productora WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM Productora WHERE $nombreColumna ORDER BY nombre ASC LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

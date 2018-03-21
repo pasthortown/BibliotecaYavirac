@@ -40,6 +40,7 @@ export class CatalogoComponent implements OnInit {
    tags: Tag[];
    fotoPortada: FotoPortada;
    srcFoto: string;
+   recursosSolicitados: Recurso[];
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -55,10 +56,10 @@ export class CatalogoComponent implements OnInit {
       .result
       .then((result => {
          if(result=="pdf"){
-             this.descargarPDF(this.entidadSeleccionada.id);
+             this.descargarPDF();
          }
          if(result=="solicitar"){
-            this.solicitar(this.entidadSeleccionada.id);
+            this.solicitar();
          }
          if(result=="cerrar"){
             // al cancelar
@@ -106,6 +107,7 @@ export class CatalogoComponent implements OnInit {
    }
 
    refresh(): void {
+      this.getRecursosSolicitados();
       this.getAll();
       this.entidadSeleccionada = this.crearEntidad();
       this.getTipos();
@@ -162,12 +164,33 @@ export class CatalogoComponent implements OnInit {
       });
    }
 
-   descargarPDF(id) {
-       alert(id);
+   descargarPDF() {
+       alert(1);
    }
 
-   solicitar(id) {
-       alert(id);
+   solicitar() {
+      let yaSolicitado: Boolean = false;
+      this.recursosSolicitados.forEach(recurso => {
+          if (recurso.id == this.entidadSeleccionada.id) {
+            yaSolicitado = true;
+          }
+      });
+      if(yaSolicitado){
+          this.toastr.warning('Recurso existente en la solicitud', 'Solicitud');
+          return;
+      }
+      this.recursosSolicitados.push(this.entidadSeleccionada);
+      localStorage.setItem('recursosSolicitados', JSON.stringify(this.recursosSolicitados));
+      this.getRecursosSolicitados();
+      this.toastr.success('Recurso añadido a la solicitud', 'Solicitud');
+   }
+
+   getRecursosSolicitados() {
+        if(localStorage.getItem('recursosSolicitados') == 'undefined') {
+            this.recursosSolicitados = [];
+        } else {
+            this.recursosSolicitados = JSON.parse(localStorage.getItem('recursosSolicitados')) as Recurso[];
+        }
    }
 
    getTags(id: number) {

@@ -1,19 +1,24 @@
 CATALOGO:
 - Busqueda
 - Disponibilidad
-- Registro de recurso solicitado
+- Descargar PDF
 
 REGISTRO RECURSO:
-- Editar Autor y Productora
-- Guardar recurso
 - Guardar los tags nuevos
 - Asignar los tags al libro
-- Guardar la foto
 
 Solicitud:
 - Aceptación
 - Envio a correos
 
+Devolución de Recursos
+
 ESTADISTICAS
 
 PAGINA PRINCIPAL
+
+El estado de prestamo de un recurso se calcula a partir de las solicitudes emitidas que no han sido entregadas.
+
+El ejemplar no debe tener codigo, y debe servir para validar el estado de un recurso y su evolucion en el tiempo.
+
+el recurso debe tener codigo, y este codigo debe ser ingresado al registrar el recurso.
