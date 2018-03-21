@@ -29,8 +29,27 @@ export class HojaSolicitudComponent implements OnInit {
     ngOnInit() {
         this.fechaActual = new Date();
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
-        this.recursosSolicitados = JSON.parse(localStorage.getItem('recursosSolicitados')) as Recurso[];
+        this.getRecursosSolicitados();
         this.solicitante = logedResult.persona;
+    }
+
+    getRecursosSolicitados() {
+        if(localStorage.getItem('recursosSolicitados') == 'undefined') {
+            this.recursosSolicitados = [];
+        } else {
+            this.recursosSolicitados = JSON.parse(localStorage.getItem('recursosSolicitados')) as Recurso[];
+        }
+    }
+
+    retirar(id: number) {
+        let newRecursos: Recurso[] = [];
+        this.recursosSolicitados.forEach(recurso => {
+            if(recurso.id != id) {
+                newRecursos.push(recurso);
+            }
+        });
+        localStorage.setItem('recursosSolicitados', JSON.stringify(newRecursos));
+        this.getRecursosSolicitados();
     }
 
     imprimir(): void {

@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     busy: Promise<any>;
     loginEntidad: LoginRequest;
     rolesSecundarios: RolSecundario[];
-    recursoSolicitado: Recurso[];
+    recursosSolicitados: Recurso[];
 
     constructor(private rolesSecundariosDataService: RolSecundarioService,
         public router: Router,
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
             } else {
                 localStorage.setItem('isLoggedin', 'true');
                 localStorage.setItem('logedResult', JSON.stringify(respuesta));
-                localStorage.setItem('recursosSolicitados', JSON.stringify(this.recursoSolicitado));
+                localStorage.setItem('recursosSolicitados', JSON.stringify(this.recursosSolicitados));
                 this.getRolesSecundarios(respuesta.persona.id);
             }
         })
