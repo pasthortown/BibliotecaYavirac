@@ -9,10 +9,10 @@ import { routerTransition } from '../../router.animations';
 })
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
-    public bibliotecas: Array<any> = [];
+    public informacion: Array<any> = [];
 
     constructor() {
-        this.bibliotecas.push(
+        this.informacion.push(
             {
                 imagePath: 'assets/images/biblioteca1.jpg',
                 label: 'Biblioteca Institucional',
@@ -29,25 +29,6 @@ export class DashboardComponent implements OnInit {
                 text:'Disponemos de varios recursos para un mejor aprendizaje en el estudiante.'
             }
         );
-
-        /*this.alerts.push(
-            {
-                id: 1,
-                type: 'success',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'warning',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            }
-        );*/
     }
 
     ngOnInit() {}

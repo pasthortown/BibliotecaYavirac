@@ -1,13 +1,13 @@
 <div [@routerTransition]>
     <h2 style="text-align:center;" class="text-muted"><small>¡FORTALECIENDO CAPACIDADES!</small></h2>
     <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-12">
             <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let biblioteca of bibliotecas">
-                    <img class="img-fluid mx-auto d-block" [src]="biblioteca.imagePath" alt="Random first slide" width="100%">
+                <ng-template ngbSlide *ngFor="let informativo of informacion">
+                    <img class="img-fluid mx-auto d-block" [src]="informativo.imagePath" alt="YAVIRAC" width="100%">
                     <div class="carousel-caption">
-                        <h3>{{biblioteca.label}}</h3>
-                        <p>{{biblioteca.text}}</p>
+                        <h3>{{informativo.label}}</h3>
+                        <p>{{informativo.text}}</p>
                     </div>
                 </ng-template>
             </ngb-carousel>
@@ -25,11 +25,11 @@
                 </div>
                 <div>
                     <p>
-                        La biblioteca yavirac 
+                        La biblioteca yavirac
                     </p>
-                    
+
                 </div>
-                
+
             </div>
             <!-- /.card -->
         </div>
@@ -61,7 +61,7 @@
 
                 </div>
                 <app-notification></app-notification>
-			
+
                 <!-- /.card-body -->
                 </div>
             </div>
@@ -71,20 +71,20 @@
 </div>
 <div class="post-footer">
     <div class="container" margin-right style="background:#868080; color:aliceblue;">
-        
+
         <div  >
-		<div class="col-xs-12 col-sm-12 col-md-6"></div>				
+		<div class="col-xs-12 col-sm-12 col-md-6"></div>
             <h5>Links de Interés</h5>
             <div>
 <ul>
                 <li><a href="http://bne.gob.ec/" target="_blank"> Biblioteca Nacional Eugenio Espejo </a></li>
 
 </ul>
-</div>					
+</div>
         </div><!-- END FOOTER COLUMN 4: Helpful Links -->
-        
+
         <div class="row">
-            
+
             <!--Library Policies-->
             <div >
                 <div class="small">
@@ -96,9 +96,9 @@
             </div>
 
             <!--Mobile App Ad-->
-			
-        
+
+
         </div>
     </div>
-    
+
 </div>
