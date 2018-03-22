@@ -21,11 +21,15 @@
         <div class="col-lg-8">
             <div class="card card-default">
                 <div class="card-header">
-                    <i class="fa fa-clock-o fa-2x fa-spin"></i> Línea de Tiempo
+                    <i class="fa fa-star fa-2x fa-spin"></i> Reseña
                 </div>
-                <!-- /.card-header -->
-                <!--<app-timeline></app-timeline>-->
-                <!-- /.card-body -->
+                <div>
+                    <p>
+                        La biblioteca yavirac 
+                    </p>
+                    
+                </div>
+                
             </div>
             <!-- /.card -->
         </div>
@@ -47,17 +51,24 @@
         <!-- /.col-lg-4 -->
     </div>
 </div>
-<div class="row">
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'primary'" [icon]="'fa-comments'" [count]="26" [label]="'New Comments!'" ></app-stat>
+<div class="post-footer">
+    <div class="container">
+        <div class="row">
+            
+            <!--Library Policies-->
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="small">
+                    <span class="nowrap">&copy; </span>
+                    <span class="nowrap">Biblioteca institucional Yavirac.</span>
+                    <span class="nowrap">Todos los derechos reservados</span>
+                    <span> | <a href="about/the-organization/library-policies/index.html">Manual de Usuario</a></span>
+                </div>
+            </div>
+
+            <!--Mobile App Ad-->
+			
+        
+        </div>
     </div>
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'warning'" [icon]="'fa-tasks'" [count]="12" [label]="'New task!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'success'" [icon]="'fa-shopping-cart'" [count]="124" [label]="'New Orders!'" ></app-stat>
-    </div>
-    <div class="col-xl-3 col-lg-6">
-        <app-stat [bgClass]="'danger'" [icon]="'fa-support'" [count]="13" [label]="'New Tickets!'"></app-stat>
-    </div>
+    
 </div>
