@@ -48,7 +48,7 @@ CREATE TABLE RecursoTag (
 
 CREATE TABLE Tag (
   id INT NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(100) NULL,
+  descripcion VARCHAR(100) NOT NULL UNIQUE,
   PRIMARY KEY (id)
 );
 

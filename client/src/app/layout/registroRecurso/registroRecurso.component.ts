@@ -1,3 +1,6 @@
+import { RecursoTag } from './../../entidades/CRUD/RecursoTag';
+import { RecursoTagService } from './../CRUD/recursotag/recursotag.service';
+import { TagService } from './../CRUD/tag/tag.service';
 import { RecursoService } from './../CRUD/recurso/recurso.service';
 import { Recurso } from './../../entidades/CRUD/Recurso';
 import { FotoPortada } from './../../entidades/CRUD/FotoPortada';
@@ -16,6 +19,7 @@ import { TipoRecursoService } from '../CRUD/tiporecurso/tiporecurso.service';
 import { CategoriaRecursoService } from '../CRUD/categoriarecurso/categoriarecurso.service';
 import { EstadoService } from '../CRUD/estado/estado.service';
 import { FotoPortadaService } from '../CRUD/fotoportada/fotoportada.service';
+import { Tag } from '../../entidades/CRUD/Tag';
 
 @Component({
     selector: 'app-registroRecurso',
@@ -37,7 +41,7 @@ export class RegistroRecursoComponent implements OnInit {
     recursoNuevo: Recurso;
     tagsIngresados: string;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -265,6 +269,8 @@ export class RegistroRecursoComponent implements OnInit {
                     && recurso.codigoISBN == this.recursoNuevo.codigoISBN ) {
                         this.fotoPortada.idRecurso = recurso.id;
                         this.guardarFotoPortada();
+                        this.guardarTags(recurso.id);
+                        this.toastr.success('Se ha registrado el recurso satisfactoriamente', 'Recurso Registrado');
                         return;
                     }
                });
@@ -274,21 +280,53 @@ export class RegistroRecursoComponent implements OnInit {
             });
         })
         .catch(error => {
-
+            this.toastr.warning('Ha ocurrido un error al registrar el nuevo recurso', 'Recurso Registrado');
         });
     }
 
     guardarFotoPortada(): void {
         this.busy = this.fotoPortadaService.create(this.fotoPortada)
         .then(respuesta => {
-           this.guardarTags();
+
         })
         .catch(error => {
 
         });
     }
 
-    guardarTags(): void {
-        location.reload();
+    guardarTags(idRecurso: number): void {
+        this.tagsIngresados.split(',').forEach(tagPorIngresar => {
+            if(tagPorIngresar=='' || tagPorIngresar==null){
+                return;
+            }
+            this.guardarTag(idRecurso, tagPorIngresar.trim());
+        });
+    }
+
+    guardarTag(idRecurso: number, descripcion: string){
+        const nuevoTag = new Tag();
+        nuevoTag.descripcion = descripcion;
+        this.busy = this.tagService.create(nuevoTag)
+        .then(respuesta => {
+            this.busy = this.tagService.getFiltrado('descripcion','coincide',descripcion)
+            .then(tagRecienCreado => {
+                const nuevoRecursoTag = new RecursoTag();
+                nuevoRecursoTag.idRecurso = idRecurso;
+                nuevoRecursoTag.idTag = tagRecienCreado[0].id;
+                this.busy = this.recursoTagServive.create(nuevoRecursoTag)
+                .then(respuesta => {
+
+                })
+                .catch(error => {
+
+                });
+            })
+            .catch(error => {
+
+            });
+        })
+        .catch(error => {
+
+        });
     }
 }
