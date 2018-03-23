@@ -6,15 +6,13 @@ import { RecursoDigitalRoutingModule } from './recursodigital-routing.module';
 import { RecursoDigitalComponent } from './recursodigital.component';
 import { RecursoDigitalService } from './recursodigital.service';
 
-import { RecursoService } from './../recurso/recurso.service';
-
 @NgModule({
    imports: [
       CommonModule,
       FormsModule,
       RecursoDigitalRoutingModule
    ],
-   providers: [RecursoDigitalService, RecursoService],
+   providers: [RecursoDigitalService],
    declarations: [RecursoDigitalComponent],
 })
 export class RecursoDigitalModule { }

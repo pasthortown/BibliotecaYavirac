@@ -1,3 +1,5 @@
+import { RecursoDigitalService } from './../CRUD/recursodigital/recursodigital.service';
+import { RecursoDigital } from './../../entidades/CRUD/RecursoDigital';
 import { Ejemplar } from './../../entidades/CRUD/Ejemplar';
 import { RecursoTag } from './../../entidades/CRUD/RecursoTag';
 import { RecursoTagService } from './../CRUD/recursotag/recursotag.service';
@@ -44,8 +46,9 @@ export class RegistroRecursoComponent implements OnInit {
     idRecursoSeleccionado: number;
     recursos: Recurso[];
     ejemplares: Ejemplar[];
+    recursoDigital: RecursoDigital;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -54,6 +57,8 @@ export class RegistroRecursoComponent implements OnInit {
     }
 
     refresh():void {
+        this.recursoDigital = new RecursoDigital();
+        this.recursoDigital.id = 0;
         this.idRecursoSeleccionado = 0;
         this.entidadSeleccionadaAutor = new Autor();
         this.entidadSeleccionadaAutor.id = 0;
@@ -196,10 +201,9 @@ export class RegistroRecursoComponent implements OnInit {
             const file = event.target.files[0];
             reader.readAsDataURL(file);
             reader.onload = () => {
-                /*this.fotoPortada.tipoArchivo = file.type;
-                this.fotoPortada.nombreArchivo = file.name;
-                this.fotoPortada.adjunto = reader.result.split(',')[1];
-                this.srcFoto = 'data:' + this.fotoPortada.tipoArchivo + ';base64,' + this.fotoPortada.adjunto;*/
+                this.recursoDigital.nombreArchivo = file.name;
+                this.recursoDigital.tipoArchivo = file.type;
+                this.recursoDigital.adjunto = reader.result.split(',')[1];
             };
         }
     }

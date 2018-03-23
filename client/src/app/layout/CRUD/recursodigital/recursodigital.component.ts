@@ -8,9 +8,6 @@ import { ModalComponent } from '../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
-import { Recurso } from '../../../entidades/CRUD/Recurso';
-import { RecursoService } from './../recurso/recurso.service';
-
 @Component({
    selector: 'app-recursodigital',
    templateUrl: './recursodigital.component.html',
@@ -28,9 +25,8 @@ export class RecursoDigitalComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
-   recursos: Recurso[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoDigitalService, private recursoService: RecursoService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoDigitalService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -186,7 +182,6 @@ export class RecursoDigitalComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = RecursoDigital[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getRecursos();
    }
 
    getPaginaPrimera():void {
@@ -221,15 +216,5 @@ export class RecursoDigitalComponent implements OnInit {
 
    onSelect(entidadActual: RecursoDigital): void {
       this.entidadSeleccionada = entidadActual;
-   }
-
-   getRecursos(): void {
-      this.busy = this.recursoService.getAll()
-      .then(respuesta => {
-         this.recursos = respuesta;
-      })
-      .catch(error => {
-         console.log(error);
-      });
    }
 }

@@ -1,7 +1,7 @@
 <div class="container">
    <div class="row">
       <div class="col-md-12 text-right">
-         <h2 style="margin-top:0px">Catálogo de Recurso Digital</h2>
+         <h2 style="margin-top:0px">Catálogo de RecursoDigital</h2>
       </div>
    </div>
    <div class="row">
@@ -33,12 +33,27 @@
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Recurso</strong>
+                        <strong>Identificador</strong>
                      </span>
                   </th>
                   <th scope="col">
                      <span>
-                        <strong>Contenido</strong>
+                        <strong>idRecurso</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>tipoArchivo</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>nombreArchivo</strong>
+                     </span>
+                  </th>
+                  <th scope="col">
+                     <span>
+                        <strong>adjunto</strong>
                      </span>
                   </th>
                </tr>
@@ -48,8 +63,11 @@
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
+                  <td>{{actual.id}}</td>
                   <td>{{actual.idRecurso}}</td>
-                  <td>{{actual.contenido}}</td>
+                  <td>{{actual.tipoArchivo}}</td>
+                  <td>{{actual.nombreArchivo}}</td>
+                  <td>{{actual.adjunto}}</td>
                </tr>
             </tbody>
          </table>
@@ -78,7 +96,7 @@
       <div class="modal-header">
          <h4 class="modal-title">
             <span *ngIf="entidadSeleccionada.id != 0">
-               Edición de Datos:
+               Edición de Datos: {{entidadSeleccionada.descripcion | uppercase}}
             </span>
             <span *ngIf="entidadSeleccionada.id === 0">
                Ingreso de Datos:
@@ -97,18 +115,27 @@
             </div>
          </div>
          <div class="form-group row">
-            <label for="idRecurso" class="col-sm-4 col-form-label">Recurso</label>
+            <label for="idRecurso" class="col-sm-4 col-form-label">idRecurso</label>
             <div class="col-sm-8">
-                <select class="form-control" id="idRecurso" name="idRecurso" [(ngModel)]="entidadSeleccionada.idRecurso">
-                    <option value="" selected>Seleccione...</option>
-                    <option *ngFor="let recurso of recursos" value={{recurso.id}}>{{recurso.titulo}}</option>
-                </select>
+              <input type="text" class="form-control" id="idRecurso" name="idRecurso" placeholder="idRecurso" [(ngModel)]="entidadSeleccionada.idRecurso">
             </div>
          </div>
          <div class="form-group row">
-            <label for="contenido" class="col-sm-4 col-form-label">Contenido</label>
+            <label for="tipoArchivo" class="col-sm-4 col-form-label">tipoArchivo</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control" id="contenido" name="contenido" placeholder="contenido" [(ngModel)]="entidadSeleccionada.contenido">
+              <input type="text" class="form-control" id="tipoArchivo" name="tipoArchivo" placeholder="tipoArchivo" [(ngModel)]="entidadSeleccionada.tipoArchivo">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="nombreArchivo" class="col-sm-4 col-form-label">nombreArchivo</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="nombreArchivo" name="nombreArchivo" placeholder="nombreArchivo" [(ngModel)]="entidadSeleccionada.nombreArchivo">
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="adjunto" class="col-sm-4 col-form-label">adjunto</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" id="adjunto" name="adjunto" placeholder="adjunto" [(ngModel)]="entidadSeleccionada.adjunto">
             </div>
          </div>
          </form>
@@ -117,7 +144,7 @@
          <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('save')">
             <span class="fa fa-save"></span>&nbsp;Guardar
          </button>
-         <button type="button" class="btn btn-danger" (click)="c('close')"><span class="fa fa-close"></span>&nbsp;Cerrar</button>
+         <button type="button" class="btn btn-default" (click)="c('close')">Cerrar</button>
       </div>
    </ng-template>
 </div>

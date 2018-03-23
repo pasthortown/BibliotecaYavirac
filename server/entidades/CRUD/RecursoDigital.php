@@ -3,12 +3,16 @@ class RecursoDigital
 {
    public $id;
    public $idRecurso;
-   public $contenido;
+   public $tipoArchivo;
+   public $nombreArchivo;
+   public $adjunto;
 
-   function __construct($id,$idRecurso,$contenido){
+   function __construct($id,$idRecurso,$tipoArchivo,$nombreArchivo,$adjunto){
       $this->id = $id;
       $this->idRecurso = $idRecurso;
-      $this->contenido = $contenido;
+      $this->tipoArchivo = $tipoArchivo;
+      $this->nombreArchivo = $nombreArchivo;
+      $this->adjunto = $adjunto;
    }
 }
 ?>

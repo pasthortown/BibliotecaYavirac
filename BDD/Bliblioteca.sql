@@ -15,7 +15,9 @@ CREATE TABLE Solicitud (
 CREATE TABLE RecursoDigital (
   id INT NOT NULL AUTO_INCREMENT,
   idRecurso INT NOT NULL,
-  contenido LONGBLOB NOT NULL,
+  tipoArchivo VARCHAR(255) NULL,
+  nombreArchivo VARCHAR(255) NULL,
+  adjunto LONGBLOB NULL,
   PRIMARY KEY (id) 
 ) ENGINE myISAM;
 

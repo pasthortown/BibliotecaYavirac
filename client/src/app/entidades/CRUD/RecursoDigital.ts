@@ -1,5 +1,7 @@
 export class RecursoDigital {
    id: number;
    idRecurso: number;
-   contenido: Blob;
+   tipoArchivo: string;
+   nombreArchivo: string;
+   adjunto: string;
 }

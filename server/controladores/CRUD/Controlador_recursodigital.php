@@ -5,9 +5,9 @@ class Controlador_recursodigital extends Controlador_Base
 {
    function crear($args)
    {
-      $recursodigital = new RecursoDigital($args["id"],$args["idRecurso"],$args["contenido"]);
-      $sql = "INSERT INTO RecursoDigital (idRecurso,contenido) VALUES (?,?);";
-      $parametros = array($recursodigital->idRecurso,$recursodigital->contenido);
+      $recursodigital = new RecursoDigital($args["id"],$args["idRecurso"],$args["tipoArchivo"],$args["nombreArchivo"],$args["adjunto"]);
+      $sql = "INSERT INTO RecursoDigital (idRecurso,tipoArchivo,nombreArchivo,adjunto) VALUES (?,?,?,?);";
+      $parametros = array($recursodigital->idRecurso,$recursodigital->tipoArchivo,$recursodigital->nombreArchivo,$recursodigital->adjunto);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_recursodigital extends Controlador_Base
 
    function actualizar($args)
    {
-      $recursodigital = new RecursoDigital($args["id"],$args["idRecurso"],$args["contenido"]);
-      $parametros = array($recursodigital->idRecurso,$recursodigital->contenido,$recursodigital->id);
-      $sql = "UPDATE RecursoDigital SET idRecurso = ?,contenido = ? WHERE id = ?;";
+      $recursodigital = new RecursoDigital($args["id"],$args["idRecurso"],$args["tipoArchivo"],$args["nombreArchivo"],$args["adjunto"]);
+      $parametros = array($recursodigital->idRecurso,$recursodigital->tipoArchivo,$recursodigital->nombreArchivo,$recursodigital->adjunto,$recursodigital->id);
+      $sql = "UPDATE RecursoDigital SET idRecurso = ?,tipoArchivo = ?,nombreArchivo = ?,adjunto = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
