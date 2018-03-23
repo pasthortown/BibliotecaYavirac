@@ -23,6 +23,8 @@ import { CategoriaRecursoService } from '../CRUD/categoriarecurso/categoriarecur
 import { EstadoService } from '../CRUD/estado/estado.service';
 import { FotoPortadaService } from '../CRUD/fotoportada/fotoportada.service';
 import { Tag } from '../../entidades/CRUD/Tag';
+import { Ubicacion } from './../../entidades/CRUD/Ubicacion';
+import { UbicacionService } from './../CRUD/externos/ubicacion.service';
 
 @Component({
     selector: 'app-registroRecurso',
@@ -47,8 +49,9 @@ export class RegistroRecursoComponent implements OnInit {
     recursos: Recurso[];
     ejemplares: Ejemplar[];
     recursoDigital: RecursoDigital;
+    paises: Ubicacion[];
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService, private ubicacionService: UbicacionService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -79,6 +82,7 @@ export class RegistroRecursoComponent implements OnInit {
         this.getProductoras();
         this.getTipos();
         this.getRecursos();
+        this.getPaises();
     }
 
     openAutor(content){
@@ -138,6 +142,21 @@ export class RegistroRecursoComponent implements OnInit {
         })
         .catch(error => {
         console.log(error);
+        });
+    }
+
+    getPaises() {
+        this.busy = this.ubicacionService.getAll()
+        .then(respuesta => {
+            this.paises = [];
+            respuesta.forEach(element => {
+                if (element.codigoPadre == null) {
+                    this.paises.push(element);
+                }
+            });
+        })
+        .catch(error => {
+
         });
     }
 
