@@ -38,6 +38,7 @@ CREATE TABLE Recurso (
   codigoISBN VARCHAR(25) NULL,
   descripcion TEXT NULL,
   contenido TEXT NULL,
+  fecha DATETIME NULL,
   PRIMARY KEY (id)
 );
 

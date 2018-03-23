@@ -10,8 +10,9 @@ class Recurso
    public $codigoISBN;
    public $descripcion;
    public $contenido;
+   public $fecha;
 
-   function __construct($id,$idTipo,$idAutor,$idCategoria,$idProductora,$titulo,$codigoISBN,$descripcion,$contenido){
+   function __construct($id,$idTipo,$idAutor,$idCategoria,$idProductora,$titulo,$codigoISBN,$descripcion,$contenido,$fecha){
       $this->id = $id;
       $this->idTipo = $idTipo;
       $this->idAutor = $idAutor;
@@ -21,6 +22,7 @@ class Recurso
       $this->codigoISBN = $codigoISBN;
       $this->descripcion = $descripcion;
       $this->contenido = $contenido;
+      $this->fecha = $fecha;
    }
 }
 ?>
