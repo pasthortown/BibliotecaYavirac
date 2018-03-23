@@ -293,6 +293,10 @@ export class RegistroRecursoComponent implements OnInit {
     }
 
     guardarRecurso(): void {
+        if(this.idRecursoSeleccionado!=0){
+            this.actualizarRecurso();
+            return;
+        }
         this.busy = this.recursoService.create(this.recursoNuevo)
         .then(respuesta => {
             this.busy = this.recursoService.getFiltrado('titulo','coincide',this.recursoNuevo.titulo)
@@ -319,6 +323,36 @@ export class RegistroRecursoComponent implements OnInit {
         });
     }
 
+    actualizarRecurso(): void {
+        this.recursoNuevo.id = this.idRecursoSeleccionado;
+        this.busy = this.recursoService.update(this.recursoNuevo)
+        .then(respuesta => {
+            this.busy = this.recursoService.getFiltrado('titulo','coincide',this.recursoNuevo.titulo)
+            .then(recursosConTituloIgual => {
+                this.fotoPortada.idRecurso = this.recursoNuevo.id;
+                this.actualizarFotoPortada();
+                this.guardarTags(this.recursoNuevo.id);
+                this.toastr.success('Se ha actualizado el recurso satisfactoriamente', 'Recurso Actualizado');
+            })
+            .catch(error => {
+
+            });
+        })
+        .catch(error => {
+            this.toastr.warning('Ha ocurrido un error al registrar el nuevo recurso', 'Recurso Registrado');
+        });
+    }
+
+    actualizarFotoPortada(): void {
+        this.busy = this.fotoPortadaService.update(this.fotoPortada)
+        .then(respuesta => {
+
+        })
+        .catch(error => {
+
+        });
+    }
+
     guardarFotoPortada(): void {
         this.busy = this.fotoPortadaService.create(this.fotoPortada)
         .then(respuesta => {
@@ -330,11 +364,32 @@ export class RegistroRecursoComponent implements OnInit {
     }
 
     guardarTags(idRecurso: number): void {
-        this.tagsIngresados.split(',').forEach(tagPorIngresar => {
-            if(tagPorIngresar=='' || tagPorIngresar==null){
-                return;
+        let tagsPrevios: RecursoTag[] = [];
+        this.busy = this.recursoTagServive.getFiltrado('idRecurso', 'coincide', idRecurso.toString())
+        .then(tagsAsignadosARecurso => {
+            if( tagsAsignadosARecurso.toString() === '0' ) {
+                tagsPrevios = [];
+            } else {
+                tagsPrevios = tagsAsignadosARecurso;
+                tagsPrevios.forEach(recursoTagPrevio => {
+                    this.busy = this.recursoTagServive.remove(recursoTagPrevio.id)
+                    .then(respuesta => {
+
+                    })
+                    .catch(error => {
+
+                    });
+                });
+                this.tagsIngresados.split(',').forEach(tagPorIngresar => {
+                    if(tagPorIngresar=='' || tagPorIngresar==null){
+                        return;
+                    }
+                    this.guardarTag(idRecurso, tagPorIngresar.trim());
+                });
             }
-            this.guardarTag(idRecurso, tagPorIngresar.trim());
+        })
+        .catch(error => {
+
         });
     }
 
@@ -363,6 +418,10 @@ export class RegistroRecursoComponent implements OnInit {
         .catch(error => {
 
         });
+    }
+
+    nuevoRecurso() {
+        this.refresh();
     }
 
     seleccionadoRecurso() {

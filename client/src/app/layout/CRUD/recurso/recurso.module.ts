@@ -9,7 +9,7 @@ import { TipoRecursoService } from '../tiporecurso/tiporecurso.service';
 import { AutorService } from '../autor/autor.service';
 import { CategoriaRecursoService } from '../categoriarecurso/categoriarecurso.service';
 import { ProductoraService } from '../productora/productora.service';
-
+import { UbicacionService } from './../externos/ubicacion.service';
 
 @NgModule({
    imports: [
@@ -17,7 +17,7 @@ import { ProductoraService } from '../productora/productora.service';
       FormsModule,
       RecursoRoutingModule
    ],
-   providers: [RecursoService, TipoRecursoService, AutorService, CategoriaRecursoService, ProductoraService],
+   providers: [RecursoService, TipoRecursoService, UbicacionService, AutorService, CategoriaRecursoService, ProductoraService],
    declarations: [RecursoComponent],
 })
 export class RecursoModule { }

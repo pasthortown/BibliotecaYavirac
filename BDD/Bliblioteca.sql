@@ -39,6 +39,8 @@ CREATE TABLE Recurso (
   descripcion TEXT NULL,
   contenido TEXT NULL,
   fecha DATETIME NULL,
+  idPaisPublicacion INT NULL,
+  ciudadPublicacion VARCHAR(100) NULL,
   PRIMARY KEY (id)
 );
 

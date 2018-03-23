@@ -10,10 +10,15 @@
             <strong>Recurso</strong>
         </div>
         <div class="col-sm-9">
-            <select class="form-control" id="idRecurso" name="idRecurso" [(ngModel)]="idRecursoSeleccionado" (change)="seleccionadoRecurso()">
-                <option value="0" selected>Seleccione...</option>
-                <option *ngFor="let recurso of recursos" value={{recurso.id}}>{{recurso.titulo}}</option>
-            </select>
+            <div class="input-group mb-3">
+                <select class="form-control" id="idRecurso" name="idRecurso" [(ngModel)]="idRecursoSeleccionado" (change)="seleccionadoRecurso()">
+                    <option value="0" selected>Seleccione...</option>
+                    <option *ngFor="let recurso of recursos" value={{recurso.id}}>{{recurso.titulo}}</option>
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="button" (click)="nuevoRecurso()"><span class="fa fa-sticky-note-o"></span>&nbsp;Nuevo</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -5,9 +5,9 @@ class Controlador_recurso extends Controlador_Base
 {
    function crear($args)
    {
-      $recurso = new Recurso($args["id"],$args["idTipo"],$args["idAutor"],$args["idCategoria"],$args["idProductora"],$args["titulo"],$args["codigoISBN"],$args["descripcion"],$args["contenido"], $args["fecha"]);
-      $sql = "INSERT INTO Recurso (idTipo,idAutor,idCategoria,idProductora,titulo,codigoISBN,descripcion,contenido, fecha) VALUES (?,?,?,?,?,?,?,?,?);";
-      $parametros = array($recurso->idTipo,$recurso->idAutor,$recurso->idCategoria,$recurso->idProductora,$recurso->titulo,$recurso->codigoISBN,$recurso->descripcion,$recurso->contenido,$recurso->fecha);
+      $recurso = new Recurso($args["id"],$args["idTipo"],$args["idAutor"],$args["idCategoria"],$args["idProductora"],$args["titulo"],$args["codigoISBN"],$args["descripcion"],$args["contenido"], $args["fecha"], $args["idPaisPublicacion"], $args["ciudadPublicacion"]);
+      $sql = "INSERT INTO Recurso (idTipo,idAutor,idCategoria,idProductora,titulo,codigoISBN,descripcion,contenido, fecha, idPaisPublicacion, ciudadPublicacion) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+      $parametros = array($recurso->idTipo,$recurso->idAutor,$recurso->idCategoria,$recurso->idProductora,$recurso->titulo,$recurso->codigoISBN,$recurso->descripcion,$recurso->contenido,$recurso->fecha,$recurso->idPaisPublicacion,$recurso->ciudadPublicacion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;
@@ -18,9 +18,9 @@ class Controlador_recurso extends Controlador_Base
 
    function actualizar($args)
    {
-      $recurso = new Recurso($args["id"],$args["idTipo"],$args["idAutor"],$args["idCategoria"],$args["idProductora"],$args["titulo"],$args["codigoISBN"],$args["descripcion"],$args["contenido"],$args["fecha"]);
-      $parametros = array($recurso->idTipo,$recurso->idAutor,$recurso->idCategoria,$recurso->idProductora,$recurso->titulo,$recurso->codigoISBN,$recurso->descripcion,$recurso->contenido,$recurso->fecha,$recurso->id);
-      $sql = "UPDATE Recurso SET idTipo = ?,idAutor = ?,idCategoria = ?,idProductora = ?,titulo = ?,codigoISBN = ?,descripcion = ?,contenido = ?,fecha = ? WHERE id = ?;";
+      $recurso = new Recurso($args["id"],$args["idTipo"],$args["idAutor"],$args["idCategoria"],$args["idProductora"],$args["titulo"],$args["codigoISBN"],$args["descripcion"],$args["contenido"],$args["fecha"], $args["idPaisPublicacion"], $args["ciudadPublicacion"]);
+      $parametros = array($recurso->idTipo,$recurso->idAutor,$recurso->idCategoria,$recurso->idProductora,$recurso->titulo,$recurso->codigoISBN,$recurso->descripcion,$recurso->contenido,$recurso->fecha,$recurso->idPaisPublicacion,$recurso->ciudadPublicacion,$recurso->id);
+      $sql = "UPDATE Recurso SET idTipo = ?,idAutor = ?,idCategoria = ?,idProductora = ?,titulo = ?,codigoISBN = ?,descripcion = ?,contenido = ?,fecha = ?,idPaisPublicacion = ?,ciudadPublicacion = ? WHERE id = ?;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

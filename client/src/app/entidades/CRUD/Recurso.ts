@@ -9,6 +9,8 @@ export class Recurso {
    descripcion: string;
    contenido: string;
    fecha: Date;
+   idPaisPublicacion: number;
+   ciudadPublicacion: string;
    Autor: string;
    Productora: string;
    Categoria: string;

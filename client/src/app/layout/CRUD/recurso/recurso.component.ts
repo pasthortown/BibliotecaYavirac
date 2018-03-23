@@ -15,6 +15,8 @@ import { TipoRecursoService } from '../tiporecurso/tiporecurso.service';
 import { AutorService } from '../autor/autor.service';
 import { CategoriaRecursoService } from '../categoriarecurso/categoriarecurso.service';
 import { ProductoraService } from '../productora/productora.service';
+import { Ubicacion } from './../../../entidades/CRUD/Ubicacion';
+import { UbicacionService } from './../externos/ubicacion.service';
 
 @Component({
    selector: 'app-recurso',
@@ -37,8 +39,9 @@ export class RecursoComponent implements OnInit {
    autores: Autor[];
    categorias: CategoriaRecurso[];
    productoras: Productora[];
+   paises: Ubicacion[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService,private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService,private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private ubicacionService: UbicacionService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -198,6 +201,22 @@ export class RecursoComponent implements OnInit {
       this.getAutores();
       this.getCategorias();
       this.getProductoras();
+      this.getPaises();
+   }
+
+   getPaises() {
+    this.busy = this.ubicacionService.getAll()
+        .then(respuesta => {
+            this.paises = [];
+            respuesta.forEach(element => {
+                if (element.codigoPadre == null) {
+                    this.paises.push(element);
+                }
+            });
+        })
+        .catch(error => {
+
+        });
    }
 
    getPaginaPrimera():void {
