@@ -16,6 +16,7 @@ import { RecursoTagService } from './../CRUD/recursotag/recursotag.service';
 import { TagService } from './../CRUD/tag/tag.service';
 import { RecursoDigitalService } from './../CRUD/recursodigital/recursodigital.service';
 import { UbicacionService } from './../CRUD/externos/ubicacion.service';
+import { EjemplarService } from './../CRUD/ejemplar/ejemplar.service';
 
 @NgModule({
     imports: [CommonModule,
@@ -24,7 +25,7 @@ import { UbicacionService } from './../CRUD/externos/ubicacion.service';
               NgbModule,
               FormsModule,
             ],
-    providers: [ProductoraService, UbicacionService, RecursoDigitalService, RecursoTagService, TagService, FotoPortadaService, RecursoService, AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
+    providers: [ProductoraService, EjemplarService, UbicacionService, RecursoDigitalService, RecursoTagService, TagService, FotoPortadaService, RecursoService, AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
     declarations: [RegistroRecursoComponent]
 })
 export class RegistroRecursoModule {}

@@ -279,7 +279,7 @@
                                         <strong>Estado</strong>
                                     </div>
                                     <div class="col-sm-8">
-                                        <select class="form-control" id="idEstado" name="idEstado" [(ngModel)]="recursoNuevo.idEstado">
+                                        <select class="form-control" id="idEstado" name="idEstado" [(ngModel)]="ejemplar.idEstado">
                                             <option value="0" selected>Seleccione...</option>
                                             <option *ngFor="let estado of estados" value={{estado.id}}>{{estado.descripcion}}</option>
                                         </select>
@@ -288,16 +288,16 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group row">
-                                    <div class="col-sm-3 text-right">
+                                    <div class="col-3 text-right">
                                         <strong>Etiqueta</strong>
                                     </div>
-                                    <div class="col-sm-8">
-                                        <div class="col-sm-12">
-                                            <div class="form-group row" style="float:left;border: 1px #D3D3D3 solid;">
+                                    <div class="col-8">
+                                        <div class="col-12">
+                                            <div class="form-group row" style="border: 1px #D3D3D3 solid;">
                                                 <div class="col-sm-4">
                                                     <ngx-barcode  [bc-value]="ejemplar.codigo" [bc-display-value]="true"></ngx-barcode>
                                                 </div>
-                                                <div class="col-sm-8 text-center" style="padding:30px;">
+                                                <div class="col-8 text-center" style="padding:30px;">
                                                     <h5>{{recursoNuevo.titulo}}</h5>
                                                 </div>
                                             </div>

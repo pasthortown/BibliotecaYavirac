@@ -52,10 +52,10 @@ class Controlador_ejemplar extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Ejemplar;";
+         $sql = "SELECT * FROM Ejemplar ORDER BY codigo;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Ejemplar WHERE id = ?;";
+         $sql = "SELECT * FROM Ejemplar WHERE id = ? ORDER BY codigo;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -66,7 +66,7 @@ class Controlador_ejemplar extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Ejemplar LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM Ejemplar ORDER BY codigo LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -87,16 +87,16 @@ class Controlador_ejemplar extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna = ? ORDER BY codigo;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna ORDER BY codigo LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna ORDER BY codigo LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM Ejemplar WHERE $nombreColumna ORDER BY codigo LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

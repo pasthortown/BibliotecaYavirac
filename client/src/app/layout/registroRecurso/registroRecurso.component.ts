@@ -1,3 +1,4 @@
+import { EjemplarService } from './../CRUD/ejemplar/ejemplar.service';
 import { RecursoDigitalService } from './../CRUD/recursodigital/recursodigital.service';
 import { RecursoDigital } from './../../entidades/CRUD/RecursoDigital';
 import { Ejemplar } from './../../entidades/CRUD/Ejemplar';
@@ -51,7 +52,7 @@ export class RegistroRecursoComponent implements OnInit {
     ejemplares: Ejemplar[];
     paises: Ubicacion[];
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService, private ubicacionService: UbicacionService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService, private ubicacionService: UbicacionService, private ejemplarService: EjemplarService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -328,9 +329,11 @@ export class RegistroRecursoComponent implements OnInit {
                     && recurso.idTipo == this.recursoNuevo.idTipo
                     && recurso.codigoISBN == this.recursoNuevo.codigoISBN ) {
                         this.fotoPortada.idRecurso = recurso.id;
+                        this.recursoDigital.idRecurso = recurso.id;
                         this.guardarFotoPortada();
                         this.guardarRecursoDigital();
                         this.guardarTags(recurso.id);
+                        this.guardarEjemplares(recurso.id);
                         this.toastr.success('Se ha registrado el recurso satisfactoriamente', 'Recurso Registrado');
                         return;
                     }
@@ -355,6 +358,7 @@ export class RegistroRecursoComponent implements OnInit {
                 this.actualizarFotoPortada();
                 this.actualizarRecursoDigital();
                 this.guardarTags(this.recursoNuevo.id);
+                this.guardarEjemplares(this.recursoNuevo.id);
                 this.toastr.success('Se ha actualizado el recurso satisfactoriamente', 'Recurso Actualizado');
             })
             .catch(error => {
@@ -423,13 +427,13 @@ export class RegistroRecursoComponent implements OnInit {
 
                     });
                 });
-                this.tagsIngresados.split(',').forEach(tagPorIngresar => {
-                    if(tagPorIngresar=='' || tagPorIngresar==null){
-                        return;
-                    }
-                    this.guardarTag(idRecurso, tagPorIngresar.trim());
-                });
             }
+            this.tagsIngresados.split(',').forEach(tagPorIngresar => {
+                if(tagPorIngresar=='' || tagPorIngresar==null){
+                    return;
+                }
+                this.guardarTag(idRecurso, tagPorIngresar.trim());
+            });
         })
         .catch(error => {
 
@@ -463,6 +467,49 @@ export class RegistroRecursoComponent implements OnInit {
         });
     }
 
+    guardarEjemplares(idRecurso: number): void {
+        let ejemplaresPrevios: Ejemplar[] = [];
+        this.busy = this.ejemplarService.getFiltrado('idRecurso', 'coincide', idRecurso.toString())
+        .then(ejemplaresAntesRegistrados => {
+            if( ejemplaresAntesRegistrados.toString() === '0' ) {
+                ejemplaresPrevios = [];
+            } else {
+                ejemplaresPrevios = ejemplaresAntesRegistrados;
+                ejemplaresPrevios.forEach(ejemplarPrevio => {
+                    this.busy = this.ejemplarService.remove(ejemplarPrevio.id)
+                    .then(respuesta => {
+
+                    })
+                    .catch(error => {
+
+                    });
+                });
+            }
+            let cuenta: number = 0;
+            this.ejemplares.forEach(ejemplarPorIngresar => {
+                cuenta++;
+                ejemplarPorIngresar.idRecurso = idRecurso;
+                ejemplarPorIngresar.fechaRegistro = new Date();
+                this.categorias.forEach(categoria => {
+                    if(categoria.id ==this.recursoNuevo.idCategoria){
+                        ejemplarPorIngresar.codigo = categoria.codigo + '-' + cuenta.toString();
+                        return;
+                    }
+                });
+                this.busy = this.ejemplarService.create(ejemplarPorIngresar)
+                .then(respuesta => {
+
+                })
+                .catch(error => {
+
+                });
+            });
+        })
+        .catch(error => {
+
+        });
+    }
+
     nuevoRecurso() {
         this.refresh();
     }
@@ -475,6 +522,20 @@ export class RegistroRecursoComponent implements OnInit {
             this.getFotoPortada(this.recursoNuevo.id);
             this.getRecursoDigital(this.recursoNuevo.id);
             this.getTags(this.recursoNuevo.id);
+            this.getEjemplares(this.recursoNuevo.id);
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getEjemplares(id:number) {
+        this.busy = this.ejemplarService.getFiltrado('idRecurso','coincide',id.toString())
+        .then(entidadesRecuperadas => {
+            if( entidadesRecuperadas.toString() === '0' ) {
+                return;
+            }
+            this.ejemplares = entidadesRecuperadas;
         })
         .catch(error => {
 
