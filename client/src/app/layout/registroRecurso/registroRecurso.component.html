@@ -20,7 +20,7 @@
 <div class="container">
     <div class="card-block">
         <ngb-tabset [activeId]="activeTab">
-            <ngb-tab title="1. Datos del Origen del Recurso" id="tab1">
+            <ngb-tab title="1. Origen" id="tab1">
                 <ng-template ngbTabContent>
                     <div class="container-fluid card">
                         <div style="float:left; width:100%; height:20px;"></div>
@@ -69,7 +69,7 @@
                     </div>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="2. Datos del Recurso" id="tab2">
+            <ngb-tab title="2. Identificación" id="tab2">
                 <ng-template ngbTabContent>
                     <div class="container-fluid card">
                         <div style="float:left; width:100%; height:20px;"></div>
@@ -128,17 +128,6 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-3 text-right">
-                                <strong>Estado</strong>
-                            </div>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="idEstado" name="idEstado" [(ngModel)]="recursoNuevo.idEstado">
-                                    <option value="0" selected>Seleccione...</option>
-                                    <option *ngFor="let estado of estados" value={{estado.id}}>{{estado.descripcion}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group row">
                             <div class="col-sm-4 text-left">
                                 <button type="button" class="btn btn-primary" (click)="showTab('tab1')">Anterior</button>
                             </div>
@@ -151,7 +140,7 @@
                     </div>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="3. Palabras Claves (TAGS)" id="tab3">
+            <ngb-tab title="3. Palabras Clave" id="tab3">
                 <ng-template ngbTabContent>
                     <div class="container-fluid card">
                         <div style="float:left; width:100%; height:20px;"></div>
@@ -176,7 +165,7 @@
                     </div>
                 </ng-template>
             </ngb-tab>
-            <ngb-tab title="4. Foto de la Portada" id="tab4">
+            <ngb-tab title="4. Portada" id="tab4">
                 <ng-template ngbTabContent>
                     <div class="container-fluid card">
                         <div style="float:left; width:100%; height:20px;"></div>
@@ -199,6 +188,95 @@
                         <div class="form-group row">
                             <div class="col-sm-4 text-left">
                                 <button type="button" class="btn btn-primary" (click)="showTab('tab3')">Anterior</button>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <button type="button" class="btn btn-primary" (click)="showTab('tab5')">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="5. Recurso Digital" id="tab5">
+                <ng-template ngbTabContent>
+                    <div class="container-fluid card">
+                        <div style="float:left; width:100%; height:20px;"></div>
+                        <div class="form-group row">
+                            <div class="col-sm-3 text-right">
+                                <strong>Recurso Digital</strong>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="input-group-append">
+                                    <input type="file" class="form-control" name="adjunto" id="adjunto" placeholder="Adjunto" #fileInputAdjunto (change)="CodificarArchivoAdjunto($event)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-left">
+                                <button type="button" class="btn btn-primary" (click)="showTab('tab4')">Anterior</button>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                <button type="button" class="btn btn-primary" (click)="showTab('tab6')">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="6. Ejemplares" id="tab6">
+                <ng-template ngbTabContent>
+                    <div class="container-fluid card">
+                        <div style="float:left; width:100%; height:20px;"></div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-left">
+                                <button type="button" class="btn btn-default" (click)="agregarEjemplar()">
+                                    <span class="fa fa-plus"></span>&nbsp;Agregar
+                                </button>
+                                <button type="button" class="btn btn-danger" (click)="retirarEjemplar()">
+                                    <span class="fa fa-trash"></span>&nbsp;Eliminar
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group row" *ngFor="let ejemplar of ejemplares">
+                            <div style="float:left; width:100%; height:20px;"></div>
+                            <div class="col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 text-right">
+                                        <strong>Estado</strong>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" id="idEstado" name="idEstado" [(ngModel)]="recursoNuevo.idEstado">
+                                            <option value="0" selected>Seleccione...</option>
+                                            <option *ngFor="let estado of estados" value={{estado.id}}>{{estado.descripcion}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-sm-3 text-right">
+                                        <strong>Etiqueta</strong>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="col-sm-12">
+                                            <div class="form-group row" style="float:left;border: 1px #D3D3D3 solid;">
+                                                <div class="col-sm-4">
+                                                    <ngx-barcode  [bc-value]="ejemplar.codigo" [bc-display-value]="true"></ngx-barcode>
+                                                </div>
+                                                <div class="col-sm-8 text-center" style="padding:30px;">
+                                                    <h5>{{recursoNuevo.titulo}}</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-4 text-left">
+                                <button type="button" class="btn btn-primary" (click)="showTab('tab5')">Anterior</button>
                             </div>
                             <div class="col-sm-4 text-center">
                             </div>

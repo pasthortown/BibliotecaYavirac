@@ -1,3 +1,4 @@
+import { Ejemplar } from './../../entidades/CRUD/Ejemplar';
 import { RecursoTag } from './../../entidades/CRUD/RecursoTag';
 import { RecursoTagService } from './../CRUD/recursotag/recursotag.service';
 import { TagService } from './../CRUD/tag/tag.service';
@@ -42,6 +43,7 @@ export class RegistroRecursoComponent implements OnInit {
     tagsIngresados: string;
     idRecursoSeleccionado: number;
     recursos: Recurso[];
+    ejemplares: Ejemplar[];
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService) {
         this.toastr.setRootViewContainerRef(vcr);
@@ -65,6 +67,7 @@ export class RegistroRecursoComponent implements OnInit {
         this.recursoNuevo.idProductora = 0;
         this.recursoNuevo.idTipo = 0;
         this.recursoNuevo.idCategoria = 0;
+        this.ejemplares= [];
         this.getAutores();
         this.getCategorias();
         this.getEstados();
@@ -183,6 +186,20 @@ export class RegistroRecursoComponent implements OnInit {
                 this.fotoPortada.nombreArchivo = file.name;
                 this.fotoPortada.adjunto = reader.result.split(',')[1];
                 this.srcFoto = 'data:' + this.fotoPortada.tipoArchivo + ';base64,' + this.fotoPortada.adjunto;
+            };
+        }
+    }
+
+    CodificarArchivoAdjunto(event) {
+        const reader = new FileReader();
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                /*this.fotoPortada.tipoArchivo = file.type;
+                this.fotoPortada.nombreArchivo = file.name;
+                this.fotoPortada.adjunto = reader.result.split(',')[1];
+                this.srcFoto = 'data:' + this.fotoPortada.tipoArchivo + ';base64,' + this.fotoPortada.adjunto;*/
             };
         }
     }
@@ -385,5 +402,26 @@ export class RegistroRecursoComponent implements OnInit {
         .catch(error => {
 
         });
+    }
+
+    agregarEjemplar() {
+        const ejemplar = new Ejemplar();
+        if(this.recursoNuevo.idCategoria == 0 || this.recursoNuevo.idCategoria == null){
+            return;
+        }
+        this.categorias.forEach(categoria => {
+            if(categoria.id ==this.recursoNuevo.idCategoria){
+                ejemplar.codigo = categoria.codigo + '-' + (this.ejemplares.length + 1);
+                return;
+            }
+        });
+        this.ejemplares.push(ejemplar);
+    }
+
+    retirarEjemplar() {
+        if(this.recursoNuevo.idCategoria == 0 || this.recursoNuevo.idCategoria == null || this.ejemplares.length == 0){
+            return;
+        }
+        this.ejemplares.pop();
     }
 }
