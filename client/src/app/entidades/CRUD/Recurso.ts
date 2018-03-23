@@ -8,6 +8,7 @@ export class Recurso {
    codigoISBN: string;
    descripcion: string;
    contenido: string;
+   fecha: Date;
    Autor: string;
    Productora: string;
    Categoria: string;
