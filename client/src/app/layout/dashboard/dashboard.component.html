@@ -1,5 +1,6 @@
 <div [@routerTransition]>
-    <h2 style="text-align:center;" class="text-muted"><small>¡FORTALECIENDO CAPACIDADES!</small></h2>
+    <marquee bgcolor="#FFFFFF" width="100%" scrolldelay="5" scrollamount="5" direction="left" loop="infinite" face="HanaMinA"><h2>¡FORTALECIENDO CAPACIDADES!</h2>
+    </marquee>
     <div class="row">
         <div class="col-md-12">
             <ngb-carousel>
@@ -13,11 +14,9 @@
             </ngb-carousel>
         </div>
     </div>
-    <hr>
-    <hr />
+    <br>
     <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
-    <hr />
-    <div class="row">
+    <div class="row" style="margin:0px">
         <div class="col-lg-8">
             <div class="card card-default">
                 <div>
@@ -32,11 +31,11 @@
         <!-- /.col-lg-8 -->
         <div class="col-lg-4" style=" color:white;">
             <div class="card card-default mb-3">
-                <div class="card-header" style="background:orange;">
-                    <i class="fa fa-desktop	"></i><font size="5"><strong style="color:black;"> Visítanos...</strong></font>
+                <div class="card-header" style="background:#F58228;">
+                    <i class="fa fa-info-circle fa-2x"></i><font size="5"><strong style="color:black;">&nbsp;Información</strong></font>
                 </div>
                 <div class="card-body"style="background:gray;">
-                <h4>Ubíquenos</h4>
+                <h4 align="center">Ubíquenos</h4>
                 <address><br>
                 Biblioteca Institucional "Yavirac"<br>
                 García Moreno N3-151, <br>
@@ -46,11 +45,11 @@
                 <div class="card-body">
 
                     <!-- <span class="heading">Hours</span> <span class="hours">Mon - Fri: 9 a.m. to  9 p.m.</span> <span class="hours">Sat 9 a.m. to 6 p.m.</span> <span class="hours">Sun: 1 p.m. to 6 p.m.</span> <a class="address" onclick="openAddress('65 Witherspoon Street, Princeton NJ, 08542');"><span>65 Witherspoon Street,</span> <span>Princeton NJ, 08542</span></a> <span class="tel">Tel: 609.924.9529</span> -->
-                    <h4>Horario</h4>
+                    <h4 align="center">Horario</h4>
                     <ul class="special-hours"> <!-- incrase bottom margin to make more space -->
                     <li>Lunes: 7 a.m. -  5 p.m.</li>
                     <li>Martes:7 a.m. -  5 p.m.</li>
-                    <li>Miercoles: 7 a.m. -  5 p.m.</li>
+                    <li>Miércoles: 7 a.m. -  5 p.m.</li>
                     <li>Jueves: 7a.m. -  5 p.m.</li>
                     <li>Viernes: 7 a.m. -  5 p.m.</li>
                     </ul>
@@ -66,7 +65,7 @@
     </div>
 </div>
 <div class="post-footer">
-    <div class="container" margin-right style="background:#868080; color:aliceblue;">
+    <div class="container" style="background:gray; color:aliceblue;">
 
         <div  >
 		 <div class="col-xs-12 col-sm-12 col-md-6"></div>
@@ -78,27 +77,28 @@
         </div><!-- END FOOTER COLUMN 4: Helpful Links -->
 
         <div class="row">
-                <div class="list-group" style="display:inline;margin: 0 auto;" >
+                <div class="list-group" style="display:inline;margin: 0 auto;">
                     <a href="https://www.youtube.com/channel/UCez91Dz7oFrWrApbBCccZag" target="_blank">
-                        <i class="fa fa-youtube-play"></i> Youtube
+                        <i class="fa fa-youtube fa-2x" style="color: white"></i><span style="color:white">&nbsp;Youtube</span>
                     </a>
                     <a href="https://twitter.com/institutoaloasi?lang=es" target="_blank">
-                        <i class="fa fa-twitter-square"></i> Twitter
+                        <i class="fa fa-twitter fa-2x" style="color: white"></i> <span style="color:white">&nbsp;Twitter</span>
                     </a>
                     <a href="https://m.facebook.com/pg/superioraloasi/posts/ " target="_blank">
-                        <i class="fa fa-facebook-square"></i> Facebook
+                        <i class="fa fa-facebook fa-2x" style="color: white;"></i><span style="color:white;">&nbsp;Facebook</span>
                     </a>
                 </div>
             <!--Library Policies-->
             <!--Mobile App Ad-->
         </div>
+        <br>
         <div >
-                <div class="small">
-                    <span class="nowrap">&copy; </span>
-                    <span class="nowrap">Biblioteca institucional Yavirac.</span>
-                    <span class="nowrap">Todos los derechos reservados</span>
-                </div>
+            <div class="small" align="center">
+                <span class="nowrap">&copy; </span>
+                <span class="nowrap">Biblioteca institucional Yavirac.</span>
+                <span class="nowrap">Todos los derechos reservados.</span>
             </div>
+        </div>
+        <br>
     </div>
-
 </div>
