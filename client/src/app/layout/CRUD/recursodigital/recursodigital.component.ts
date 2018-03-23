@@ -232,4 +232,4 @@ export class RecursoDigitalComponent implements OnInit {
       .catch(error => {
          console.log(error);
       });
-}
+}}
