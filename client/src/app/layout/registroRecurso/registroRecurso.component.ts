@@ -42,13 +42,13 @@ export class RegistroRecursoComponent implements OnInit {
     estados: Estado[];
     activeTab: string;
     fotoPortada: FotoPortada;
+    recursoDigital: RecursoDigital;
     srcFoto: string;
     recursoNuevo: Recurso;
     tagsIngresados: string;
     idRecursoSeleccionado: number;
     recursos: Recurso[];
     ejemplares: Ejemplar[];
-    recursoDigital: RecursoDigital;
     paises: Ubicacion[];
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService, private ubicacionService: UbicacionService) {
@@ -69,6 +69,8 @@ export class RegistroRecursoComponent implements OnInit {
         this.entidadSeleccionadaProductora.id = 0;
         this.fotoPortada = new FotoPortada();
         this.fotoPortada.id = 0;
+        this.recursoDigital = new RecursoDigital();
+        this.recursoDigital.id = 0;
         this.recursoNuevo = new Recurso();
         this.recursoNuevo.id = 0;
         this.recursoNuevo.idAutor = 0;
@@ -327,6 +329,7 @@ export class RegistroRecursoComponent implements OnInit {
                     && recurso.codigoISBN == this.recursoNuevo.codigoISBN ) {
                         this.fotoPortada.idRecurso = recurso.id;
                         this.guardarFotoPortada();
+                        this.guardarRecursoDigital();
                         this.guardarTags(recurso.id);
                         this.toastr.success('Se ha registrado el recurso satisfactoriamente', 'Recurso Registrado');
                         return;
@@ -350,6 +353,7 @@ export class RegistroRecursoComponent implements OnInit {
             .then(recursosConTituloIgual => {
                 this.fotoPortada.idRecurso = this.recursoNuevo.id;
                 this.actualizarFotoPortada();
+                this.actualizarRecursoDigital();
                 this.guardarTags(this.recursoNuevo.id);
                 this.toastr.success('Se ha actualizado el recurso satisfactoriamente', 'Recurso Actualizado');
             })
@@ -374,6 +378,26 @@ export class RegistroRecursoComponent implements OnInit {
 
     guardarFotoPortada(): void {
         this.busy = this.fotoPortadaService.create(this.fotoPortada)
+        .then(respuesta => {
+
+        })
+        .catch(error => {
+
+        });
+    }
+
+    actualizarRecursoDigital(): void {
+        this.busy = this.recursoDigitalService.update(this.recursoDigital)
+        .then(respuesta => {
+
+        })
+        .catch(error => {
+
+        });
+    }
+
+    guardarRecursoDigital(): void {
+        this.busy = this.recursoDigitalService.create(this.recursoDigital)
         .then(respuesta => {
 
         })
@@ -449,6 +473,7 @@ export class RegistroRecursoComponent implements OnInit {
         .then(respuesta => {
             this.recursoNuevo = respuesta;
             this.getFotoPortada(this.recursoNuevo.id);
+            this.getRecursoDigital(this.recursoNuevo.id);
             this.getTags(this.recursoNuevo.id);
         })
         .catch(error => {
@@ -464,6 +489,19 @@ export class RegistroRecursoComponent implements OnInit {
         }
         this.fotoPortada = entidadesRecuperadas[0];
         this.srcFoto = 'data:' + this.fotoPortada.tipoArchivo + ';base64,' + this.fotoPortada.adjunto;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getRecursoDigital(id:number) {
+        this.busy = this.recursoDigitalService.getFiltrado('idRecurso','coincide',id.toString())
+        .then(entidadesRecuperadas => {
+        if( entidadesRecuperadas.toString() === '0' ) {
+            return;
+        }
+        this.recursoDigital = entidadesRecuperadas[0];
         })
         .catch(error => {
 

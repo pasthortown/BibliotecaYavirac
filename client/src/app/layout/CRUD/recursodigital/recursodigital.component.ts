@@ -28,11 +28,8 @@ export class RecursoDigitalComponent implements OnInit {
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
    recursos: Recurso[];
-   recursodigitales: RecursoDigital[];
 
-
-
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoDigitalService, private recursoService: RecursoService, private RecursoDigitalService: RecursoDigitalService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoDigitalService, private recursoService: RecursoService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -50,6 +47,19 @@ export class RecursoDigitalComponent implements OnInit {
          //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
       }));
    }
+
+   CodificarArchivo(event) {
+        const reader = new FileReader();
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                this.entidadSeleccionada.tipoArchivo = file.type;
+                this.entidadSeleccionada.nombreArchivo = file.name;
+                this.entidadSeleccionada.adjunto = reader.result.split(',')[1];
+            };
+        }
+    }
 
    estaSeleccionado(porVerificar): boolean {
       if (this.entidadSeleccionada == null) {
@@ -188,7 +198,7 @@ export class RecursoDigitalComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = RecursoDigital[0];
       this.entidadSeleccionada = this.crearEntidad();
-      this.getRecursoDigital();
+      this.getRecursos();
    }
 
    getPaginaPrimera():void {
@@ -224,10 +234,10 @@ export class RecursoDigitalComponent implements OnInit {
    onSelect(entidadActual: RecursoDigital): void {
       this.entidadSeleccionada = entidadActual;
    }
-   getRecursoDigital(): void {
-      this.busy = this.RecursoDigitalService.getAll()
+   getRecursos(): void {
+      this.busy = this.recursoService.getAll()
       .then(respuesta => {
-         this.recursodigitales = respuesta;
+         this.recursos = respuesta;
       })
       .catch(error => {
          console.log(error);

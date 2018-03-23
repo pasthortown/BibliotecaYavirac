@@ -50,6 +50,7 @@ CREATE TABLE RecursoTag (
   idTag INT NULL,
   PRIMARY KEY (id)
 );
+ALTER TABLE RecursoTag ADD CONSTRAINT unicidad UNIQUE (idRecurso, idTag);
 
 CREATE TABLE Tag (
   id INT NOT NULL AUTO_INCREMENT,
