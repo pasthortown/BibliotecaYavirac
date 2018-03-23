@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { RecursoDigital } from '../../../entidades/CRUD/RecursoDigital';
-import { RecursoDigitalService } from './recursodigital.service';
+import { RecursoDigitalService} from './recursodigital.service';
 
 import 'rxjs/add/operator/toPromise';
 import { ModalComponent } from '../../bs-component/components';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { RecursoService } from '../recurso/recurso.service';
+import { Recurso } from '../../../entidades/CRUD/Recurso';
 
 @Component({
    selector: 'app-recursodigital',
@@ -25,8 +27,12 @@ export class RecursoDigitalComponent implements OnInit {
    paginaUltima: number;
    registrosPorPagina: number;
    esVisibleVentanaEdicion: boolean;
+   recursos: Recurso[];
+   recursodigitales: RecursoDigital[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoDigitalService, private modalService: NgbModal) {
+
+
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoDigitalService, private recursoService: RecursoService, private RecursoDigitalService: RecursoDigitalService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -182,6 +188,7 @@ export class RecursoDigitalComponent implements OnInit {
       this.getPagina(this.paginaActual,this.registrosPorPagina);
       this.entidades = RecursoDigital[0];
       this.entidadSeleccionada = this.crearEntidad();
+      this.getRecursoDigital();
    }
 
    getPaginaPrimera():void {
@@ -217,4 +224,12 @@ export class RecursoDigitalComponent implements OnInit {
    onSelect(entidadActual: RecursoDigital): void {
       this.entidadSeleccionada = entidadActual;
    }
-}
+   getRecursoDigital(): void {
+      this.busy = this.RecursoDigitalService.getAll()
+      .then(respuesta => {
+         this.recursodigitales = respuesta;
+      })
+      .catch(error => {
+         console.log(error);
+      });
+}}
