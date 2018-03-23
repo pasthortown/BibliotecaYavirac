@@ -40,6 +40,8 @@ export class RegistroRecursoComponent implements OnInit {
     srcFoto: string;
     recursoNuevo: Recurso;
     tagsIngresados: string;
+    idRecursoSeleccionado: number;
+    recursos: Recurso[];
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService) {
         this.toastr.setRootViewContainerRef(vcr);
@@ -50,6 +52,7 @@ export class RegistroRecursoComponent implements OnInit {
     }
 
     refresh():void {
+        this.idRecursoSeleccionado = 0;
         this.entidadSeleccionadaAutor = new Autor();
         this.entidadSeleccionadaAutor.id = 0;
         this.entidadSeleccionadaProductora = new Productora();
@@ -67,6 +70,7 @@ export class RegistroRecursoComponent implements OnInit {
         this.getEstados();
         this.getProductoras();
         this.getTipos();
+        this.getRecursos();
     }
 
     openAutor(content){
@@ -123,6 +127,16 @@ export class RegistroRecursoComponent implements OnInit {
         this.busy = this.tipoService.getAll()
         .then(respuesta => {
         this.tipos = respuesta;
+        })
+        .catch(error => {
+        console.log(error);
+        });
+    }
+
+    getRecursos(): void {
+        this.busy = this.recursoService.getAll()
+        .then(respuesta => {
+        this.recursos = respuesta;
         })
         .catch(error => {
         console.log(error);
@@ -324,6 +338,49 @@ export class RegistroRecursoComponent implements OnInit {
             .catch(error => {
 
             });
+        })
+        .catch(error => {
+
+        });
+    }
+
+    seleccionadoRecurso() {
+        this.tagsIngresados = '';
+        this.busy = this.recursoService.get(this.idRecursoSeleccionado)
+        .then(respuesta => {
+            this.recursoNuevo = respuesta;
+            this.getFotoPortada(this.recursoNuevo.id);
+            this.getTags(this.recursoNuevo.id);
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getFotoPortada(id:number) {
+        this.busy = this.fotoPortadaService.getFiltrado('idRecurso','coincide',id.toString())
+        .then(entidadesRecuperadas => {
+        if( entidadesRecuperadas.toString() === '0' ) {
+            return;
+        }
+        this.fotoPortada = entidadesRecuperadas[0];
+        this.srcFoto = 'data:' + this.fotoPortada.tipoArchivo + ';base64,' + this.fotoPortada.adjunto;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    getTags(id:number) {
+        this.busy = this.recursoTagServive.getFiltrado('idRecurso','coincide',id.toString())
+        .then(entidadesRecuperadas => {
+            if( entidadesRecuperadas.toString() === '0' ) {
+                return;
+            }
+            entidadesRecuperadas.forEach(tag => {
+                this.tagsIngresados += tag.descripcion + ', ';
+            });
+            this.tagsIngresados = this.tagsIngresados.trim();
         })
         .catch(error => {
 

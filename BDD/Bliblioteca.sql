@@ -113,3 +113,18 @@ CREATE TABLE FotoPortada (
   adjunto LONGBLOB NULL,
   PRIMARY KEY (id)
 ) ENGINE myISAM;
+
+CREATE TABLE LogMailSender (
+   id INT NOT NULL AUTO_INCREMENT,
+   fecha DATETIME NULL,
+   FromEmail VARCHAR(1024) NULL,
+   FromAlias VARCHAR(1024) NULL,
+   ReplyEmail VARCHAR(1024) NULL,
+   ReplyAlias VARCHAR(1024) NULL,
+   ToEmail VARCHAR(1024) NULL,
+   ToAlias VARCHAR(1024) NULL,
+   Asunto VARCHAR(1024) NULL,
+   Mensaje TEXT NULL,
+   EstadoEnvio VARCHAR(20) NULL,
+   PRIMARY KEY (id)
+);

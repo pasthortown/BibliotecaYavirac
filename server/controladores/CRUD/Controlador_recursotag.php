@@ -46,10 +46,10 @@ class Controlador_recursotag extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM RecursoTag;";
+         $sql = "SELECT RecursoTag.*, Tag.descripcion as 'descripcion' FROM RecursoTag INNER JOIN Tag ON RecursoTag.idTag = Tag.id;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM RecursoTag WHERE id = ?;";
+         $sql = "SELECT RecursoTag.*, Tag.descripcion as 'descripcion' FROM RecursoTag INNER JOIN Tag ON RecursoTag.idTag = Tag.id WHERE id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -81,16 +81,16 @@ class Controlador_recursotag extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna = ?;";
+            $sql = "SELECT RecursoTag.*, Tag.descripcion as 'descripcion' FROM RecursoTag INNER JOIN Tag ON RecursoTag.idTag = Tag.id WHERE $nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT RecursoTag.*, Tag.descripcion as 'descripcion' FROM RecursoTag INNER JOIN Tag ON RecursoTag.idTag = Tag.id WHERE $nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT RecursoTag.*, Tag.descripcion as 'descripcion' FROM RecursoTag INNER JOIN Tag ON RecursoTag.idTag = Tag.id WHERE $nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM RecursoTag WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT RecursoTag.*, Tag.descripcion as 'descripcion' FROM RecursoTag INNER JOIN Tag ON RecursoTag.idTag = Tag.id WHERE $nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
