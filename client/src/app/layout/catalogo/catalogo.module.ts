@@ -13,6 +13,8 @@ import { ProductoraService } from './../CRUD/productora/productora.service';
 import { TagService } from './../CRUD/tag/tag.service';
 import { FotoPortadaService } from './../CRUD/fotoportada/fotoportada.service';
 import { RecursoDigitalService } from './../CRUD/recursodigital/recursodigital.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ComentariosSugerenciasService } from './../CRUD/comentariossugerencias/comentariossugerencias.service';
 
 import { NgxBarcodeModule } from 'ngx-barcode';
 
@@ -20,10 +22,11 @@ import { NgxBarcodeModule } from 'ngx-barcode';
    imports: [
       CommonModule,
       FormsModule,
+      NgbModule,
       CatalogoRoutingModule,
       NgxBarcodeModule
    ],
-   providers: [CatalogoService, RecursoDigitalService, TagService, FotoPortadaService,TipoRecursoService, AutorService, CategoriaRecursoService, ProductoraService, RecursoService],
+   providers: [CatalogoService, ComentariosSugerenciasService, RecursoDigitalService, TagService, FotoPortadaService,TipoRecursoService, AutorService, CategoriaRecursoService, ProductoraService, RecursoService],
    declarations: [CatalogoComponent],
 })
 export class CatalogoModule { }

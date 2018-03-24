@@ -1,3 +1,5 @@
+import { ComentariosSugerenciasService } from './../CRUD/comentariossugerencias/comentariossugerencias.service';
+import { ComentariosSugerencias } from './../../entidades/CRUD/ComentariosSugerencias';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { CatalogoService } from './catalogo.service';
@@ -45,14 +47,13 @@ export class CatalogoComponent implements OnInit {
    srcFoto: string;
    recursosSolicitados: Recurso[];
    recursoDigital: RecursoDigital;
+   comentariosSugerencias: ComentariosSugerencias[];
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private comentariosSugerenciasService: ComentariosSugerenciasService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
    mostrarInfo(content, id){
-      this.getTags(id);
-      this.getFotoPortada(id);
       const options: NgbModalOptions = {
         size: 'lg'
       };
@@ -125,8 +126,25 @@ export class CatalogoComponent implements OnInit {
    }
 
    onSelect(entidadActual: Recurso): void {
-      this.entidadSeleccionada = entidadActual;
-      this.getRecursoDigital(this.entidadSeleccionada.id);
+       this.entidadSeleccionada = entidadActual;
+       this.getRecursoDigital(this.entidadSeleccionada.id);
+       this.getTags(this.entidadSeleccionada.id);
+       this.getFotoPortada(this.entidadSeleccionada.id);
+       this.getComentariosSugerencias(this.entidadSeleccionada.id);
+   }
+
+   getComentariosSugerencias(id:number): void {
+        this.comentariosSugerencias = [];
+        this.busy = this.comentariosSugerenciasService.getFiltrado('idRecurso','coincide',id.toString())
+        .then(entidadesRecuperadas => {
+            if( entidadesRecuperadas.toString() === '0' ) {
+                return;
+            }
+            this.comentariosSugerencias = entidadesRecuperadas;
+        })
+        .catch(error => {
+
+        });
    }
 
    getTipos(): void {
@@ -195,6 +213,7 @@ export class CatalogoComponent implements OnInit {
    }
 
    getTags(id: number) {
+    this.tags = [];
     this.busy = this.catalogoService
     .getTags(id)
     .then(entidadesRecuperadas => {
@@ -206,6 +225,8 @@ export class CatalogoComponent implements OnInit {
    }
 
    getFotoPortada(id:number) {
+    this.fotoPortada = new FotoPortada();
+    this.srcFoto = '';
     this.busy = this.fotoPortadaService.getFiltrado('idRecurso','coincide',id.toString())
     .then(entidadesRecuperadas => {
        if( entidadesRecuperadas.toString() === '0' ) {
@@ -238,6 +259,7 @@ export class CatalogoComponent implements OnInit {
     }
 
     getRecursoDigital(id:number) {
+        this.recursoDigital = new RecursoDigital();
         this.busy = this.recursoDigitalService.getFiltrado('idRecurso','coincide',id.toString())
         .then(entidadesRecuperadas => {
             if( entidadesRecuperadas.toString() === '0' ) {
@@ -248,5 +270,10 @@ export class CatalogoComponent implements OnInit {
         .catch(error => {
 
         });
+    }
+
+    public closeAlert(alert: any) {
+        const index: number = this.comentariosSugerencias.indexOf(alert);
+        this.comentariosSugerencias.splice(index, 1);
     }
 }
