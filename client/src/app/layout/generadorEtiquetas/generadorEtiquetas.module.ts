@@ -8,12 +8,14 @@ import { RecursoService } from './../CRUD/recurso/recurso.service';
 
 import { NgxBarcodeModule } from 'ngx-barcode';
 
+import { GeneradorEtiquetasService } from './generadorEtiquetas.service';
+
 @NgModule({
     imports: [CommonModule,
               GeneradorEtiquetasRoutingModule,
               NgxBarcodeModule
              ],
-    providers: [RecursoService],
+    providers: [RecursoService, GeneradorEtiquetasService],
     declarations: [GeneradorEtiquetasComponent]
 })
 export class GeneradorEtiquetasModule {}

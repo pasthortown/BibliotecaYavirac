@@ -7,6 +7,7 @@ import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng
 
 import { RecursoService } from '../CRUD/recurso/recurso.service';
 import { Recurso } from '../../entidades/CRUD/Recurso';
+import { GeneradorEtiquetasService } from './generadorEtiquetas.service';
 
 @Component({
     selector: 'app-generadorEtiquetas',
@@ -20,7 +21,7 @@ export class GeneradorEtiquetasComponent implements OnInit {
     entidadSeleccionada: Recurso;
     codigo: string;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: RecursoService, private modalService: NgbModal) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private dataService: GeneradorEtiquetasService, private modalService: NgbModal) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 

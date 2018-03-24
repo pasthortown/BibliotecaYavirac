@@ -20,6 +20,9 @@ import { TagService } from './../CRUD/tag/tag.service';
 import { Tag } from './../../entidades/CRUD/Tag';
 import { FotoPortadaService } from '../CRUD/fotoportada/fotoportada.service';
 import { FotoPortada } from './../../entidades/CRUD/FotoPortada';
+import { RecursoDigitalService } from './../CRUD/recursodigital/recursodigital.service';
+import { RecursoDigital } from './../../entidades/CRUD/RecursoDigital';
+import { saveAs } from "file-saver/FileSaver";
 
 @Component({
    selector: 'app-recurso',
@@ -41,8 +44,9 @@ export class CatalogoComponent implements OnInit {
    fotoPortada: FotoPortada;
    srcFoto: string;
    recursosSolicitados: Recurso[];
+   recursoDigital: RecursoDigital;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -55,13 +59,13 @@ export class CatalogoComponent implements OnInit {
       this.modalService.open(content, options)
       .result
       .then((result => {
-         if(result=="pdf"){
-             this.descargarPDF();
+         if(result=='download'){
+             this.descargarRecursoDigital();
          }
-         if(result=="solicitar"){
+         if(result=='solicitar'){
             this.solicitar();
          }
-         if(result=="cerrar"){
+         if(result=='cerrar'){
             // al cancelar
          }
       }),(result => {
@@ -122,6 +126,7 @@ export class CatalogoComponent implements OnInit {
 
    onSelect(entidadActual: Recurso): void {
       this.entidadSeleccionada = entidadActual;
+      this.getRecursoDigital(this.entidadSeleccionada.id);
    }
 
    getTipos(): void {
@@ -162,10 +167,6 @@ export class CatalogoComponent implements OnInit {
       .catch(error => {
          console.log(error);
       });
-   }
-
-   descargarPDF() {
-       alert(1);
    }
 
    solicitar() {
@@ -217,4 +218,35 @@ export class CatalogoComponent implements OnInit {
 
     });
    }
+
+    descargarRecursoDigital() {
+        if(this.recursoDigital.adjunto == '' || this.recursoDigital.adjunto == null){
+            return;
+        }
+        this.downloadFile();
+    }
+
+    downloadFile() {
+        const byteCharacters = atob(this.recursoDigital.adjunto);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: ''+this.recursoDigital.tipoArchivo+'' });
+        saveAs(blob, this.recursoDigital.nombreArchivo);
+    }
+
+    getRecursoDigital(id:number) {
+        this.busy = this.recursoDigitalService.getFiltrado('idRecurso','coincide',id.toString())
+        .then(entidadesRecuperadas => {
+            if( entidadesRecuperadas.toString() === '0' ) {
+                return;
+            }
+            this.recursoDigital = entidadesRecuperadas[0];
+        })
+        .catch(error => {
+
+        });
+    }
 }

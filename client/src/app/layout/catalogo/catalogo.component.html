@@ -124,7 +124,7 @@
                     <div class="form-row">
                         <div class="col-12">
                             <h5>Tags:</h5>
-                            <p class="col-12 text-justify"><span *ngFor="let tag of tags" style="background-color: white; color: black; border: 1px solid #4CAF50; margin:3px; padding:3px; border-radius:5px;">{{tag.descripcion}}</span></p>
+                            <p class="col-12 text-justify"><span *ngFor="let tag of tags">{{tag.descripcion}}, </span></p>
                         </div>
                     </div>
                     <div class="form-row">
@@ -146,8 +146,8 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success col-offset-sm-4" (click)="c('pdf')">
-            <span class="fa fa-file-pdf-o"></span>&nbsp;Descargar PDF
+        <button type="button" class="btn btn-success col-offset-sm-4" (click)="c('download')">
+            <span class="fa fa-file-pdf-o"></span>&nbsp;Descargar Adjunto
         </button>
         <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('solicitar')">
             <span class="fa fa-check-square-o"></span>&nbsp;Solicitar
