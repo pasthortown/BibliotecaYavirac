@@ -1,3 +1,4 @@
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +25,7 @@ import { EjemplarService } from './../CRUD/ejemplar/ejemplar.service';
               NgxBarcodeModule,
               NgbModule,
               FormsModule,
+              HttpModule
             ],
     providers: [ProductoraService, EjemplarService, UbicacionService, RecursoDigitalService, RecursoTagService, TagService, FotoPortadaService, RecursoService, AutorService,TipoRecursoService,CategoriaRecursoService,EstadoService],
     declarations: [RegistroRecursoComponent]

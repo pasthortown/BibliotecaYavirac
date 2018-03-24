@@ -1,3 +1,5 @@
+import { Http, RequestOptions, Headers } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 import { EjemplarService } from './../CRUD/ejemplar/ejemplar.service';
 import { RecursoDigitalService } from './../CRUD/recursodigital/recursodigital.service';
 import { RecursoDigital } from './../../entidades/CRUD/RecursoDigital';
@@ -26,6 +28,7 @@ import { FotoPortadaService } from '../CRUD/fotoportada/fotoportada.service';
 import { Tag } from '../../entidades/CRUD/Tag';
 import { Ubicacion } from './../../entidades/CRUD/Ubicacion';
 import { UbicacionService } from './../CRUD/externos/ubicacion.service';
+import { saveAs } from "file-saver/FileSaver";
 
 @Component({
     selector: 'app-registroRecurso',
@@ -52,7 +55,7 @@ export class RegistroRecursoComponent implements OnInit {
     ejemplares: Ejemplar[];
     paises: Ubicacion[];
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService, private ubicacionService: UbicacionService, private ejemplarService: EjemplarService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService, private ubicacionService: UbicacionService, private ejemplarService: EjemplarService, private http: Http) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -512,6 +515,24 @@ export class RegistroRecursoComponent implements OnInit {
 
     nuevoRecurso() {
         this.refresh();
+    }
+
+    descargarRecursoDigital() {
+        if(this.recursoDigital.adjunto == '' || this.recursoDigital.adjunto == null){
+            return;
+        }
+        this.downloadFile();
+    }
+
+    downloadFile() {
+        const byteCharacters = atob(this.recursoDigital.adjunto);
+        const byteNumbers = new Array(byteCharacters.length);
+        for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+        }
+        const byteArray = new Uint8Array(byteNumbers);
+        const blob = new Blob([byteArray], { type: ''+this.recursoDigital.tipoArchivo+'' });
+        saveAs(blob, this.recursoDigital.nombreArchivo);
     }
 
     seleccionadoRecurso() {

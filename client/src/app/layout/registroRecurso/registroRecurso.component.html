@@ -239,8 +239,14 @@
                                 <strong>Recurso Digital</strong>
                             </div>
                             <div class="col-sm-8">
-                                <div class="input-group-append">
-                                    <input type="file" class="form-control" name="adjunto" id="adjunto" placeholder="Adjunto" #fileInputAdjunto (change)="CodificarArchivoAdjunto($event)">
+                                    <div class="input-group mb-3">
+                                        <input type="file" class="form-control" name="adjunto" id="adjunto" placeholder="Adjunto" #fileInputAdjunto (change)="CodificarArchivoAdjunto($event)">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-success" type="button" (click)="descargarRecursoDigital()"><span class="fa fa-pencil-square-o"></span>&nbsp;Descargar</button>
+                                        </div>
+                                    </div>
+                                <div class="col-12 text-center">
+                                    {{recursoDigital.nombreArchivo}}
                                 </div>
                             </div>
                         </div>
