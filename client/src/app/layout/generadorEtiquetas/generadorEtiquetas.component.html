@@ -5,29 +5,17 @@
       </div>
    </div>
     <div class="row">
-        <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">
-                        <span>
-                        <strong>Título</strong>
-                        </span>
-                    </th>
-                    <th scope="col">
-                        <span>
-                        <strong>Código</strong>
-                        </span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let actual of entidades">
-                    <td>{{actual.titulo}}</td>
-                    <td>
-                        <ngx-barcode [bc-value]="actual.Codigo" [bc-display-value]="false"></ngx-barcode>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="col-12" *ngFor="let actual of entidades">
+            <div class="col-8">
+                <div class="form-group row" style="border: 1px #D3D3D3 solid;">
+                    <div class="col-sm-4">
+                        <ngx-barcode  [bc-value]="actual.Codigo" [bc-display-value]="true"></ngx-barcode>
+                    </div>
+                    <div class="col-8 text-center" style="padding:30px;">
+                        <h5>{{actual.titulo}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
