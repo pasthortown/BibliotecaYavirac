@@ -1,3 +1,6 @@
+import { LoginResult } from './../../entidades/especifico/Login-Result';
+import { PersonaService } from './../CRUD/externos/persona.service';
+import { Persona } from './../../entidades/CRUD/Persona';
 import { ComentariosSugerenciasService } from './../CRUD/comentariossugerencias/comentariossugerencias.service';
 import { ComentariosSugerencias } from './../../entidades/CRUD/ComentariosSugerencias';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
@@ -48,8 +51,10 @@ export class CatalogoComponent implements OnInit {
    recursosSolicitados: Recurso[];
    recursoDigital: RecursoDigital;
    comentariosSugerencias: ComentariosSugerencias[];
+   personasComentan: Persona;
+   comentario: ComentariosSugerencias;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private comentariosSugerenciasService: ComentariosSugerenciasService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private comentariosSugerenciasService: ComentariosSugerenciasService, private personaService: PersonaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -115,6 +120,7 @@ export class CatalogoComponent implements OnInit {
       this.getRecursosSolicitados();
       this.getAll();
       this.entidadSeleccionada = this.crearEntidad();
+      this.nuevoComentario();
       this.getTipos();
       this.getAutores();
       this.getCategorias();
@@ -127,10 +133,32 @@ export class CatalogoComponent implements OnInit {
 
    onSelect(entidadActual: Recurso): void {
        this.entidadSeleccionada = entidadActual;
+       this.nuevoComentario();
        this.getRecursoDigital(this.entidadSeleccionada.id);
        this.getTags(this.entidadSeleccionada.id);
        this.getFotoPortada(this.entidadSeleccionada.id);
        this.getComentariosSugerencias(this.entidadSeleccionada.id);
+   }
+
+   nuevoComentario(): void {
+        this.comentario = new ComentariosSugerencias();
+        const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        const personaLogeada = logedResult.persona;
+        this.comentario.Persona = personaLogeada.nombre1 + ' ' + personaLogeada.nombre2 + ' ' + personaLogeada.apellido1 + ' ' + personaLogeada.apellido2;
+        this.comentario.idRecurso = this.entidadSeleccionada.id;
+        this.comentario.idPersona = personaLogeada.id;
+   }
+
+   registrarComentario() {
+        this.comentario.fecha = new Date();
+        this.busy = this.comentariosSugerenciasService.create(this.comentario)
+        .then(respuesta => {
+            this.getComentariosSugerencias(this.entidadSeleccionada.id);
+            this.nuevoComentario();
+        })
+        .catch(error => {
+
+        });
    }
 
    getComentariosSugerencias(id:number): void {
@@ -141,6 +169,15 @@ export class CatalogoComponent implements OnInit {
                 return;
             }
             this.comentariosSugerencias = entidadesRecuperadas;
+            this.comentariosSugerencias.forEach(comentarioSugerencia => {
+                this.busy = this.personaService.get(comentarioSugerencia.idPersona)
+                .then(persona => {
+                    comentarioSugerencia.Persona = persona.nombre1 + ' ' + persona.nombre2 + ' ' +  persona.apellido1 + ' ' +  persona.apellido2;
+                })
+                .catch(error => {
+
+                });
+            });
         })
         .catch(error => {
 

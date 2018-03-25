@@ -4,4 +4,5 @@ export class ComentariosSugerencias {
    idRecurso: number;
    fecha: Date;
    contenido: string;
+   Persona: string;
 }

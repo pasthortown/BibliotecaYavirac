@@ -76,6 +76,7 @@ export class RegistroRecursoComponent implements OnInit {
         this.recursoDigital = new RecursoDigital();
         this.recursoDigital.id = 0;
         this.recursoNuevo = new Recurso();
+        this.recursoNuevo.idPaisPublicacion = 0;
         this.recursoNuevo.id = 0;
         this.recursoNuevo.idAutor = 0;
         this.recursoNuevo.idProductora = 0;

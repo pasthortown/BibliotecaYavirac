@@ -52,10 +52,10 @@ class Controlador_comentariossugerencias extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM ComentariosSugerencias;";
+         $sql = "SELECT * FROM ComentariosSugerencias ORDER BY fecha DESC;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM ComentariosSugerencias WHERE id = ?;";
+         $sql = "SELECT * FROM ComentariosSugerencias WHERE id = ? ORDER BY fecha DESC;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -66,7 +66,7 @@ class Controlador_comentariossugerencias extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM ComentariosSugerencias LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT * FROM ComentariosSugerencias ORDER BY fecha DESC LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -87,16 +87,16 @@ class Controlador_comentariossugerencias extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna = ?;";
+            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna = ? ORDER BY fecha DESC LIMIT 5;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna ORDER BY fecha DESC LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna ORDER BY fecha DESC LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT * FROM ComentariosSugerencias WHERE $nombreColumna ORDER BY fecha DESC LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
