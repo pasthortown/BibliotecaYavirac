@@ -1,6 +1,4 @@
 <div [@routerTransition]>
-    <marquee bgcolor="#FFFFFF" width="100%" scrolldelay="5" scrollamount="5" direction="left" loop="infinite" face="HanaMinA"><h2>¡FORTALECIENDO CAPACIDADES!</h2>
-    </marquee>
     <div class="row">
         <div class="col-md-12">
             <ngb-carousel>
@@ -14,68 +12,92 @@
             </ngb-carousel>
         </div>
     </div>
-    <br>
-    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
-    <div class="row" style="margin:0px">
+    <div class="row">
+        <div style="float:left; width:100%; height:20px;"></div>
+    </div>
+    <div class="row">
         <div class="col-lg-8">
             <div class="card card-default">
-                <div>
-                    <p align="center">Biblioteca Yavirac</p>
-                    <p>Expone diferentes recursos con los que cuenta, poniéndolos a disposición
-                       de la comunidad educativa, así mismo al público en general fomentando el interés y recuperar
-                       él hábito de la lectura, motivando a las personas a buscar o adquirir información de una manera virtual.</p>
+                <div class="col-12">
+                    <h1 align="center">Biblioteca Yavirac</h1>
+                </div>
+                <div class="col-12">
+                    <h5 align="left"><strong>OBJETIVO</strong></h5>
+                    <p class="col-12 text-justify">Expone diferentes recursos con los que cuenta, poniéndolos a disposición
+                    de la comunidad educativa, así mismo al público en general fomentando el interés y recuperar
+                    él hábito de la lectura, motivando a las personas a buscar o adquirir información de una manera virtual.
+                    </p>
+                </div>
+                <div class="col-12">
+                    <h5 align="left"><strong>MISIÓN</strong></h5>
+                    <p class="col-12 text-justify">Expone diferentes recursos con los que cuenta, poniéndolos a disposición
+                    de la comunidad educativa, así mismo al público en general fomentando el interés y recuperar
+                    él hábito de la lectura, motivando a las personas a buscar o adquirir información de una manera virtual.
+                    </p>
+                </div>
+                <div class="col-12">
+                    <h5 align="left"><strong>VISIÓN</strong></h5>
+                    <p class="col-12 text-justify">Expone diferentes recursos con los que cuenta, poniéndolos a disposición
+                    de la comunidad educativa, así mismo al público en general fomentando el interés y recuperar
+                    él hábito de la lectura, motivando a las personas a buscar o adquirir información de una manera virtual.
+                    </p>
                 </div>
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col-lg-8 -->
         <div class="col-lg-4" style=" color:white;">
             <div class="card card-default mb-3">
                 <div class="card-header" style="background:#F58228;">
                     <i class="fa fa-info-circle fa-2x"></i><font size="5"><strong style="color:black;">&nbsp;Información</strong></font>
                 </div>
                 <div class="card-body"style="background:gray;">
-                <h4 align="center">Ubíquenos</h4>
-                <address><br>
-                Biblioteca Institucional "Yavirac"<br>
-                García Moreno N3-151, <br>
-                Quito EC170130<br>
-                </address>
-                <!-- /.card-header -->
-                <div class="card-body">
-
-                    <!-- <span class="heading">Hours</span> <span class="hours">Mon - Fri: 9 a.m. to  9 p.m.</span> <span class="hours">Sat 9 a.m. to 6 p.m.</span> <span class="hours">Sun: 1 p.m. to 6 p.m.</span> <a class="address" onclick="openAddress('65 Witherspoon Street, Princeton NJ, 08542');"><span>65 Witherspoon Street,</span> <span>Princeton NJ, 08542</span></a> <span class="tel">Tel: 609.924.9529</span> -->
-                    <h4 align="center">Horario</h4>
-                    <ul class="special-hours"> <!-- incrase bottom margin to make more space -->
-                    <li>Lunes: 7 a.m. -  5 p.m.</li>
-                    <li>Martes:7 a.m. -  5 p.m.</li>
-                    <li>Miércoles: 7 a.m. -  5 p.m.</li>
-                    <li>Jueves: 7a.m. -  5 p.m.</li>
-                    <li>Viernes: 7 a.m. -  5 p.m.</li>
-                    </ul>
-
-                </div>
-                <app-notification></app-notification>
-
-                <!-- /.card-body -->
+                    <h4 align="center">Ubíquenos</h4>
+                    <div class="col-12">
+                        <div #gmap style="width:100%;height:200px"></div>
+                    </div>
+                    <div class="card-body">
+                        <h4 align="center">Horario</h4>
+                        <table class="col-12">
+                            <tr>
+                                <th class="col-4">Día</th>
+                                <th class="col-4">Desde</th>
+                                <th class="col-4">Hasta</th>
+                            </tr>
+                            <tr>
+                                <td class="col-4">Lunes</td>
+                                <td class="col-4">8 am</td>
+                                <td class="col-4">5 pm</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4">Martes</td>
+                                <td class="col-4">8 am</td>
+                                <td class="col-4">5 pm</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4">Miércoles</td>
+                                <td class="col-4">8 am</td>
+                                <td class="col-4">5 pm</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4">Jueves</td>
+                                <td class="col-4">8 am</td>
+                                <td class="col-4">5 pm</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4">Viernes</td>
+                                <td class="col-4">8 am</td>
+                                <td class="col-4">5 pm</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- /.col-lg-4 -->
     </div>
 </div>
 <div class="post-footer">
     <div class="container" style="background:gray; color:aliceblue;">
-
-        <div  >
-		 <div class="col-xs-12 col-sm-12 col-md-6"></div>
-            <div>
-<ul>
-
-</ul>
-</div>
-        </div><!-- END FOOTER COLUMN 4: Helpful Links -->
         <div class="row">
+            <div style="float:left; width:100%; height:20px;"></div>
             <div class="col-12 text-center">
                 <div class="form-row">
                     <div class="col-4">
@@ -96,8 +118,8 @@
                 </div>
             </div>
         </div>
-        <br>
-        <div >
+        <div style="float:left; width:100%; height:20px;"></div>
+        <div class="col-12">
             <div class="small" align="center">
                 <h6><span class="nowrap">Biblioteca Institucional - Yavirac</span></h6>
                 <h6><span class="nowrap">&copy; </span><span class="nowrap">Todos los derechos reservados.</span></h6>
