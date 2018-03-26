@@ -11,7 +11,7 @@
             </button>
             &nbsp;
             <div class="form-inline">
-                <input class="form-control" type="text" placeholder="Buscar Recursos" >
+                <input class="form-control" type="text" placeholder="Buscar Recursos" [(ngModel)]="filtroBuscar">
                 <div class="input-group-append">
                     <button type="button" class="btn btn-outline-primary" (click)="getFiltrado()"><span class="fa fa-search"></span></button>
                 </div>

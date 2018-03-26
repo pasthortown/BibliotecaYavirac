@@ -102,4 +102,13 @@ class Controlador_recurso extends Controlador_Base
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
+
+   function buscar($args) {
+      $filtro = $args["filtro"];
+      $filtro = strtoupper($filtro);
+      $sql = "SELECT Recurso.*, CONCAT(Autor.apellidos, ' ', Autor.nombres) as 'Autor', Productora.nombre as 'Productora', CategoriaRecurso.codigo as 'Codigo', CategoriaRecurso.descripcion as 'Categoria', TipoRecurso.descripcion as 'TipoRecurso' FROM Recurso INNER JOIN Autor ON Recurso.idAutor = Autor.id INNER JOIN Productora ON Recurso.idProductora = Productora.id INNER JOIN CategoriaRecurso ON Recurso.idCategoria = CategoriaRecurso.id INNER JOIN TipoRecurso ON Recurso.idTipo = TipoRecurso.id WHERE (UPPER(Recurso.titulo) like '%$filtro%') OR (UPPER(Recurso.descripcion) like '%$filtro%') OR (UPPER(Recurso.contenido) like '%$filtro%') OR (UPPER(Autor.nombres) like '%$filtro%') OR (UPPER(Autor.apellidos) like '%$filtro%') ORDER BY Recurso.titulo ASC;";
+      $parametros = array($filtro);
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      return $respuesta;
+   }
 }

@@ -53,6 +53,7 @@ export class CatalogoComponent implements OnInit {
    comentariosSugerencias: ComentariosSugerencias[];
    personasComentan: Persona;
    comentario: ComentariosSugerencias;
+   filtroBuscar: string;
 
    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private comentariosSugerenciasService: ComentariosSugerenciasService, private personaService: PersonaService, private modalService: NgbModal) {
       this.toastr.setRootViewContainerRef(vcr);
@@ -103,7 +104,14 @@ export class CatalogoComponent implements OnInit {
    }
 
    getFiltrado(): void {
+    this.busy = this.dataService
+    .buscar(this.filtroBuscar)
+    .then(entidadesRecuperadas => {
+        this.entidades = entidadesRecuperadas
+    })
+    .catch(error => {
 
+    });
    }
 
    isValid(entidadPorEvaluar: Recurso): boolean {

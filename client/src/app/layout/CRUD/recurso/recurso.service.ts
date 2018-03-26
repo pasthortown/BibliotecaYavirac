@@ -23,6 +23,10 @@ export class RecursoService {
       return this.http.get(this.urlBase+'/leer').toPromise().then(response=>response.json() as Recurso[]).catch(this.handleError);
    }
 
+   buscar(filtro: string): Promise<Recurso[]> {
+      return this.http.get(this.urlBase+'/buscar?filtro=' + filtro).toPromise().then(response=>response.json() as Recurso[]).catch(this.handleError);
+   }
+
    getPagina(pagina: number, tamanoPagina: number): Promise<Recurso[]> {
       return this.http.get(this.urlBase+'/leer_paginado' + '?pagina=' + pagina + '&registros_por_pagina=' + tamanoPagina).toPromise().then(response=>response.json() as Recurso[]).catch(this.handleError);
    }
