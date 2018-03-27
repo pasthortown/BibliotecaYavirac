@@ -14,6 +14,7 @@ const routes: Routes = [
             { path: 'hojasolicitud', loadChildren: './hojaSolicitud/hojaSolicitud.module#HojaSolicitudModule' },
             { path: 'registrorecurso', loadChildren: './registroRecurso/registroRecurso.module#RegistroRecursoModule' },
             { path: 'recursodigital', loadChildren: './CRUD/recursodigital/recursodigital.module#RecursoDigitalModule' },
+            { path: 'descargarecursodigital', loadChildren: './CRUD/descargarecursodigital/descargarecursodigital.module#DescargaRecursoDigitalModule' },
             { path: 'autor', loadChildren: './CRUD/autor/autor.module#AutorModule' },
             { path: 'perfil', loadChildren: './perfil/perfil.module#PerfilModule' },
             { path: 'tag', loadChildren: './CRUD/tag/tag.module#TagModule' },

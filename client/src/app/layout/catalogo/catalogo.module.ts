@@ -16,6 +16,7 @@ import { RecursoDigitalService } from './../CRUD/recursodigital/recursodigital.s
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ComentariosSugerenciasService } from './../CRUD/comentariossugerencias/comentariossugerencias.service';
 import { PersonaService } from './../CRUD/externos/persona.service';
+import { DescargaRecursoDigitalService } from './../CRUD/descargarecursodigital/descargarecursodigital.service';
 
 import { NgxBarcodeModule } from 'ngx-barcode';
 
@@ -27,7 +28,7 @@ import { NgxBarcodeModule } from 'ngx-barcode';
       CatalogoRoutingModule,
       NgxBarcodeModule
    ],
-   providers: [CatalogoService, PersonaService, ComentariosSugerenciasService, RecursoDigitalService, TagService, FotoPortadaService,TipoRecursoService, AutorService, CategoriaRecursoService, ProductoraService, RecursoService],
+   providers: [CatalogoService, DescargaRecursoDigitalService, PersonaService, ComentariosSugerenciasService, RecursoDigitalService, TagService, FotoPortadaService,TipoRecursoService, AutorService, CategoriaRecursoService, ProductoraService, RecursoService],
    declarations: [CatalogoComponent],
 })
 export class CatalogoModule { }

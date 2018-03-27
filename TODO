@@ -1,8 +1,9 @@
 CATALOGO:
 - Disponibilidad
+- No debe ser posible solicitar libros electronicos.
+- Se debe llevar registro de los libros descargados.
 
 Solicitud:
-- Aceptación
 - Envio a correos
 
 Devolución de Recursos

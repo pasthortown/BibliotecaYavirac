@@ -1,3 +1,5 @@
+import { DescargaRecursoDigitalService } from './../CRUD/descargarecursodigital/descargarecursodigital.service';
+import { DescargaRecursoDigital } from './../../entidades/CRUD/DescargaRecursoDigital';
 import { LoginResult } from './../../entidades/especifico/Login-Result';
 import { PersonaService } from './../CRUD/externos/persona.service';
 import { Persona } from './../../entidades/CRUD/Persona';
@@ -54,8 +56,9 @@ export class CatalogoComponent implements OnInit {
    personasComentan: Persona;
    comentario: ComentariosSugerencias;
    filtroBuscar: string;
+   descargaRecursoDigital: DescargaRecursoDigital;
 
-   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private comentariosSugerenciasService: ComentariosSugerenciasService, private personaService: PersonaService, private modalService: NgbModal) {
+   constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private catalogoService: CatalogoService, private dataService: RecursoService, private tagService: TagService, private tipoService: TipoRecursoService, private autorService: AutorService, private categoriaService: CategoriaRecursoService, private productoraService: ProductoraService, private fotoPortadaService: FotoPortadaService, private recursoDigitalService: RecursoDigitalService, private comentariosSugerenciasService: ComentariosSugerenciasService, private personaService: PersonaService, private modalService: NgbModal, private descargaRecursoDigitalService: DescargaRecursoDigitalService) {
       this.toastr.setRootViewContainerRef(vcr);
    }
 
@@ -125,14 +128,17 @@ export class CatalogoComponent implements OnInit {
    }
 
    refresh(): void {
-      this.getRecursosSolicitados();
-      this.getAll();
-      this.entidadSeleccionada = this.crearEntidad();
-      this.nuevoComentario();
-      this.getTipos();
-      this.getAutores();
-      this.getCategorias();
-      this.getProductoras();
+        this.recursoDigital = new RecursoDigital();
+        this.recursoDigital.id = 0;
+        this.descargaRecursoDigital = new DescargaRecursoDigital();
+        this.getRecursosSolicitados();
+        this.getAll();
+        this.entidadSeleccionada = this.crearEntidad();
+        this.nuevoComentario();
+        this.getTipos();
+        this.getAutores();
+        this.getCategorias();
+        this.getProductoras();
    }
 
    ngOnInit() {
@@ -289,7 +295,20 @@ export class CatalogoComponent implements OnInit {
         if(this.recursoDigital.adjunto == '' || this.recursoDigital.adjunto == null){
             return;
         }
-        this.downloadFile();
+        this.descargaRecursoDigital = new DescargaRecursoDigital();
+        this.descargaRecursoDigital.fechaDescarga = new Date();
+        const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
+        let solicitante: Persona;
+        solicitante = logedResult.persona;
+        this.descargaRecursoDigital.idPersona = solicitante.id;
+        this.descargaRecursoDigital.idRecursoDigital = this.recursoDigital.id;
+        this.busy = this.descargaRecursoDigitalService.create(this.descargaRecursoDigital)
+        .then(respuesta => {
+            this.downloadFile();
+        })
+        .catch(error => {
+
+        });
     }
 
     downloadFile() {
@@ -305,6 +324,7 @@ export class CatalogoComponent implements OnInit {
 
     getRecursoDigital(id:number) {
         this.recursoDigital = new RecursoDigital();
+        this.recursoDigital.id = 0;
         this.busy = this.recursoDigitalService.getFiltrado('idRecurso','coincide',id.toString())
         .then(entidadesRecuperadas => {
             if( entidadesRecuperadas.toString() === '0' ) {

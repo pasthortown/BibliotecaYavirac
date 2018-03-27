@@ -19,7 +19,10 @@ class Controlador_solicitud extends Controlador_Base
       $parametros = array($solicitud->idPersona,$solicitud->fechaSolicitud,$solicitud->fechaMax,$solicitud->fechaDevolucion);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
-         return true;
+         $sql = "SELECT id FROM Solicitud WHERE idPersona = '$solicitud->idPersona' AND fechaSolicitud = '$solicitud->fechaSolicitud';";
+         $parametros = array();
+         $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+         return $respuesta;
       }else{
          return false;
       }

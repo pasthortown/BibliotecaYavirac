@@ -16,4 +16,6 @@ export class Recurso {
    Categoria: string;
    Codigo: string;
    TipoRecurso: string;
+   Bibliografia: string;
+   FechaRetorno: Date;
 }

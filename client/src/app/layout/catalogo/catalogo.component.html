@@ -178,7 +178,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success col-offset-sm-4" (click)="c('download')">
+        <button *ngIf="this.recursoDigital.id != 0" type="button" class="btn btn-success col-offset-sm-4" (click)="c('download')">
             <span class="fa fa-file-pdf-o"></span>&nbsp;Descargar Adjunto
         </button>
         <button type="button" class="btn btn-primary col-offset-sm-4" (click)="c('solicitar')">

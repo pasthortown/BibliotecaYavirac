@@ -13,8 +13,9 @@ class Recurso
    public $fecha;
    public $idPaisPublicacion;
    public $ciudadPublicacion;
+   public $bibliografia;
 
-   function __construct($id,$idTipo,$idAutor,$idCategoria,$idProductora,$titulo,$codigoISBN,$descripcion,$contenido,$fecha,$idPaisPublicacion,$ciudadPublicacion){
+   function __construct($id,$idTipo,$idAutor,$idCategoria,$idProductora,$titulo,$codigoISBN,$descripcion,$contenido,$fecha,$idPaisPublicacion,$ciudadPublicacion, $bibliografia){
       $this->id = $id;
       $this->idTipo = $idTipo;
       $this->idAutor = $idAutor;
@@ -27,6 +28,7 @@ class Recurso
       $this->fecha = $fecha;
       $this->idPaisPublicacion = $idPaisPublicacion;
       $this->ciudadPublicacion = $ciudadPublicacion;
+      $this->bibliografia = $bibliografia;
    }
 }
 ?>

@@ -12,6 +12,14 @@ CREATE TABLE Solicitud (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE DescargaRecursoDigital (
+  id INT NOT NULL AUTO_INCREMENT ,
+  idPersona INT NOT NULL,
+  idRecursoDigital INT NOT NULL,
+  fechaDescarga DATETIME NOT NULL ,
+  PRIMARY KEY (id)
+);
+
 CREATE TABLE RecursoDigital (
   id INT NOT NULL AUTO_INCREMENT,
   idRecurso INT NOT NULL,

@@ -4,7 +4,7 @@
         <div #encabezadoSolicitudMatricula style="float:left; width: 210mm; height:40mm;">
             <div class="form-group row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-left">
-                    <ngx-barcode [bc-value]="fechaActual | date:'short'" [bc-display-value]="false"></ngx-barcode>
+                    <ngx-barcode [bc-value]="codigo" [bc-display-value]="false"></ngx-barcode>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
                     <img alt="YAVIRAC" height="100px" src="./../../../assets/images/logos/INSTITUTO TECNOLÓGICO SUPERIOR DE TURISMO Y PATRIMONIO YAVIRAC.png" />
@@ -21,7 +21,7 @@
             <div class="form-group row">
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                    <span>{{fechaActual | date:'medium'}}</span>
+                    <span>{{solicitudActual.fechaSolicitud | date:'medium'}}</span>
                 </div>
             </div>
             <div class="form-group row">
@@ -32,30 +32,20 @@
             <div class="form-group row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
                     <div style="width:100%;height:20px;"></div>
-                    <p align="justify">Yo, <strong>{{solicitante.apellido1}} {{solicitante.apellido2}} {{solicitante.nombre1}} {{solicitante.nombre2}}</strong> con documento de identidad Nº <strong>{{solicitante.identificacion}}</strong>, me comprometo a cuidar los recursos solicitados en la presente y a entregarlos en las mismas condiciones que los recibo, cumpliendo los plazos acordados.</p>
+                    <p align="justify">Yo, <strong>{{solicitante.apellido1}} {{solicitante.apellido2}} {{solicitante.nombre1}} {{solicitante.nombre2}}</strong> con documento de identidad Nº <strong>{{solicitante.identificacion}}</strong>, me comprometo a cuidar los recursos solicitados en la presente y a entregarlos en las mismas condiciones que los recibo, máximo el día <strong>{{solicitudActual.fechaMax | date:'EEEE, dd MMMM yyyy HH:mm:ss'}}</strong>.</p>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
-                    <table class="table table-striped table-bordered">
+                    <table class="col-12 table table-striped table-bordered">
                         <thead class="thead-dark">
                            <tr>
-                              <th scope="col">
+                              <th scope="col-6">
                                  <span>
-                                    <strong>Categoría</strong>
+                                    <strong>Recurso</strong>
                                  </span>
                               </th>
-                              <th scope="col">
-                                 <span>
-                                    <strong>Autor</strong>
-                                 </span>
-                              </th>
-                              <th scope="col">
-                                 <span>
-                                    <strong>Título</strong>
-                                 </span>
-                              </th>
-                              <th scope="col">
+                              <th scope="col-3">
                                 <span>
                                    <strong>Retirar</strong>
                                 </span>
@@ -64,9 +54,7 @@
                         </thead>
                         <tbody>
                            <tr *ngFor="let actual of recursosSolicitados">
-                              <td>{{actual.Categoria}}</td>
-                              <td>{{actual.Autor}}</td>
-                              <td>{{actual.titulo}}</td>
+                              <td>{{actual.Bibliografia}}</td>
                               <td>
                                 <button type="button" class="btn btn-danger" (click)="retirar(actual.id)">
                                     <span class="fa fa-trash"></span>
