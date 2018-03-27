@@ -6,7 +6,6 @@ import { LoginResult } from './../../../entidades/especifico/Login-Result';
 import { PersonaService } from '../../../layout/CRUD/externos/persona.service';
 import { Persona } from './../../../entidades/CRUD/Persona';
 
-
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -16,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
     pushRightClass: string = 'push-right';
     username: string;
+
 
     constructor(private translate: TranslateService, public router: Router) {
 
