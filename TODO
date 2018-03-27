@@ -1,10 +1,9 @@
 CATALOGO:
 - Disponibilidad
-- No debe ser posible solicitar libros electronicos.
-- Se debe llevar registro de los libros descargados.
 
 Solicitud:
 - Envio a correos
+- Visor Biblioteca
 
 Devolución de Recursos
 
