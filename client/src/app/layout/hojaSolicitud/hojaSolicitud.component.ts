@@ -108,6 +108,7 @@ export class HojaSolicitudComponent implements OnInit {
             this.toastr.warning('No hay recursos solicitados.', 'Solicitud');
             return;
         }
+        this.solicitudActual.fechaDevolucion = new Date('1969-12-31 19:00:00');
         this.busy = this.solicitudService
         .create(this.solicitudActual)
         .then(respuesta => {
