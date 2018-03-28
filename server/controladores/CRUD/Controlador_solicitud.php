@@ -67,10 +67,10 @@ class Controlador_solicitud extends Controlador_Base
    {
       $id = $args["id"];
       if ($id==""){
-         $sql = "SELECT * FROM Solicitud;";
+         $sql = "SELECT Biblioteca.Solicitud.*, CONCAT(ignug.Persona.identificacion,'-',Biblioteca.Solicitud.id) as 'Codigo' FROM Solicitud INNER JOIN ignug.Persona ON Biblioteca.Solicitud.idPersona = ignug.Persona.id;";
       }else{
       $parametros = array($id);
-         $sql = "SELECT * FROM Solicitud WHERE id = ?;";
+         $sql = "SELECT Biblioteca.Solicitud.*, CONCAT(ignug.Persona.identificacion,'-',Biblioteca.Solicitud.id) as 'Codigo' FROM Solicitud INNER JOIN ignug.Persona ON Biblioteca.Solicitud.idPersona = ignug.Persona.id WHERE Biblioteca.Solicitud.id = ?;";
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
@@ -81,7 +81,7 @@ class Controlador_solicitud extends Controlador_Base
       $pagina = $args["pagina"];
       $registrosPorPagina = $args["registros_por_pagina"];
       $desde = (($pagina-1)*$registrosPorPagina);
-      $sql ="SELECT * FROM Solicitud LIMIT $desde,$registrosPorPagina;";
+      $sql ="SELECT Biblioteca.Solicitud.*, CONCAT(ignug.Persona.identificacion,'-',Biblioteca.Solicitud.id) as 'Codigo' FROM Solicitud INNER JOIN ignug.Persona ON Biblioteca.Solicitud.idPersona = ignug.Persona.id LIMIT $desde,$registrosPorPagina;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
@@ -102,16 +102,16 @@ class Controlador_solicitud extends Controlador_Base
       switch ($tipoFiltro){
          case "coincide":
             $parametros = array($filtro);
-            $sql = "SELECT * FROM Solicitud WHERE $nombreColumna = ?;";
+            $sql = "SELECT Biblioteca.Solicitud.*, CONCAT(ignug.Persona.identificacion,'-',Biblioteca.Solicitud.id) as 'Codigo' FROM Solicitud INNER JOIN ignug.Persona ON Biblioteca.Solicitud.idPersona = ignug.Persona.id WHERE Biblioteca.Solicitud.$nombreColumna = ?;";
             break;
          case "inicia":
-            $sql = "SELECT * FROM Solicitud WHERE $nombreColumna LIKE '$filtro%';";
+            $sql = "SELECT Biblioteca.Solicitud.*, CONCAT(ignug.Persona.identificacion,'-',Biblioteca.Solicitud.id) as 'Codigo' FROM Solicitud INNER JOIN ignug.Persona ON Biblioteca.Solicitud.idPersona = ignug.Persona.id WHERE Biblioteca.Solicitud.$nombreColumna LIKE '$filtro%';";
             break;
          case "termina":
-            $sql = "SELECT * FROM Solicitud WHERE $nombreColumna LIKE '%$filtro';";
+            $sql = "SELECT Biblioteca.Solicitud.*, CONCAT(ignug.Persona.identificacion,'-',Biblioteca.Solicitud.id) as 'Codigo' FROM Solicitud INNER JOIN ignug.Persona ON Biblioteca.Solicitud.idPersona = ignug.Persona.id WHERE Biblioteca.Solicitud.$nombreColumna LIKE '%$filtro';";
             break;
          default:
-            $sql = "SELECT * FROM Solicitud WHERE $nombreColumna LIKE '%$filtro%';";
+            $sql = "SELECT Biblioteca.Solicitud.*, CONCAT(ignug.Persona.identificacion,'-',Biblioteca.Solicitud.id) as 'Codigo' FROM Solicitud INNER JOIN ignug.Persona ON Biblioteca.Solicitud.idPersona = ignug.Persona.id WHERE Biblioteca.Solicitud.$nombreColumna LIKE '%$filtro%';";
             break;
       }
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);

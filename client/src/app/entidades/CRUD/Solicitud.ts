@@ -4,4 +4,5 @@ export class Solicitud {
    fechaSolicitud: Date;
    fechaMax: Date;
    fechaDevolucion: Date;
+   Codigo: string;
 }

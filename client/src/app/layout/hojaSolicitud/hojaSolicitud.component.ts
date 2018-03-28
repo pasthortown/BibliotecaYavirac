@@ -27,7 +27,6 @@ export class HojaSolicitudComponent implements OnInit {
     solicitante: Persona;
     recursosSolicitados: Recurso[];
     solicitudActual: Solicitud;
-    codigo: string;
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private rd: Renderer2, private solicitudService: SolicitudService, private detalleSolicitudService: DetalleSolicitudService) {
         this.toastr.setRootViewContainerRef(vcr);
@@ -40,8 +39,8 @@ export class HojaSolicitudComponent implements OnInit {
         this.solicitante = logedResult.persona;
         this.solicitudActual.idPersona = logedResult.persona.id;
         this.solicitudActual.id = 0;
+        this.solicitudActual.Codigo = this.solicitante.identificacion;
         this.solicitudActual.fechaMax = new Date();
-        this.codigo = this.solicitudActual.fechaSolicitud.getFullYear().toString() + '-' + (this.solicitudActual.fechaSolicitud.getMonth() +1).toString() + '-' + this.solicitudActual.id;
         let nuevaFecha: Date = new Date();
         nuevaFecha.setDate(nuevaFecha.getDate()+3);
         if (nuevaFecha.getDay()==0) {
@@ -117,6 +116,7 @@ export class HojaSolicitudComponent implements OnInit {
                 let detalleSolicitud = new DetalleSolicitud();
                 detalleSolicitud.idRecurso = recursoSolicitado.id;
                 detalleSolicitud.idSolicitud = respuesta[0].id;
+                this.solicitudActual.Codigo = this.solicitante.identificacion + '-' + respuesta[0].id;
                 this.busy = this.detalleSolicitudService
                 .create(detalleSolicitud)
                 .then(r1 => {

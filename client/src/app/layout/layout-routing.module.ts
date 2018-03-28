@@ -12,6 +12,7 @@ const routes: Routes = [
             { path: 'generadoretiquetas', loadChildren: './generadorEtiquetas/generadorEtiquetas.module#GeneradorEtiquetasModule' },
             { path: 'catalogo', loadChildren: './catalogo/catalogo.module#CatalogoModule' },
             { path: 'hojasolicitud', loadChildren: './hojaSolicitud/hojaSolicitud.module#HojaSolicitudModule' },
+            { path: 'gestionsolicitudes', loadChildren: './gestionSolicitudes/gestionSolicitudes.module#GestionSolicitudesModule' },
             { path: 'registrorecurso', loadChildren: './registroRecurso/registroRecurso.module#RegistroRecursoModule' },
             { path: 'recursodigital', loadChildren: './CRUD/recursodigital/recursodigital.module#RecursoDigitalModule' },
             { path: 'descargarecursodigital', loadChildren: './CRUD/descargarecursodigital/descargarecursodigital.module#DescargaRecursoDigitalModule' },
