@@ -31,7 +31,6 @@ class Controlador_solicitud extends Controlador_Base
    function actualizar($args)
    {
       $solicitud = new Solicitud($args["id"],$args["idPersona"],$args["fechaSolicitud"],$args["fechaMax"],$args["fechaDevolucion"]);
-      $parametros = array($solicitud->idPersona,$solicitud->fechaSolicitud,$solicitud->fechaMax,$solicitud->fechaDevolucion,$solicitud->id);
       $sql = "UPDATE Solicitud SET idPersona = ?,fechaSolicitud = ?,fechaMax = ?,fechaDevolucion = ? WHERE id = ?;";
       $fechaSolicitudNoSQLTime = strtotime($solicitud->fechaSolicitud);
       $fechaSolicitudSQLTime = date("Y-m-d H:i:s", $fechaSolicitudNoSQLTime);
@@ -42,6 +41,7 @@ class Controlador_solicitud extends Controlador_Base
       $fechaDevolucionNoSQLTime = strtotime($solicitud->fechaDevolucion);
       $fechaDevolucionSQLTime = date("Y-m-d H:i:s", $fechaDevolucionNoSQLTime);
       $solicitud->fechaDevolucion = $fechaDevolucionSQLTime;
+      $parametros = array($solicitud->idPersona,$solicitud->fechaSolicitud,$solicitud->fechaMax,$solicitud->fechaDevolucion,$solicitud->id);
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       if(is_null($respuesta[0])){
          return true;

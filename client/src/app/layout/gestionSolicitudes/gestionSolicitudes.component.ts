@@ -69,7 +69,11 @@ export class GestionSolicitudesComponent implements OnInit {
             if ( JSON.stringify(respuesta) == '[0]' ) {
                 return;
             }
-            this.solicitudes = respuesta;
+            respuesta.forEach(element => {
+                if(element.fechaDevolucion.toString().split('-')[0]=='1969'){
+                    this.solicitudes.push(element);
+                }
+            });
         })
         .catch(error => {
 
@@ -102,6 +106,21 @@ export class GestionSolicitudesComponent implements OnInit {
         .get(this.solicitudActual.idPersona)
         .then(respuesta => {
             this.solicitante = respuesta;
+        })
+        .catch(error => {
+
+        });
+    }
+
+    entregado() {
+        this.solicitudActual.fechaDevolucion = new Date();
+        this.busy = this.solicitudService
+        .update(this.solicitudActual)
+        .then(respuesta => {
+            console.log(this.solicitudActual);
+            alert(respuesta);
+            this.toastr.success('Solicitud Cerrada Satisfactoriamente.', 'Solicitud');
+            this.refresh();
         })
         .catch(error => {
 
