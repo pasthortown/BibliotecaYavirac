@@ -1,3 +1,4 @@
+import { MailData } from './../../entidades/especifico/MailData';
 import { PersonaService } from './../CRUD/externos/persona.service';
 import { RecursoService } from './../CRUD/recurso/recurso.service';
 import { DetalleSolicitudService } from './../CRUD/detallesolicitud/detallesolicitud.service';
@@ -13,6 +14,7 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { SolicitudService } from '../CRUD/solicitud/solicitud.service';
+import { MailSenderService } from './../CRUD/externos/mailsender.service';
 
 @Component({
     selector: 'app-gestionSolicitudes',
@@ -33,7 +35,7 @@ export class GestionSolicitudesComponent implements OnInit {
     codigo: string;
     idSolicitudSeleccionada: number;
 
-    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private rd: Renderer2, private solicitudService: SolicitudService, private detalleSolicitudService: DetalleSolicitudService, private recursoService: RecursoService, private personaService: PersonaService) {
+    constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private rd: Renderer2, private solicitudService: SolicitudService, private detalleSolicitudService: DetalleSolicitudService, private recursoService: RecursoService, private personaService: PersonaService, private mailSender: MailSenderService) {
         this.toastr.setRootViewContainerRef(vcr);
     }
 
@@ -192,6 +194,7 @@ export class GestionSolicitudesComponent implements OnInit {
             .then(respuesta => {
                 cuenta++;
                 if(cuenta == this.recursosSolicitados.length){
+                    this.enviarMails();
                     this.toastr.success('Solicitud Actualizada Satisfactoriamente.', 'Solicitud');
                     this.refresh();
                 }
@@ -199,6 +202,57 @@ export class GestionSolicitudesComponent implements OnInit {
             .catch(error => {
 
             });
+        });
+    }
+
+    enviarMails() {
+        let mensaje: string;
+        let recursos: string;
+        this.recursosSolicitados.forEach(recurso => {
+            recursos += recurso.Bibliografia + '<br/>';
+        });
+        mensaje = '<div style="float:left;width:600px;border-radius:5px;border-style:solid;border-width:15px 1px 1px 1px;margin:10px;border-color:#4076ce"><div style="float:left;width:260px;text-align:center;border-radius:5px;border-style:solid;border-width:1px 1px 1px 1px;margin:10px;border-color:white"><img src="https://ci4.googleusercontent.com/proxy/n0C7aY6WrhX-7c6F2zmFp0sqsX4zMZQxbm0PJDDsD2cv2ftIKOd-rU24ksOQoCLzzq92Okbr7ZgVZRcz3VZb6n8Odr0SnFKpxL7vScIPlWd74qNNw_eW=s0-d-e1-ft#http://www.institutobenitojuarez.edu.ec/img/email/logoyavirac.png" alt="" style="width:200px;height:auto;margin:10px"><h5>SOLICITUD DE RECURSOS DE BIBLITECA</h5><h3>#nombre1 #nombre2 #apellido1 #apellido2</h3></div><div style="float:right;width:260px;border-radius:5px;border-style:solid;border-width:1px 1px 1px 1px;margin-top:10px;margin-bottom:10px;margin-right:10px;border-color:white;font-size:10px"><div style="margin-top:10px;text-indent:10px;float:left;width:260px;border-radius:5px 5px 0px 0px;border-style:solid;border-color:#4076ce;background-color:#4076ce;color:white;font-size:10px;font-family:"Lucida Sans","Lucida Sans Regular","Lucida Grande","Lucida Sans Unicode",Geneva,Verdana,sans-serif">Código:</div><div style="text-indent:10px;float:left;width:260px;border-radius:0px 0px 5px 5px;border-style:solid;background-color:white;color:black;border-color:#4076ce;font-size:10px;font-family:"Lucida Sans","Lucida Sans Regular","Lucida Grande","Lucida Sans Unicode",Geneva,Verdana,sans-serif;padding-top:10px;padding-bottom:10px"><h3>#codigo</h3></div><div style="margin-top:10px;text-indent:10px;float:left;width:260px;border-radius:5px 5px 0px 0px;border-style:solid;border-color:#4076ce;background-color:#4076ce;color:white;font-size:10px;font-family:"Lucida Sans","Lucida Sans Regular","Lucida Grande","Lucida Sans Unicode",Geneva,Verdana,sans-serif">Recursos:</div><div style="text-indent:10px;float:left;width:260px;border-radius:0px 0px 5px 5px;border-style:solid;background-color:white;color:black;border-color:#4076ce;font-size:10px;font-family:"Lucida Sans","Lucida Sans Regular","Lucida Grande","Lucida Sans Unicode",Geneva,Verdana,sans-serif;padding-top:10px;padding-bottom:10px">#recursos</div><div style="margin-top:10px;text-indent:10px;float:left;width:260px;border-radius:5px 5px 0px 0px;border-style:solid;border-color:#4076ce;background-color:#4076ce;color:white;font-size:10px;font-family:"Lucida Sans","Lucida Sans Regular","Lucida Grande","Lucida Sans Unicode",Geneva,Verdana,sans-serif">Fecha de Devolución:</div><div style="text-indent:10px;float:left;width:260px;border-radius:0px 0px 5px 5px;border-style:solid;background-color:white;color:black;border-color:#4076ce;font-size:10px;font-family:"Lucida Sans","Lucida Sans Regular","Lucida Grande","Lucida Sans Unicode",Geneva,Verdana,sans-serif;padding-top:10px;padding-bottom:10px">#fechaDevolucion</div></div></div>';
+        let mailToEstudiante: MailData;
+        mailToEstudiante = new MailData();
+        mailToEstudiante.ToAlias = this.solicitante.nombre1 + ' ' + this.solicitante.nombre2 + ' ' + this.solicitante.apellido1 + ' ' + this.solicitante.apellido2;
+        mensaje = mensaje.replace('#solicitante', mailToEstudiante.ToAlias);
+        mensaje = mensaje.replace('#codigo', this.solicitudActual.Codigo);
+        mensaje = mensaje.replace('#recursos', recursos);
+        mensaje = mensaje.replace('#fechaDevolucion', this.solicitudActual.fechaDevolucion.toLocaleString());
+        mailToEstudiante.FromAlias = 'BIBLIOTECA YAVIRAC';
+        mailToEstudiante.FromClave = '1234Biblioteca*';
+        mailToEstudiante.FromEmail = 'biblioteca@yavirac.edu.ec';
+        mailToEstudiante.ReplyAlias = 'BIBLIOTECA YAVIRAC';
+        mailToEstudiante.ReplyEmail = 'biblioteca@yavirac.edu.ec';
+        mailToEstudiante.ToEmail = this.solicitante.correoElectronicoInstitucional;
+        mailToEstudiante.Asunto = 'SOLCITITUD DE BIBLIOTECA ' + this.solicitudActual.Codigo;
+        let mailToBiblioteca: MailData;
+        mailToBiblioteca = new MailData();
+        mailToBiblioteca.FromAlias = 'BIBLIOTECA YAVIRAC';
+        mailToBiblioteca.FromClave = '1234Biblioteca*';
+        mailToBiblioteca.FromEmail = 'biblioteca@yavirac.edu.ec';
+        mailToBiblioteca.ReplyAlias = 'BIBLIOTECA YAVIRAC';
+        mailToBiblioteca.ReplyEmail = 'biblioteca@yavirac.edu.ec';
+        mailToBiblioteca.ToAlias = 'BIBLIOTECA YAVIRAC';
+        mailToBiblioteca.ToEmail = 'biblioteca@yavirac.edu.ec';
+        mailToBiblioteca.Asunto = 'SOLCITITUD DE BIBLIOTECA ' + this.solicitudActual.Codigo;
+        mailToBiblioteca.Mensaje = mensaje;
+        mailToEstudiante.Mensaje = mensaje;
+        this.busy = this.mailSender
+        .sendMail(mailToBiblioteca)
+        .then(respuesta => {
+
+        })
+        .catch(error => {
+
+        });
+        this.busy = this.mailSender
+        .sendMail(mailToEstudiante)
+        .then(respuesta => {
+
+        })
+        .catch(error => {
+
         });
     }
 }

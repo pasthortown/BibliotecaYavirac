@@ -1,3 +1,4 @@
+import { MailSenderService } from './../CRUD/externos/mailsender.service';
 import { PersonaService } from './../CRUD/externos/persona.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,7 @@ import { RecursoService } from './../CRUD/recurso/recurso.service';
 
 @NgModule({
     imports: [CommonModule, FormsModule, GestionSolicitudesRoutingModule, NgxBarcodeModule],
-    providers: [SolicitudService, PersonaService,RecursoService, DetalleSolicitudService],
+    providers: [SolicitudService, MailSenderService, PersonaService,RecursoService, DetalleSolicitudService],
     declarations: [GestionSolicitudesComponent]
 })
 export class GestionSolicitudesModule {}
