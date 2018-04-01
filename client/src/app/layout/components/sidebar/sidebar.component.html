@@ -6,19 +6,19 @@
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Charts' | translate }}
         </a>
-        <a [routerLink]="['/generadoretiquetas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="bibliotecario || asistenteBiblioteca" [routerLink]="['/generadoretiquetas']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa fa-qrcode"></i>&nbsp;{{ 'Generador de Etiquetas' | translate }}
         </a>
         <a [routerLink]="['/catalogo']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa fa-book"></i>&nbsp;{{ 'Catálogo' | translate }}
         </a>
-        <a [routerLink]="['/registrorecurso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="bibliotecario || asistenteBiblioteca" [routerLink]="['/registrorecurso']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa fa-edit"></i>&nbsp;{{ 'Registrar Recurso Nuevo' | translate }}
         </a>
-        <a [routerLink]="['/gestionsolicitudes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="bibliotecario || asistenteBiblioteca" [routerLink]="['/gestionsolicitudes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa fa-calendar-check-o"></i>&nbsp;{{ 'Gestionar Solicitudes' | translate }}
         </a>
-        <div class="nested-menu">
+        <div *ngIf="bibliotecario || asistenteBiblioteca" class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('pages')">
                 <span><i class="fa fa-database"></i>&nbsp; {{ 'Base de Datos' | translate }}</span>
             </a>

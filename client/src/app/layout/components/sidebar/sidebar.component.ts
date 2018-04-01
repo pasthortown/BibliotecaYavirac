@@ -1,3 +1,4 @@
+import { RolSecundario } from './../../../entidades/CRUD/RolSecundario';
 import { LoginResult } from './../../../entidades/especifico/Login-Result';
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
@@ -13,6 +14,11 @@ export class SidebarComponent implements OnInit {
     showMenu: string = '';
     pushRightClass: string = 'push-right';
     username: string;
+    rol: number;
+    estudiante: Boolean;
+    bibliotecario: Boolean;
+    asistenteBiblioteca: Boolean;
+    rolesSecundarios: RolSecundario[];
 
     constructor(private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
@@ -35,6 +41,27 @@ export class SidebarComponent implements OnInit {
         const logedResult = JSON.parse(localStorage.getItem('logedResult')) as LoginResult;
         const personaLogeada = logedResult.persona;
         this.username = personaLogeada.nombre1 + ' ' + personaLogeada.nombre2 + ' ' + personaLogeada.apellido1 + ' ' + personaLogeada.apellido2;
+        this.rol = logedResult.idRol;
+        this.rolesSecundarios = JSON.parse(localStorage.getItem('rolesSecundarios')) as RolSecundario[];
+        this.estudiante = false;
+        this.bibliotecario = false;
+        this.asistenteBiblioteca = false;
+        this.activarPrivilegiosRol(this.rol);
+        this.rolesSecundarios.forEach(rolSecundario => {
+            this.activarPrivilegiosRol(rolSecundario.idRol);
+        });
+    }
+
+    activarPrivilegiosRol(rol: number): void {
+        if (rol == 2) {
+            this.estudiante = true;
+        }
+        if (rol == 10) {
+            this.bibliotecario = true;
+        }
+        if (rol == 11) {
+            this.asistenteBiblioteca = true;
+        }
     }
 
     eventCalled() {
