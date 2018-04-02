@@ -1,3 +1,4 @@
+import { BsComponentModule } from './layout/bs-component/bs-component.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +13,6 @@ import { AuthGuard } from './shared';
 
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { BsComponentModule } from './layout/bs-component/bs-component.module';
 import { Http, HttpModule } from '@angular/http';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastOptions } from 'ng2-toastr/src/toast-options';
@@ -29,7 +29,7 @@ export function createTranslateLoader(http: HttpClient) {
     imports: [
         HttpModule,
         FormsModule,
-        BsComponentModule,       
+        BsComponentModule,
         CommonModule,
         BrowserModule,
         BrowserAnimationsModule,
