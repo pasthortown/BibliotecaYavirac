@@ -721,6 +721,7 @@ export class RegistroRecursoComponent implements OnInit {
     agregarEjemplar() {
         const ejemplar = new Ejemplar();
         if(this.recursoNuevo.idCategoria == 0 || this.recursoNuevo.idCategoria == null){
+            this.toastr.warning('Debe seleccionar una categoría', 'Ingreso de Datos');
             return;
         }
         this.categorias.forEach(categoria => {
