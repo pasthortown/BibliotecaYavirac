@@ -90,7 +90,7 @@ export class CatalogoComponent implements OnInit {
       return porVerificar.id === this.entidadSeleccionada.id;
    }
 
-   getAll(): void {
+   getRecursos(): void {
       this.busy = this.dataService
       .getAll()
       .then(entidadesRecuperadas => {
@@ -98,7 +98,7 @@ export class CatalogoComponent implements OnInit {
          if (entidadesRecuperadas == null || entidadesRecuperadas.length === 0) {
             this.toastr.success('¡No hay datos!', 'Consulta');
          } else {
-            this.toastr.success('La consulta fue exitosa', 'Consulta');
+            this.checkDisponibilidad();
          }
       })
       .catch(error => {
@@ -132,7 +132,7 @@ export class CatalogoComponent implements OnInit {
         this.recursoDigital.id = 0;
         this.descargaRecursoDigital = new DescargaRecursoDigital();
         this.getRecursosSolicitados();
-        this.getAll();
+        this.getRecursos();
         this.entidadSeleccionada = this.crearEntidad();
         this.nuevoComentario();
         this.getTipos();
@@ -216,6 +216,41 @@ export class CatalogoComponent implements OnInit {
       .catch(error => {
          console.log(error);
       });
+   }
+
+   checkDisponibilidad() {
+        let ejemplares = [];
+        let pedidos = [];
+        this.busy = this.dataService.existeEjemplar()
+        .then(respuesta => {
+            ejemplares = respuesta;
+            this.busy = this.dataService.pedidos()
+            .then(respuesta => {
+                pedidos = respuesta;
+                this.entidades.forEach(recurso => {
+                    recurso.Disponibilidad = false;
+                    ejemplares.forEach(ejemplar => {
+                        if(recurso.id == ejemplar.idRecurso){
+                            recurso.Disponibilidad = true;
+                        }
+                        pedidos.forEach(pedido => {
+                            if(pedido.idRecurso == recurso.id){
+                                if(pedido.Ejemplares>=ejemplar.Ejemplares) {
+                                    recurso.Disponibilidad = false;
+                                }
+                            }
+                        });
+                    });
+                });
+                this.toastr.success('La consulta fue exitosa', 'Consulta');
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        })
+        .catch(error => {
+            console.log(error);
+        });
    }
 
    getCategorias(): void {

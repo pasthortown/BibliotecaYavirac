@@ -10,12 +10,12 @@ import { TagService } from './../CRUD/tag/tag.service';
 import { RecursoService } from './../CRUD/recurso/recurso.service';
 import { Recurso } from './../../entidades/CRUD/Recurso';
 import { FotoPortada } from './../../entidades/CRUD/FotoPortada';
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewChild } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Productora } from './../../entidades/CRUD/Productora';
 import { Autor } from './../../entidades/CRUD/Autor';
 import { ModalComponent } from './../bs-component/components';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbTabset } from '@ng-bootstrap/ng-bootstrap';
 import { TipoRecurso } from '../../entidades/CRUD/TipoRecurso';
 import { Estado } from '../../entidades/CRUD/Estado';
 import { CategoriaRecurso } from '../../entidades/CRUD/CategoriaRecurso';
@@ -54,6 +54,9 @@ export class RegistroRecursoComponent implements OnInit {
     recursos: Recurso[];
     ejemplares: Ejemplar[];
     paises: Ubicacion[];
+
+    @ViewChild('tabs')
+    private tabs:NgbTabset;
 
     constructor(public toastr: ToastsManager, vcr: ViewContainerRef, private modalService: NgbModal, private productoraService: ProductoraService, private autorService: AutorService, private tipoService: TipoRecursoService, private categoriaService: CategoriaRecursoService, private estadoService: EstadoService, private recursoService: RecursoService, private fotoPortadaService: FotoPortadaService, private tagService: TagService, private recursoTagServive: RecursoTagService, private recursoDigitalService: RecursoDigitalService, private ubicacionService: UbicacionService, private ejemplarService: EjemplarService, private http: Http) {
         this.toastr.setRootViewContainerRef(vcr);
@@ -108,7 +111,7 @@ export class RegistroRecursoComponent implements OnInit {
                 }
             }
         }),(result => {
-           //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
+
         }));
     }
 
@@ -128,7 +131,7 @@ export class RegistroRecursoComponent implements OnInit {
                 }
             }
         }),(result => {
-           //Esto se ejecuta si la ventana se cierra sin aceptar los cambios
+
         }));
     }
 
@@ -234,8 +237,8 @@ export class RegistroRecursoComponent implements OnInit {
         }
     }
 
-    showTab(tabId) {
-        this.activeTab = tabId;
+    showTab(newTab) {
+        this.cambio(newTab);
     }
 
     seleccionadoProductora() {
@@ -318,7 +321,115 @@ export class RegistroRecursoComponent implements OnInit {
         });
     }
 
+    cambio(newTab) {
+        switch(this.tabs.activeId){
+            case 'tab1':
+                if(this.recursoNuevo.idAutor == 0){
+                    this.toastr.warning('Debe seleccionar un Autor', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.idProductora == 0){
+                    this.toastr.warning('Debe seleccionar una Productora', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.fecha == null){
+                    this.toastr.warning('Debe ingresar una fecha', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.idPaisPublicacion == 0){
+                    this.toastr.warning('Debe seleccionar un país de publicación', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.ciudadPublicacion == '' || this.recursoNuevo.ciudadPublicacion == null){
+                    this.toastr.warning('Debe ingresar una ciudad de publicación', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                break;
+            case 'tab2':
+                if(this.recursoNuevo.titulo == '' || this.recursoNuevo.titulo == null){
+                    this.toastr.warning('Debe ingresar una título', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.codigoISBN == '' || this.recursoNuevo.codigoISBN == null){
+                    this.toastr.warning('Debe ingresar un código ISBN', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.descripcion == '' || this.recursoNuevo.descripcion == null){
+                    this.toastr.warning('Debe ingresar una descripción', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.contenido == '' || this.recursoNuevo.contenido == null){
+                    this.toastr.warning('Debe ingresar un contenido', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.idTipo == 0){
+                    this.toastr.warning('Debe seleccionar un tipo', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                if(this.recursoNuevo.idCategoria == 0){
+                    this.toastr.warning('Debe seleccionar una categoría', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                break;
+            case 'tab3':
+                if(this.tagsIngresados == '' || this.tagsIngresados == null){
+                    this.toastr.warning('Debe ingresar las palabras clave', 'Ingreso de Datos');
+                    newTab = this.activeTab;
+                }
+                break;
+        }
+        this.activeTab = newTab;
+    }
+
     guardarRecurso(): void {
+        if(this.recursoNuevo.idAutor == 0){
+            this.toastr.warning('Debe seleccionar un Autor', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.idProductora == 0){
+            this.toastr.warning('Debe seleccionar una Productora', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.fecha == null){
+            this.toastr.warning('Debe ingresar una fecha', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.idPaisPublicacion == 0){
+            this.toastr.warning('Debe seleccionar un país de publicación', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.ciudadPublicacion == '' || this.recursoNuevo.ciudadPublicacion == null){
+            this.toastr.warning('Debe ingresar una ciudad de publicación', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.titulo == '' || this.recursoNuevo.titulo == null){
+            this.toastr.warning('Debe ingresar una título', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.codigoISBN == '' || this.recursoNuevo.codigoISBN == null){
+            this.toastr.warning('Debe ingresar un código ISBN', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.descripcion == '' || this.recursoNuevo.descripcion == null){
+            this.toastr.warning('Debe ingresar una descripción', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.contenido == '' || this.recursoNuevo.contenido == null){
+            this.toastr.warning('Debe ingresar un contenido', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.idTipo == 0){
+            this.toastr.warning('Debe seleccionar un tipo', 'Ingreso de Datos');
+            return;
+        }
+        if(this.recursoNuevo.idCategoria == 0){
+            this.toastr.warning('Debe seleccionar una categoría', 'Ingreso de Datos');
+            return;
+        }
+        if(this.tagsIngresados == '' || this.tagsIngresados == null){
+            this.toastr.warning('Debe ingresar las palabras clave', 'Ingreso de Datos');
+            return;
+        }
         if(this.idRecursoSeleccionado!=0){
             this.actualizarRecurso();
             return;

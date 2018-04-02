@@ -24,7 +24,7 @@
 </div>
 <div class="container">
     <div class="card-block">
-        <ngb-tabset [activeId]="activeTab">
+        <ngb-tabset [activeId]="activeTab" #tabs (tabChange)="cambio()">
             <ngb-tab title="1. Origen" id="tab1">
                 <ng-template ngbTabContent>
                     <div class="container-fluid card">
@@ -182,6 +182,7 @@
                             </div>
                             <div class="col-sm-8">
                                 <textarea rows="4" class="form-control" id="tags" name="tags" placeholder="Palabras Clave" [(ngModel)]="tagsIngresados"></textarea>
+                                <p class="text-justify"><i>Ingrese las palabras clave, separadas por ",". Ejemplo: Trinomio Cuadrado Perfecto, Polinomios, Factor Común</i></p>
                             </div>
                         </div>
                         <div class="form-group row">

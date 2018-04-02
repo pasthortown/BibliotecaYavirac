@@ -18,4 +18,5 @@ export class Recurso {
    TipoRecurso: string;
    Bibliografia: string;
    FechaRetorno: Date;
+   Disponibilidad: Boolean;
 }

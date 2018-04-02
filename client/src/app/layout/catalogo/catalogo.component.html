@@ -110,8 +110,11 @@
                         </div>
                         <div class="col-6">
                             <h5>Disponibilidad:</h5>
-                            <div class="alert alert-primary text-center" role="alert">
+                            <div *ngIf="!entidadSeleccionada.Disponibilidad" class="alert alert-danger text-center" role="alert">
                                 No disponible
+                            </div>
+                            <div *ngIf="entidadSeleccionada.Disponibilidad" class="alert alert-success text-center" role="alert">
+                                Disponible
                             </div>
                         </div>
                     </div>
