@@ -1,3 +1,4 @@
+import { ChartsService } from './charts.service';
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 
@@ -8,6 +9,7 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class ChartsComponent implements OnInit {
+    busy: Promise<any>;
     // bar chart
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
@@ -158,7 +160,19 @@ export class ChartsComponent implements OnInit {
          */
     }
 
-    constructor() {}
+    constructor(private chartService: ChartsService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.getEstadisticas();
+    }
+
+    getEstadisticas() {
+        this.busy = this.chartService.getEstadisticas()
+        .then(respuesta => {
+
+        })
+        .catch(error => {
+           console.log(error);
+        });
+    }
 }
