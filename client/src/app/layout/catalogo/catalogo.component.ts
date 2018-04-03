@@ -274,6 +274,10 @@ export class CatalogoComponent implements OnInit {
    }
 
    solicitar() {
+      if(!this.entidadSeleccionada.Disponibilidad) {
+         this.toastr.warning('Recurso no disponible', 'Solicitud');
+         return;
+      }
       let yaSolicitado: Boolean = false;
       this.recursosSolicitados.forEach(recurso => {
           if (recurso.id == this.entidadSeleccionada.id) {
