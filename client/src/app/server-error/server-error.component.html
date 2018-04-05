@@ -1,3 +1,23 @@
-<p>
-  server-error works!
-</p>
+<div class="welcome-page" [@routerTransition]>
+        <div class="row">
+            <div class="col-md-12 push-md-1">
+                <div class="row group">
+                    <div class="col-2">
+                        <span class="fa fa-warning fa-4x"></span>
+                        <h1>500</h1>
+                    </div>
+                    <div class="col-8">
+                        <h1>Ha ocurrido un error</h1>
+                        <p class="lead">Lamentamos lo ocurrido, pronto estaremos disponibles.</p>
+                        <p class="lead">
+                            <a class="btn rounded-btn" [routerLink]="['/']">Regresar</a>
+                        </p>
+                    </div>
+                    <div class="col-2">
+                        <span class="fa fa-warning fa-4x"></span>
+                        <h1>500</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
