@@ -1,11 +1,14 @@
-1.-SELECT TipoRecurso.descripcion, count(Recurso.id) as cantidad FROM Recurso inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) group by idTipo;
+1) CUANTOS EJEMPLARES POR CADA TIPO DE RECURSO TENGO?
+SELECT TipoRecurso.descripcion, COUNT(Recurso.id) AS cantidad FROM Recurso INNER JOIN TipoRecurso ON (Recurso.idTipo=TipoRecurso.id) GROUP BY idTipo;
 
-2.-select TipoRecurso.descripcion,count(Recurso.id) from Recurso inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) INNER JOIN (DetalleSolicitud) ON (DetalleSolicitud.idRecurso=Recurso.id) INNER JOIN (Solicitud) on (DetalleSolicitud.idSolicitud=Solicitud.id) where Solicitud.fechaDevolucion='NULL' group by idTipo;
+2) CUANTOS LIBROS HAN SIDO SOLICITADOS Y AUN NO REGRESAN?
+SELECT TipoRecurso.descripcion,COUNT(Recurso.id) FROM Recurso INNER JOIN TipoRecurso ON (Recurso.idTipo=TipoRecurso.id) INNER JOIN (DetalleSolicitud) ON (DetalleSolicitud.idRecurso=Recurso.id) INNER JOIN (Solicitud) ON (DetalleSolicitud.idSolicitud=Solicitud.id) WHERE Solicitud.fechaDevolucion='NULL' GROUP BY idTipo;
 
-3.-SELECT idTipo,count(Recurso.id) as cantidad from Recurso INNER JOIN (DetalleSolicitud) ON (DetalleSolicitud.idRecurso=Recurso.id) where i
-dTipo=1 BETWEEN '2018-03-23 00:00:00' AND '2017-03-23 23:59:59';
+3) CUANTOS LIBROS HAN SIDO SOLICITADOS EN EL ULTIMO MES, AÑO, HORA Y DIA DE LA SEMANA?
+SELECT idTipo,COUNT(Recurso.id) AS cantidad FROM Recurso INNER JOIN (DetalleSolicitud) ON (DetalleSolicitud.idRecurso=Recurso.id) WHERE idTipo=1 BETWEEN '2018-03-23 00:00:00' AND '2017-03-23 23:59:59';
 
-4.-select Recurso.descripcion ,Estado.descripcion , count(Recurso.id) FROM Recurso inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) inner join Ejemplar on (Recurso.id=Ejemplar.id) join Estado on (Ejemplar.id=Estado.id) group by estado.id;
+4) CUANTOS LIBROS TENGO POR CADA ESTADO?
+SELECT Recurso.descripcion ,Estado.descripcion , COUNT(Recurso.id) FROM Recurso INNER JOIN TipoRecurso ON (Recurso.idTipo=TipoRecurso.id) INNER JOIN TipoRecurso ON (Recurso.idTipo=TipoRecurso.id) INNER JOIN Ejemplar ON (Recurso.id=Ejemplar.id) INNER JOIN Estado ON (Ejemplar.id=Estado.id) GROUP BY estado.id;
 
-
-5.-select CategoriaRecurso.descripcion as 'Categoria Unesco', count(Recurso.id) as Cantidad FROM Recurso inner join CategoriaRecurso on (CategoriaRecurso.id=Recurso.idCategoria) group by CategoriaRecurso.id ;
+5)CUANTOS LIBROS TENGO POR CADA CATEGORIA DE LA UNESCO?
+SELECT CategoriaRecurso.descripcion AS 'Categoria Unesco', COUNT(Recurso.id) AS Cantidad FROM Recurso INNER JOIN CategoriaRecurso ON (CategoriaRecurso.id=Recurso.idCategoria) GROUP BY CategoriaRecurso; 
