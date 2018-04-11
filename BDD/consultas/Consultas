@@ -1,0 +1,5 @@
+1.-SELECT idTipo,count(id) as cantidad FROM Recurso group by idTipo;
+2.-select idTipo,count(id) from Recurso INNER JOIN (Solicitud) ON (Solicitud.idRecurso=Recurso.id) where idTipo=1 ;
+3.-SELECT idTipo,count(Recurso.id) as cantidad from Recurso INNER JOIN (DetalleSolicitud) ON (DetalleSolicitud.idRecurso=Recurso.id) where idTipo=1 BETWEEN '2018-03-23 00:00:00' AND '2017-03-23 23:59:59';
+4.-select idRecurso , count(Ejemplar.id) FROM Ejemplar inner join (Recurso) on (Recurso.id=Ejemplar.id) and Recurso.idTipo=1 group by idEstado ;
+5.-select idTipo, count(Recurso.id) as cantidad FROM Recurso where idTipo=1 group by idCategoria ;
