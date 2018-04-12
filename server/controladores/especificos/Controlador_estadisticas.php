@@ -37,7 +37,7 @@ class Controlador_estadisticas extends Controlador_Base
    function top_10_recursos($args)
    {
       $parametros = array();
-      $sql = "SELECT Recurso.*, a.cuenta FROM Recurso INNER JOIN (SELECT Recurso.id as recurso, COUNT(Recurso.id) as cuenta FROM Recurso INNER JOIN DetalleSolicitud ON DetalleSolicitud.idRecurso=Recurso.id GROUP BY recurso ORDER BY cuenta DESC LIMIT 10) a ON a.recurso = Recurso.id;";
+      $sql = "SELECT Recurso.*, CONCAT(Autor.apellidos, ' ', Autor.nombres) as 'Autor', Productora.nombre as 'Productora', CategoriaRecurso.codigo as 'Codigo', CategoriaRecurso.descripcion as 'Categoria', TipoRecurso.descripcion as 'TipoRecurso', CONCAT(CategoriaRecurso.codigo,', ', Autor.apellidos,', ', Autor.nombres, ' (', YEAR(Recurso.fecha), '). ', Recurso.titulo, '. (', Recurso.ciudadPublicacion, ').') as 'Bibliografia' FROM Recurso INNER JOIN (SELECT Recurso.id as recurso, COUNT(Recurso.id) as cuenta FROM Recurso INNER JOIN DetalleSolicitud ON DetalleSolicitud.idRecurso=Recurso.id GROUP BY recurso ORDER BY cuenta DESC LIMIT 10) a ON a.recurso = Recurso.id INNER JOIN Autor ON Recurso.idAutor = Autor.id INNER JOIN Productora ON Recurso.idProductora = Productora.id INNER JOIN CategoriaRecurso ON Recurso.idCategoria = CategoriaRecurso.id INNER JOIN TipoRecurso ON Recurso.idTipo = TipoRecurso.id;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
