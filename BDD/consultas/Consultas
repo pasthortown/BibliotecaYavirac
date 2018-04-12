@@ -1,11 +1,2 @@
-1.-SELECT TipoRecurso.descripcion, count(Recurso.id) as cantidad FROM Recurso inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) group by idTipo;
-
-2.-select TipoRecurso.descripcion,count(Recurso.id) from Recurso inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) INNER JOIN (DetalleSolicitud) ON (DetalleSolicitud.idRecurso=Recurso.id) INNER JOIN (Solicitud) on (DetalleSolicitud.idSolicitud=Solicitud.id) where Solicitud.fechaDevolucion='NULL' group by idTipo;
-
 3.-SELECT idTipo,count(Recurso.id) as cantidad from Recurso INNER JOIN (DetalleSolicitud) ON (DetalleSolicitud.idRecurso=Recurso.id) where i
 dTipo=1 BETWEEN '2018-03-23 00:00:00' AND '2017-03-23 23:59:59';
-
-4.-select Recurso.descripcion ,Estado.descripcion , count(Recurso.id) FROM Recurso inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) inner join TipoRecurso on (Recurso.idTipo=TipoRecurso.id) inner join Ejemplar on (Recurso.id=Ejemplar.id) join Estado on (Ejemplar.id=Estado.id) group by estado.id;
-
-
-5.-select CategoriaRecurso.descripcion as 'Categoria Unesco', count(Recurso.id) as Cantidad FROM Recurso inner join CategoriaRecurso on (CategoriaRecurso.id=Recurso.idCategoria) group by CategoriaRecurso.id ;
