@@ -53,7 +53,7 @@ class Controlador_estadisticas extends Controlador_Base
    function ejemplares_categoria_unesco($args)
    {
       $parametros = array();
-      $sql = "SELECT DISTINCT CategoriaRecurso.descripcion as categoria, a.cuenta FROM CategoriaRecurso INNER JOIN (SELECT SUBSTR(CategoriaRecurso.codigo,1,1) as idCategoria, COUNT(Recurso.id) as cuenta FROM Recurso INNER JOIN CategoriaRecurso on CategoriaRecurso.id=Recurso.idCategoria GROUP BY idCategoria) a ON CategoriaRecurso.id = a.idCategoria ORDER BY cuenta DESC;";
+      $sql = "SELECT CategoriaRecurso.descripcion as categoria, SUM(a.cuenta1) as cuenta FROM CategoriaRecurso INNER JOIN (SELECT SUBSTR(CategoriaRecurso.codigo,1,1) as idCategoria, COUNT(Recurso.id) as cuenta1 FROM Recurso INNER JOIN CategoriaRecurso on CategoriaRecurso.id=Recurso.idCategoria GROUP BY idCategoria) a ON CategoriaRecurso.id = a.idCategoria  GROUP BY categoria ORDER BY cuenta DESC;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
