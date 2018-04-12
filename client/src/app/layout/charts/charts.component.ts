@@ -12,6 +12,10 @@ import { routerTransition } from '../../router.animations';
 export class ChartsComponent implements OnInit {
     busy: Promise<any>;
     recursos: Recurso[];
+    month: string;
+    year: number;
+    hoy = new Date();
+    meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
     public barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
@@ -22,56 +26,27 @@ export class ChartsComponent implements OnInit {
     public barChartDataTipos: any[] = [];
     public barChartLabelsUnesco: string[] = [];
     public barChartDataUnesco: any[] = [];
-    
-    // lineChart
-    public lineChartData: Array<any> = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-        { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
-    ];
-    public lineChartLabels: Array<any> = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July'
-    ];
+    public lineChartData: Array<any> = [];
+    public lineChartLabels: Array<any> = [];
+    public lineChartDataMes: Array<any> = [];
+    public lineChartLabelsMes: Array<any> = [];
     public lineChartOptions: any = {
         responsive: true
     };
+    public BarChartColors: Array<any> = [{
+        backgroundColor: '#3bb55a',
+        borderColor: '#27332a'
+    }];
     public lineChartColors: Array<any> = [
         {
-            // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        },
-        {
-            // dark grey
-            backgroundColor: 'rgba(77,83,96,0.2)',
-            borderColor: 'rgba(77,83,96,1)',
-            pointBackgroundColor: 'rgba(77,83,96,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(77,83,96,1)'
-        },
-        {
-            // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            backgroundColor: '#e3eaed',
+            borderColor: '#27b0ea',
+            pointBackgroundColor: '#f7370c',
+            pointBorderColor: '#6d4035',
+            pointHoverBackgroundColor: '#84ff0a',
+            pointHoverBorderColor: '#356d39'
         }
     ];
-    public lineChartLegend: boolean = true;
-    public lineChartType: string = 'line';
 
     constructor(private chartService: ChartsService) {}
 
@@ -80,6 +55,10 @@ export class ChartsComponent implements OnInit {
         this.getEjemplaresCategoriaUnesco();
         this.getEjemplaresEstado();
         this.getEjemplaresTipo();
+        this.getUsoBiblioteca();
+        this.getUsoBibliotecaEsteMes();
+        this.year = this.hoy.getFullYear();
+        this.month = this.meses[this.hoy.getMonth()];
     }
 
     getTopRecursos() {
@@ -136,7 +115,45 @@ export class ChartsComponent implements OnInit {
                 etiquetas.push(element.categoria);
             });
             this.barChartLabelsUnesco = etiquetas;
-            this.barChartDataUnesco.push({data: datos, label:'Categorias'});
+            this.barChartDataUnesco.push({data: datos, label:'Recursos'});
+        })
+        .catch(error => {
+           console.log(error);
+        });
+    }
+
+    getUsoBiblioteca() {
+        this.busy = this.chartService.getUsoBiblioteca()
+        .then(respuesta => {
+            let etiquetas: string[] = [];
+            let datos: number[] = [];
+            respuesta.forEach(element => {
+                datos.push(element.cuenta);
+                etiquetas.push(this.meses[Number(element.fecha) - 1]);
+            });
+            console.log(datos);
+            console.log(etiquetas);
+            this.lineChartData.push({data: datos, label:'Solicitudes'});
+            this.lineChartLabels = etiquetas;
+        })
+        .catch(error => {
+           console.log(error);
+        });
+    }
+
+    getUsoBibliotecaEsteMes() {
+        this.busy = this.chartService.getUsoBibliotecaEsteMes()
+        .then(respuesta => {
+            let etiquetas: string[] = [];
+            let datos: number[] = [];
+            respuesta.forEach(element => {
+                datos.push(element.cuenta);
+                etiquetas.push(element.fecha);
+            });
+            console.log(datos);
+            console.log(etiquetas);
+            this.lineChartDataMes.push({data: datos, label:'Solicitudes'});
+            this.lineChartLabelsMes = etiquetas;
         })
         .catch(error => {
            console.log(error);

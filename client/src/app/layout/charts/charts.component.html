@@ -67,7 +67,7 @@
                     <h5>Variedad de Recursos para Tus Necesidades</h5>
                 </div>
                 <div class="card-body">
-                    <canvas baseChart [datasets]="barChartDataUnesco" [labels]="barChartLabelsUnesco" [options]="barChartOptions" [legend]="false" [chartType]="'horizontalBar'">
+                    <canvas baseChart height="100" [datasets]="barChartDataUnesco" [labels]="barChartLabelsUnesco" [options]="barChartOptions" [legend]="true" [chartType]="'doughnut'">
                     </canvas>
                 </div>
             </div>
@@ -75,10 +75,20 @@
         <div class="col col-sm-12">
             <div class="card mb-3">
                 <div class="card-header">
-                    <h5>Utilización de Nuestra Biblioteca</h5>
+                    <h5>Utilización de Nuestra Biblioteca ({{month}})</h5>
                 </div>
                 <div class="card-body">
-                    <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"></canvas>
+                    <canvas baseChart height="50" [datasets]="lineChartDataMes" [labels]="lineChartLabelsMes" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="false" [chartType]="'line'"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>Utilización de Nuestra Biblioteca ({{year}})</h5>
+                </div>
+                <div class="card-body">
+                    <canvas baseChart height="50" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="false" [chartType]="'line'"></canvas>
                 </div>
             </div>
         </div>

@@ -2138,7 +2138,8 @@ INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (61
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610507,'Elaboración de Tests',6105);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610508,'Teoría de Tests',6105);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610509,'Validez de Tests',6105);
-INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610601,'Actividad Cerebral 610602 Psicología Comparada',6106);
+INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610601,'Actividad Cerebral',6106);
+INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610602,'Psicología Comparada',6106);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610603,'Emoción',6106);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610604,'Análisis Experimental de la Conducta',6106);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610605,'Niveles de Actividad',6106);

@@ -29,6 +29,14 @@ export class ChartsService {
         return this.http.get(this.urlBase+'/ejemplares_categoria_unesco').toPromise().then(response=>response.json() as any[]).catch(this.handleError);
     }
 
+    getUsoBiblioteca(): Promise<any[]> {
+        return this.http.get(this.urlBase+'/uso_biblioteca').toPromise().then(response=>response.json() as any[]).catch(this.handleError);
+    }
+
+    getUsoBibliotecaEsteMes(): Promise<any[]> {
+        return this.http.get(this.urlBase+'/uso_biblioteca_mes').toPromise().then(response=>response.json() as any[]).catch(this.handleError);
+    }
+
     baseUrl(): string {
         return this.urlBase;
     }

@@ -18,14 +18,22 @@ class Controlador_estadisticas extends Controlador_Base
       return $respuesta;
    }
 
-   /*function ejemplares_mas_solicitados($args)
+   function uso_biblioteca($args)
    {
       $parametros = array();
-      $sql = "SELECT TipoRecurso.descripcion as tipo, COUNT(TipoRecurso.descripcion) as cuenta FROM Recurso INNER JOIN TipoRecurso ON Recurso.idTipo = TipoRecurso.id GROUP BY tipo;";
+      $sql = "SELECT DATE_FORMAT(fechaSolicitud ,'%m') as fecha, COUNT(fechaSolicitud) as cuenta FROM Solicitud WHERE YEAR(fechaSolicitud)= YEAR(now()) GROUP BY fecha ORDER BY fecha ASC;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
-*/
+
+   function uso_biblioteca_mes($args)
+   {
+      $parametros = array();
+      $sql = "SELECT DATE_FORMAT(fechaSolicitud ,'%a %d') as fecha, COUNT(fechaSolicitud) as cuenta FROM Solicitud WHERE MONTH(fechaSolicitud)= MONTH(now()) GROUP BY fecha ORDER BY fecha ASC;";
+      $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
+      return $respuesta;
+   }
+
    function ejemplares_por_estado($args)
    {
       $parametros = array();
@@ -45,7 +53,7 @@ class Controlador_estadisticas extends Controlador_Base
    function ejemplares_categoria_unesco($args)
    {
       $parametros = array();
-      $sql = "SELECT CategoriaRecurso.descripcion as categoria, COUNT(Recurso.id) as cuenta FROM Recurso INNER JOIN CategoriaRecurso on CategoriaRecurso.id=Recurso.idCategoria GROUP BY categoria ORDER BY cuenta DESC;";
+      $sql = "SELECT DISTINCT CategoriaRecurso.descripcion as categoria, a.cuenta FROM CategoriaRecurso INNER JOIN (SELECT SUBSTR(CategoriaRecurso.codigo,1,1) as idCategoria, COUNT(Recurso.id) as cuenta FROM Recurso INNER JOIN CategoriaRecurso on CategoriaRecurso.id=Recurso.idCategoria GROUP BY idCategoria) a ON CategoriaRecurso.id = a.idCategoria ORDER BY cuenta DESC;";
       $respuesta = $this->conexion->ejecutarConsulta($sql,$parametros);
       return $respuesta;
    }
