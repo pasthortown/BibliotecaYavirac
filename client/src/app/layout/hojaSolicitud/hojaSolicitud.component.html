@@ -7,7 +7,7 @@
                     <ngx-barcode [bc-value]="solicitudActual.Codigo" [bc-display-value]="true"></ngx-barcode>
                 </div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
-                    <img alt="YAVIRAC" height="100px" src="./../../../assets/images/logos/INSTITUTO TECNOLÓGICO SUPERIOR DE TURISMO Y PATRIMONIO YAVIRAC.png" />
+                    <img alt="YAVIRAC" height="100px" src="assets/images/logos/INSTITUTO TECNOLÓGICO SUPERIOR DE TURISMO Y PATRIMONIO YAVIRAC.png" />
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
         <div class="form-group row">
             <div style="width: 100%; text-align:center;">
                 <div>
-                    <button type="button" class="btn btn-success" (click)="aceptar()" [ngClass]='{disabled: solicitudEmitida}'>
+                    <button type="button" class="btn btn-success" (click)="aceptar()">
                         <span class="fa fa-check"></span>&nbsp;Aceptar
                     </button>
                     <button type="button" class="btn btn-primary" (click)="imprimir()">

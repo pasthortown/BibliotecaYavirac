@@ -321,7 +321,8 @@ export class RegistroRecursoComponent implements OnInit {
         });
     }
 
-    cambio(newTab) {
+    cambio(tab: string) {
+        let newTab = tab;
         switch(this.tabs.activeId){
             case 'tab1':
                 if(this.recursoNuevo.idAutor == 0){
@@ -378,7 +379,9 @@ export class RegistroRecursoComponent implements OnInit {
                 }
                 break;
         }
-        this.activeTab = newTab;
+        if (newTab !== 'check'){
+            this.activeTab = newTab;
+        }
     }
 
     guardarRecurso(): void {

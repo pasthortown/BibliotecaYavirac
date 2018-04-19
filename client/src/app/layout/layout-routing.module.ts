@@ -8,7 +8,6 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: '', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'com2', loadChildren: './com2/com2.module#com2Module' },
             { path: 'proyecto', loadChildren: './proyecto/proyecto.module#proyectoModule' },
             { path: 'generadoretiquetas', loadChildren: './generadorEtiquetas/generadorEtiquetas.module#GeneradorEtiquetasModule' },
             { path: 'catalogo', loadChildren: './catalogo/catalogo.module#CatalogoModule' },

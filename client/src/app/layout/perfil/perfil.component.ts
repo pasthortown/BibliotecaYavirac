@@ -276,7 +276,7 @@ export class PerfilComponent implements OnInit {
     }
 
     getFotoPerfil() {
-        this.srcFoto = './../../../../assets/images/user.png';
+        this.srcFoto = './.assets/images/user.png';
         this.busy = this.fotoPerfilDataService.getFiltrado('idPersona', 'coincide' , this.personaLogeada.id.toString())
         .then(respuesta => {
             if ( JSON.stringify(respuesta) == '[0]' ) {

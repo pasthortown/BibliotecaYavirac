@@ -54,7 +54,7 @@
                </tr>
             </thead>
             <tbody>
-               <tr *ngFor="let actual of myArray" (click)="onSelect(actual)">
+               <tr *ngFor="let actual of entidades" (click)="onSelect(actual)">
                   <td>
                      <i class="fa fa-hand-o-right" [hidden]="!estaSeleccionado(actual)"></i>
                   </td>
