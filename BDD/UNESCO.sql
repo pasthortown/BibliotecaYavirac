@@ -1,4 +1,3 @@
-use Biblioteca;
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (1,'CIENCIAS DE LA SALUD',0);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (2,'CIENCIAS SOCIALES Y JURIDICAS',0);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (3,'INGENIERIA Y ARQUITECTURA',0);
@@ -2139,7 +2138,7 @@ INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (61
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610507,'Elaboración de Tests',6105);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610508,'Teoría de Tests',6105);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610509,'Validez de Tests',6105);
-INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610601,'Actividad Cerebral' 610602) ;
+INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610601,'Actividad Cerebral', 610602) ;
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610602,'Psicología Comparada',6106);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610603,'Emoción',6106);
 INSERT INTO `CategoriaRecurso` (`codigo`,`descripcion`,`codigoPadre`) VALUES (610604,'Análisis Experimental de la Conducta',6106);

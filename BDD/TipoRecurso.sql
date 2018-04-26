@@ -8,3 +8,9 @@ INSERT INTO `TipoRecurso` (`id`,`descripcion`) VALUES (6,'Revista Física');
 INSERT INTO `TipoRecurso` (`id`,`descripcion`) VALUES (7,'Revista Electrónica');
 INSERT INTO `TipoRecurso` (`id`,`descripcion`) VALUES (8,'Video');
 INSERT INTO `TipoRecurso` (`id`,`descripcion`) VALUES (9,'Audio');
+
+
+INSERT INTO Estado (descripcion) VALUES ('Nuevo');
+INSERT INTO Estado (descripcion) VALUES ('Usado');
+INSERT INTO Estado (descripcion) VALUES ('Deteriorado');
+INSERT INTO Estado (descripcion) VALUES ('Requiere ser Reemplazado');

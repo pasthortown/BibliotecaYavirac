@@ -111,6 +111,7 @@ export class HojaSolicitudComponent implements OnInit {
             return;
         }
         this.solicitudActual.fechaDevolucion = new Date('1969-12-31 19:00:00');
+        console.log(this.solicitudActual);
         this.busy = this.solicitudService
         .create(this.solicitudActual)
         .then(respuesta => {

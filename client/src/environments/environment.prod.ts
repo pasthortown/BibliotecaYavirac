@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
-  apiUrl: 'http://localhost/BibliotecaYavirac/server/',
-  apiSaeUrl: 'http://localhost/sae/server/'
-};
+    production: false,
+    apiUrl: 'http://www.yavirac.edu.ec/biblioteca/server/',
+    apiSaeUrl: 'http://www.yavirac.edu.ec/ignug/server/'
+  };
